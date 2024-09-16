@@ -1,3 +1,5 @@
+<img width=100% src="https://github.com/user-attachments/assets/d84ebb09-da5e-44ca-8f47-2040577eb913/api?type=waving&color=5c1bf5&height=120&section=header"/>
+
 ## 📋 Descrição Geral do Projeto: OdontoPrev AI Platform
 
 ### 🎯 Objetivo do Projeto
