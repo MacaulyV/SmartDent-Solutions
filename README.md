@@ -1,5 +1,4 @@
 ![Descrição da Imagem](https://github.com/user-attachments/assets/35cd3ef7-7b8a-451b-9af9-33471ae63ec9)
-
 # 📋 Descrição Geral do Projeto: OdontoPrev AI Platform
 
 ## 🎯 Objetivo
