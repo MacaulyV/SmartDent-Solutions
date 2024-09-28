@@ -1,12 +1,12 @@
-![Descrição da Imagem](https://github.com/user-attachments/assets/559aa861-f95e-4c71-88d4-107216ded0f7)
-# SmartDent Plataforma
+![Descrição da Imagem](https://github.com/user-attachments/assets/83cd9ed6-6cbd-4102-ad10-d4f76acab151)
+# SmartDent Solutions
 ### *Previna e resolva problemas odontológicos com mais agilidade e precisão.*
 
 ---
 
 ## 📜 **Descrição Geral**
 
-A **SmartDent Plataforma** é uma solução inovadora que utiliza **Inteligência Artificial (IA)** para ajudar a **OdontoPrev** a identificar, antecipar e prevenir sinistros odontológicos. Integrada aos sistemas existentes da OdontoPrev, a plataforma oferece análises preditivas detalhadas, permitindo ações proativas que reduzem custos, melhoram a qualidade dos serviços e aumentam a satisfação dos beneficiários.
+A **SmartDent Solutions** é uma solução que utiliza **Inteligência Artificial (IA)** para ajudar a **OdontoPrev** a identificar, antecipar e prevenir sinistros odontológicos. Integrada aos sistemas existentes da OdontoPrev, a plataforma oferece análises preditivas detalhadas, permitindo ações proativas que reduzem custos, melhoram a qualidade dos serviços e aumentam a satisfação dos beneficiários.
 
 ---
 
@@ -54,7 +54,7 @@ A IA rastreia os agendamentos de consultas de acompanhamento. Quando um paciente
 
 ## 🗄️ **Estrutura do Banco de Dados**
 
-A estrutura do banco de dados da **SmartDent Plataforma** foi projetada para suportar as funcionalidades de IA que visam prevenir e mitigar sinistros odontológicos. A seguir, um resumo das principais tabelas e seus propósitos:
+A estrutura do banco de dados da **SmartDent Solutions** foi projetada para suportar as funcionalidades de IA que visam prevenir e mitigar sinistros odontológicos. A seguir, um resumo das principais tabelas e seus propósitos:
 
 1. **Pacientes:** Armazena informações básicas dos beneficiários.
 2. **Dentistas:** Contém dados dos profissionais que prestam os serviços.
@@ -98,7 +98,7 @@ A estrutura do banco de dados da **SmartDent Plataforma** foi projetada para sup
 
 ---
 
-## 🏆 **Por Que a SmartDent Plataforma é a Solução Ideal**
+## 🏆 **Por Que a SmartDent Solutions é a Solução Ideal**
 
 - **🎯 Alinhamento com a Missão da OdontoPrev:** Promover saúde bucal de qualidade, garantindo eficiência e sustentabilidade.
 - **🧠 Tecnologia de Ponta:** Uso de IA avançada para fornecer insights precisos e acionáveis.
@@ -109,7 +109,7 @@ A estrutura do banco de dados da **SmartDent Plataforma** foi projetada para sup
 
 ## 📄 **Conclusão**
 
-A **SmartDent Plataforma** é uma solução estrategicamente alinhada ao modelo de negócios da **OdontoPrev**. Com o uso de **Inteligência Artificial**, a plataforma oferece ferramentas poderosas para identificar e prevenir sinistros, controlar custos, melhorar a qualidade dos serviços e aumentar a satisfação dos beneficiários. Diferente da proposta anterior, que poderia interferir nas operações das clínicas, a SmartDent Plataforma atua de forma interna, respeitando a autonomia das clínicas e focando nas responsabilidades da OdontoPrev como operadora de planos odontológicos.
+A **SmartDent Solutions** é uma solução estrategicamente alinhada ao modelo de negócios da **OdontoPrev**. Com o uso de **Inteligência Artificial**, a plataforma oferece ferramentas poderosas para identificar e prevenir sinistros, controlar custos, melhorar a qualidade dos serviços e aumentar a satisfação dos beneficiários. Diferente da proposta anterior, que poderia interferir nas operações das clínicas, a SmartDent Plataforma atua de forma interna, respeitando a autonomia das clínicas e focando nas responsabilidades da OdontoPrev como operadora de planos odontológicos.
 
 Esta estrutura de banco de dados robusta e bem planejada garante que os modelos de IA operem de forma eficiente e precisa, proporcionando à OdontoPrev a capacidade de tomar decisões informadas e proativas. Com isso, a empresa poderá manter a sustentabilidade financeira, oferecer serviços de alta qualidade e fortalecer a confiança dos seus beneficiários.
 
