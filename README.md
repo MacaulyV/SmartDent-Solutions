@@ -64,7 +64,6 @@ A estrutura do banco de dados da **SmartDent Solutions** foi projetada para supo
 6. **Agendamentos:** Armazena informações sobre consultas futuras.
 7. **Acompanhamentos:** Registra acompanhamentos pós-tratamento necessários.
 8. **AlertasIA:** Armazena alertas gerados pela IA sobre possíveis sinistros.
-9. **Configuracoes:** Guarda parâmetros e limites utilizados pelos modelos de IA.
 10. **Logs de Ações:** Registra todas as ações tomadas com base nos alertas gerados pela IA.
 
 ---
