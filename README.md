@@ -214,7 +214,7 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
 
 ---
 
-## Lógica do diagrama usando linguagem de marcação Mermaid
+## Lógica do diagrama usando a Ferramenta Mermaid
 
 ## graph TD
     Apresentação -->|Recebe Requisições| Aplicação
