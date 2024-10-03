@@ -216,7 +216,6 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
 
 ## Lógica do diagrama usando a Ferramenta Mermaid
 
-## graph TD
     Apresentação -->|Recebe Requisições| Aplicação
     Aplicação -->|Verifica Limites| Domínio
     Domínio -->|Envia Alerta| Aplicação
