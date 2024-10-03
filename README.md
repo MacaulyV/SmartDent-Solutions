@@ -49,21 +49,7 @@ A IA rastreia os agendamentos de consultas de acompanhamento. Quando um paciente
 - **🛡️ Prevenção de Complicações:** Evita agravamentos na saúde do paciente, prevenindo tratamentos mais caros.
 - **💸 Redução de Custos:** Minimiza despesas com tratamentos futuros evitáveis.
 - **😊 Melhoria da Experiência do Cliente:** Demonstra cuidado e atenção, aumentando a satisfação e confiança na empresa.
-
----
-
-## 🗄️ **Estrutura do Banco de Dados**
-
-A estrutura do banco de dados da **SmartDent Solutions** foi projetada para suportar as funcionalidades de IA que visam prevenir e mitigar sinistros odontológicos. A seguir, um resumo das principais tabelas e seus propósitos:
-
-1. **Pacientes:** Armazena informações básicas dos beneficiários.
-2. **Dentistas:** Contém dados dos profissionais que prestam os serviços.
-3. **Procedimentos:** Lista todos os procedimentos odontológicos disponíveis.
-4. **Consultas:** Registra cada visita de um paciente a um dentista.
-5. **ConsultasProcedimentos:** Associa procedimentos específicos a cada consulta.
-6. **Agendamentos:** Armazena informações sobre consultas futuras.
-7. **Acompanhamentos:** Registra acompanhamentos pós-tratamento necessários.
-
+  
 ---
 
 ## 📝 **Requisitos Funcionais e Não Funcionais**
@@ -131,68 +117,130 @@ A estrutura do banco de dados da **SmartDent Solutions** foi projetada para supo
 
 ---
 
-# Arquitetura do Sistema de Monitoramento de Consultas Odontológicas 🏥
+## 🗄️ Estrutura do Banco de Dados
 
-## Descrição Geral
-Este projeto segue os princípios da **Clean Architecture**, separando o código em camadas distintas para garantir uma estrutura modular, de fácil manutenção e escalável. A Clean Architecture permite que as responsabilidades sejam bem definidas, garantindo que cada camada da aplicação tenha um papel específico no funcionamento do sistema.
+O projeto utiliza um banco de dados relacional para armazenar informações sobre pacientes, consultas e alertas. Abaixo estão as principais tabelas utilizadas:
 
-### Camadas Principais da Arquitetura:
+### Tabelas Principais
 
-1. **Apresentação (Presentation)**: Interface que interage diretamente com o usuário ou cliente da API.
-2. **Aplicação (Application)**: Onde a lógica dos casos de uso do sistema é orquestrada, conectando o usuário às entidades do domínio.
-3. **Domínio (Domain)**: Contém as entidades e regras de negócio da aplicação, como as lógicas que determinam quando um alerta é gerado.
-4. **Infraestrutura (Infrastructure)**: Responsável pela persistência de dados e integração com APIs externas, como o banco de dados.
+1. **Pacientes**
+   - Armazena os dados dos pacientes.
+   - **Campos:** `PacienteID`, `Nome`, `DataNascimento`, `Contato`.
+
+2. **Consultas**
+   - Registra as consultas realizadas.
+   - **Campos:** `ConsultaID`, `PacienteID`, `DataConsulta`, `DescricaoProcedimento`.
+
+3. **Alertas**
+   - Armazena os alertas gerados quando o limite de consultas é excedido.
+   - **Campos:** `AlertaID`, `PacienteID`, `DataAlerta`, `MotivoAlerta`.
+
+### Relacionamentos
+- Um **Paciente** pode ter várias **Consultas**.
+- Um **Alerta** está relacionado a um **Paciente** e suas consultas.
+
+# 📐 Arquitetura do Sistema de Monitoramento de Consultas Odontológicas
+
+## Contexto e Propósito da Arquitetura
+
+Esta arquitetura foi desenvolvida com base no projeto **SmartDent Solutions**, que visa resolver problemas de sinistros odontológicos por meio de **Inteligência Artificial (IA)**. O projeto utiliza o padrão **Clean Architecture** para manter o código desacoplado, modular e de fácil manutenção.
+
+No contexto do projeto **SmartDent**, o sistema foi dividido em camadas que separam as responsabilidades e facilitam a escalabilidade da solução. Para efeitos de implementação prática no **projeto em C# .NET**, focamos na lógica da funcionalidade de **detecção de consultas excessivas**, aplicando a arquitetura limpa na implementação dessa funcionalidade.
+
+---
+
+## 🔄 Integração da Arquitetura no Projeto .NET
+
+A arquitetura implementada segue os mesmos princípios do projeto principal, mas focamos em simular o caso de uso da **detecção de consultas excessivas**. No projeto **.NET**, implementamos o controle de pacientes, consultas e alertas, usando o **Entity Framework Core** para persistência de dados.
+
+A seguir, detalhamos as camadas da arquitetura e como cada uma delas foi estruturada e implementada no **projeto C#**:
 
 ---
 
 ## 🏗️ Estrutura das Camadas
 
 ### 1. **Apresentação (Presentation)**
-Esta camada é responsável pela interface com o usuário. Ela expõe as funcionalidades da aplicação por meio de **Controladores**, que recebem e tratam as requisições dos usuários.
 
-- **Controlador de Pacientes**: Recebe as requisições para listar, visualizar e gerenciar pacientes.
-- **Controlador de Alertas**: Gerencia a exibição e controle de alertas gerados para pacientes que ultrapassaram o limite de consultas.
-- **Interface do Usuário**: O administrador interage com o sistema por meio de uma interface web (usando Razor Pages ou MVC) ou uma API REST.
+Esta camada lida com a interface de usuário e a comunicação com os serviços de aplicação. No projeto **.NET**, essa camada é responsável pelos controladores que recebem e processam as requisições do usuário ou da API.
 
-### 2. **Aplicação (Application)**
-A camada de aplicação contém os **Serviços de Aplicação**, que são responsáveis por coordenar os casos de uso do sistema. Esta camada se comunica diretamente com o **Domínio** para realizar operações relacionadas às entidades de negócio.
-
-- **ConsultaService**: Lida com a lógica de verificar o número de consultas de cada paciente e acionar alertas, caso o limite de consultas seja excedido.
-- **AlertaService**: Gera e gerencia os alertas baseados nos resultados da consulta.
-- **Casos de Uso**: Implementa as funcionalidades principais, como listar pacientes, registrar consultas e gerar alertas.
-
-### 3. **Domínio (Domain)**
-A camada de domínio contém as **Entidades** e as **Regras de Negócio** da aplicação. O domínio é a parte central da Clean Architecture, pois contém a lógica de negócio independente de detalhes técnicos.
-
-- **Entidades Principais**:
-  - **Paciente**: Representa os dados do paciente, como seu histórico de consultas.
-  - **Consulta**: Contém informações sobre cada consulta realizada.
-  - **Alerta**: Armazena detalhes sobre alertas gerados quando o paciente ultrapassa o limite de consultas.
-- **Regras de Negócio**:
-  - A principal regra de negócio é verificar se o paciente excedeu o número de consultas permitidas e, em caso positivo, gerar um alerta.
-
-### 4. **Infraestrutura (Infrastructure)**
-A camada de infraestrutura lida com a persistência de dados e acesso ao banco de dados. Usamos o **Entity Framework Core (EF Core)** para mapear as entidades do domínio para tabelas no banco de dados.
-
-- **PacienteRepository**: Implementa a interface para buscar, adicionar, atualizar e remover pacientes no banco de dados.
-- **ConsultaRepository**: Lida com o armazenamento e a consulta de dados de consultas.
-- **AlertaRepository**: Gerencia a criação e consulta de alertas gerados para pacientes.
-- **Entity Framework Core**: Utilizado para mapear entidades para tabelas e realizar operações CRUD (Create, Read, Update, Delete).
+- **Controlador de Pacientes:** Gerencia as requisições relacionadas ao cadastro e listagem de pacientes.
+- **Controlador de Alertas:** Gerencia os alertas gerados para pacientes com consultas excessivas.
+- **Interface do Usuário:** Exibe os dados e interações para o administrador da OdontoPrev.
 
 ---
 
-## 🔍 Como as Camadas Interagem
+### 2. **Aplicação (Application)**
 
-Aqui está um resumo de como as camadas da **Clean Architecture** interagem entre si:
+A camada de aplicação contém os **Serviços de Aplicação** que coordenam a lógica dos casos de uso, conectando a apresentação ao domínio.
 
-- **Apresentação**: Recebe as requisições do usuário e as repassa para os serviços de aplicação.
-- **Aplicação**: Lida com a lógica de negócio e consulta as entidades do domínio para verificar o número de consultas e, se necessário, aciona os alertas.
-- **Domínio**: Contém as entidades e regras de negócio que determinam quando um paciente está ultrapassando o limite de consultas.
-- **Infraestrutura**: Acessa o banco de dados para armazenar e recuperar informações sobre pacientes, consultas e alertas, além de realizar migrações de banco de dados quando necessário.
+- **ConsultaService:** Responsável por verificar o número de consultas dos pacientes e gerar alertas se necessário.
+- **AlertaService:** Lida com a geração e exibição de alertas baseados nos dados de consultas.
+- **Casos de Uso:** Implementa a lógica que identifica consultas excessivas e aciona o alerta para a equipe.
+
+---
+
+### 3. **Domínio (Domain)**
+
+A camada de domínio contém as **Entidades** que representam os conceitos de negócio e as **Regras de Negócio** que regem o comportamento do sistema. Nesta parte, focamos nas entidades relacionadas a pacientes, consultas e alertas.
+
+- **Entidades:**
+  - **Paciente:** Representa os dados do paciente, como histórico de consultas.
+  - **Consulta:** Registra os dados de cada consulta realizada.
+  - **Alerta:** Contém informações sobre os alertas gerados quando o limite de consultas é excedido.
+  
+- **Regras de Negócio:**
+  - A regra central é verificar se o paciente excedeu o número de consultas permitidas em um período específico.
+
+---
+
+### 4. **Infraestrutura (Infrastructure)**
+
+Esta camada lida com o acesso ao banco de dados e outras integrações externas. No projeto **.NET**, usamos o **Entity Framework Core** para mapear as entidades e realizar operações CRUD (Create, Read, Update, Delete).
+
+- **PacienteRepository:** Acessa o banco de dados para gerenciar pacientes.
+- **ConsultaRepository:** Armazena e consulta os dados de consultas.
+- **AlertaRepository:** Gerencia a persistência dos alertas gerados.
+- **Entity Framework Core:** Usado para mapear as entidades e sincronizar com o banco de dados.
 
 ---
 
 ## 🖼️ Diagrama de Arquitetura
 
+O diagrama a seguir mostra a interação entre as camadas da **Clean Architecture** para o caso de uso implementado de **detecção de consultas excessivas**.
+
 ![Descrição da Imagem](https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485)
+
+Explicação logica
+graph TD
+    Apresentacao -->|Recebe Requisições| Aplicacao
+    Aplicacao -->|Verifica Limites| Dominio
+    Dominio -->|Envia Alerta| Aplicacao
+    Aplicacao -->|Grava Dados| Infraestrutura
+    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
+    Aplicacao -->|Retorna Dados| Apresentacao
+    
+    subgraph Apresentacao
+        A1[Controlador de Pacientes]
+        A2[Controlador de Alertas]
+        A3[Interface do Usuário]
+    end
+
+    subgraph Aplicacao
+        B1[ConsultaService]
+        B2[AlertaService]
+    end
+
+    subgraph Dominio
+        C1[Paciente]
+        C2[Consulta]
+        C3[Alerta]
+        C4[Regra de Limite]
+    end
+
+    subgraph Infraestrutura
+        D1[PacienteRepository]
+        D2[ConsultaRepository]
+        D3[AlertaRepository]
+    end
+
 ---
