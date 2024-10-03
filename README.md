@@ -139,7 +139,9 @@ O projeto utiliza um banco de dados relacional para armazenar informações sobr
 - Um **Paciente** pode ter várias **Consultas**.
 - Um **Alerta** está relacionado a um **Paciente** e suas consultas.
 
-# 📐 Arquitetura do Sistema de Monitoramento de Consultas Odontológicas
+---
+
+# 📐 Desenho da Arquitetura do Sistema .NET de Monitoramento de Consultas Odontológicas
 
 ## Contexto e Propósito da Arquitetura
 
