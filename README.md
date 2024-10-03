@@ -212,15 +212,6 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
 
 ![Descrição da Imagem](https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485)
 
-Explicação logica
-graph TD
-    Apresentacao -->|Recebe Requisições| Aplicacao
-    Aplicacao -->|Verifica Limites| Dominio
-    Dominio -->|Envia Alerta| Aplicacao
-    Aplicacao -->|Grava Dados| Infraestrutura
-    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
-    Aplicacao -->|Retorna Dados| Apresentacao
-
 graph TD
     Apresentacao -->|Recebe Requisições| Aplicacao
     Aplicacao -->|Verifica Limites| Dominio
