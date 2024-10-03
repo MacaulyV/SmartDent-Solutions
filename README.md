@@ -210,9 +210,9 @@ Esta camada lida com o acesso ao banco de dados e outras integrações externas.
 
 O diagrama a seguir mostra a interação entre as camadas da **Clean Architecture** para o caso de uso implementado de **detecção de consultas excessivas**.
 
-<div style="text-align: center;">
-    <img src="https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485" alt="Descrição da Imagem" />
-</div>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485" alt="Descrição da Imagem" />
+</p>
 
 ---
 
