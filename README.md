@@ -218,11 +218,11 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
 
 ## Lógica do Diagrama
 
-    Apresentação -->|Recebe Requisições| Aplicação
-    Aplicação -->|Verifica Limites| Domínio
-    Domínio -->|Envia Alerta| Aplicação
-    Aplicação -->|Grava Dados| Infraestrutura
-    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
-    Aplicação -->|Retorna Dados| Apresentação
+> Apresentação -->|Recebe Requisições| Aplicação  
+> Aplicação -->|Verifica Limites| Domínio  
+> Domínio -->|Envia Alerta| Aplicação  
+> Aplicação -->|Grava Dados| Infraestrutura  
+> Infraestrutura -->|Banco de Dados| EntityFramework  
+> Aplicação -->|Retorna Dados| Apresentação
     
 ---
