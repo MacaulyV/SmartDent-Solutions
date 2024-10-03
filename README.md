@@ -196,35 +196,34 @@ Aqui está um resumo de como as camadas da **Clean Architecture** interagem entr
 
 ```mermaid
 graph TD
-    Presentation -->|Recebe Requisições| Application
-    Application -->|Verifica Limites| Domain
-    Domain -->|Envia Alerta| Application
-    Application -->|Grava Dados| Infrastructure
-    Infrastructure -->|Banco de Dados| EntityFramework[(EF Core)]
-    Application -->|Retorna Dados| Presentation
+    Apresentacao -->|Recebe Requisições| Aplicacao
+    Aplicacao -->|Verifica Limites| Dominio
+    Dominio -->|Envia Alerta| Aplicacao
+    Aplicacao -->|Grava Dados| Infraestrutura
+    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
+    Aplicacao -->|Retorna Dados| Apresentacao
     
-    subgraph Presentation
+    subgraph Apresentacao
         A1[Controlador de Pacientes]
         A2[Controlador de Alertas]
         A3[Interface do Usuário]
     end
 
-    subgraph Application
+    subgraph Aplicacao
         B1[ConsultaService]
         B2[AlertaService]
     end
 
-    subgraph Domain
+    subgraph Dominio
         C1[Paciente]
         C2[Consulta]
         C3[Alerta]
         C4[Regra de Limite]
     end
 
-    subgraph Infrastructure
+    subgraph Infraestrutura
         D1[PacienteRepository]
         D2[ConsultaRepository]
         D3[AlertaRepository]
     end
-
 ---
