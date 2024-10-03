@@ -131,48 +131,100 @@ A estrutura do banco de dados da **SmartDent Solutions** foi projetada para supo
 
 ---
 
-## 🌟 **Benefícios Globais da SmartDent Solutions**
+# Arquitetura do Sistema de Monitoramento de Consultas Odontológicas 🏥
 
-### **1. Otimização de Custos** 💰
-- **Redução de Sinistros:** Identificação precoce de situações que podem gerar custos elevados.
-- **Prevenção de Fraudes e Abusos:** Detecção de padrões suspeitos que permitem ações preventivas.
+## Descrição Geral
+Este projeto segue os princípios da **Clean Architecture**, separando o código em camadas distintas para garantir uma estrutura modular, de fácil manutenção e escalável. A Clean Architecture permite que as responsabilidades sejam bem definidas, garantindo que cada camada da aplicação tenha um papel específico no funcionamento do sistema.
 
-### **2. Melhoria da Qualidade dos Serviços** 🏆
-- **Atendimento Personalizado:** Compreensão das necessidades individuais dos beneficiários.
-- **Alinhamento com Melhores Práticas:** Garantia de que os dentistas seguem protocolos adequados.
+### Camadas Principais da Arquitetura:
 
-### **3. Aumento da Satisfação dos Beneficiários** 😊
-- **Engajamento Proativo:** Contato oportuno e relevante com os pacientes.
-- **Transparência e Confiança:** Demonstração de compromisso com a saúde e bem-estar dos clientes.
-
-### **4. Suporte Estratégico à Gestão** 📊
-- **Decisões Baseadas em Dados:** Informações precisas para orientar estratégias e políticas internas.
-- **Monitoramento Contínuo:** Visão em tempo real das operações e potenciais riscos.
+1. **Apresentação (Presentation)**: Interface que interage diretamente com o usuário ou cliente da API.
+2. **Aplicação (Application)**: Onde a lógica dos casos de uso do sistema é orquestrada, conectando o usuário às entidades do domínio.
+3. **Domínio (Domain)**: Contém as entidades e regras de negócio da aplicação, como as lógicas que determinam quando um alerta é gerado.
+4. **Infraestrutura (Infrastructure)**: Responsável pela persistência de dados e integração com APIs externas, como o banco de dados.
 
 ---
 
-## 🛠️ **Como a OdontoPrev Pode Agir com Base nas Informações da Plataforma**
+## 🏗️ Estrutura das Camadas
 
-- **🔧 Implementação de Protocolos Internos:** Estabelecer procedimentos padrão para lidar com os alertas gerados.
-- **📚 Treinamento e Desenvolvimento:** Oferecer capacitação aos dentistas e colaboradores com base nos insights obtidos.
-- **📣 Comunicação Estratégica:** Desenvolver campanhas educativas direcionadas aos beneficiários.
-- **📈 Ajustes nos Planos:** Revisar e adaptar os planos oferecidos para melhor atender às necessidades identificadas.
+### 1. **Apresentação (Presentation)**
+Esta camada é responsável pela interface com o usuário. Ela expõe as funcionalidades da aplicação por meio de **Controladores**, que recebem e tratam as requisições dos usuários.
+
+- **Controlador de Pacientes**: Recebe as requisições para listar, visualizar e gerenciar pacientes.
+- **Controlador de Alertas**: Gerencia a exibição e controle de alertas gerados para pacientes que ultrapassaram o limite de consultas.
+- **Interface do Usuário**: O administrador interage com o sistema por meio de uma interface web (usando Razor Pages ou MVC) ou uma API REST.
+
+### 2. **Aplicação (Application)**
+A camada de aplicação contém os **Serviços de Aplicação**, que são responsáveis por coordenar os casos de uso do sistema. Esta camada se comunica diretamente com o **Domínio** para realizar operações relacionadas às entidades de negócio.
+
+- **ConsultaService**: Lida com a lógica de verificar o número de consultas de cada paciente e acionar alertas, caso o limite de consultas seja excedido.
+- **AlertaService**: Gera e gerencia os alertas baseados nos resultados da consulta.
+- **Casos de Uso**: Implementa as funcionalidades principais, como listar pacientes, registrar consultas e gerar alertas.
+
+### 3. **Domínio (Domain)**
+A camada de domínio contém as **Entidades** e as **Regras de Negócio** da aplicação. O domínio é a parte central da Clean Architecture, pois contém a lógica de negócio independente de detalhes técnicos.
+
+- **Entidades Principais**:
+  - **Paciente**: Representa os dados do paciente, como seu histórico de consultas.
+  - **Consulta**: Contém informações sobre cada consulta realizada.
+  - **Alerta**: Armazena detalhes sobre alertas gerados quando o paciente ultrapassa o limite de consultas.
+- **Regras de Negócio**:
+  - A principal regra de negócio é verificar se o paciente excedeu o número de consultas permitidas e, em caso positivo, gerar um alerta.
+
+### 4. **Infraestrutura (Infrastructure)**
+A camada de infraestrutura lida com a persistência de dados e acesso ao banco de dados. Usamos o **Entity Framework Core (EF Core)** para mapear as entidades do domínio para tabelas no banco de dados.
+
+- **PacienteRepository**: Implementa a interface para buscar, adicionar, atualizar e remover pacientes no banco de dados.
+- **ConsultaRepository**: Lida com o armazenamento e a consulta de dados de consultas.
+- **AlertaRepository**: Gerencia a criação e consulta de alertas gerados para pacientes.
+- **Entity Framework Core**: Utilizado para mapear entidades para tabelas e realizar operações CRUD (Create, Read, Update, Delete).
 
 ---
 
-## 🏆 **Por Que a SmartDent Solutions é a Solução Ideal**
+## 🔍 Como as Camadas Interagem
 
-- **🎯 Alinhamento com a Missão da OdontoPrev:** Promover saúde bucal de qualidade, garantindo eficiência e sustentabilidade.
-- **🧠 Tecnologia de Ponta:** Uso de IA avançada para fornecer insights precisos e acionáveis.
-- **🔄 Foco no Negócio:** Desenvolvida considerando as especificidades e desafios do setor odontológico.
-- **📈 Flexibilidade e Escalabilidade:** Capaz de evoluir e adaptar-se conforme as necessidades da OdontoPrev crescem.
+Aqui está um resumo de como as camadas da **Clean Architecture** interagem entre si:
+
+- **Apresentação**: Recebe as requisições do usuário e as repassa para os serviços de aplicação.
+- **Aplicação**: Lida com a lógica de negócio e consulta as entidades do domínio para verificar o número de consultas e, se necessário, aciona os alertas.
+- **Domínio**: Contém as entidades e regras de negócio que determinam quando um paciente está ultrapassando o limite de consultas.
+- **Infraestrutura**: Acessa o banco de dados para armazenar e recuperar informações sobre pacientes, consultas e alertas, além de realizar migrações de banco de dados quando necessário.
 
 ---
 
-## 📄 **Conclusão**
+## 🖼️ Diagrama de Arquitetura
 
-A **SmartDent Solutions** é uma solução estrategicamente alinhada ao modelo de negócios da **OdontoPrev**. Com o uso de **Inteligência Artificial**, a plataforma oferece ferramentas poderosas para identificar e prevenir sinistros, controlar custos, melhorar a qualidade dos serviços e aumentar a satisfação dos beneficiários. Diferente da proposta anterior, que poderia interferir nas operações das clínicas, a SmartDent Plataforma atua de forma interna, respeitando a autonomia das clínicas e focando nas responsabilidades da OdontoPrev como operadora de planos odontológicos.
+```mermaid
+graph TD
+    Presentation -->|Recebe Requisições| Application
+    Application -->|Verifica Limites| Domain
+    Domain -->|Envia Alerta| Application
+    Application -->|Grava Dados| Infrastructure
+    Infrastructure -->|Banco de Dados| EntityFramework[(EF Core)]
+    Application -->|Retorna Dados| Presentation
+    
+    subgraph Presentation
+        A1[Controlador de Pacientes]
+        A2[Controlador de Alertas]
+        A3[Interface do Usuário]
+    end
 
-Esta estrutura de banco de dados robusta e bem planejada garante que os modelos de IA operem de forma eficiente e precisa, proporcionando à OdontoPrev a capacidade de tomar decisões informadas e proativas. Com isso, a empresa poderá manter a sustentabilidade financeira, oferecer serviços de alta qualidade e fortalecer a confiança dos seus beneficiários.
+    subgraph Application
+        B1[ConsultaService]
+        B2[AlertaService]
+    end
+
+    subgraph Domain
+        C1[Paciente]
+        C2[Consulta]
+        C3[Alerta]
+        C4[Regra de Limite]
+    end
+
+    subgraph Infrastructure
+        D1[PacienteRepository]
+        D2[ConsultaRepository]
+        D3[AlertaRepository]
+    end
 
 ---
