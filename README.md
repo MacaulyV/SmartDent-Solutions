@@ -225,28 +225,4 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
     Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
     Aplicação -->|Retorna Dados| Apresentação
     
-    subgraph Apresentação
-        A1[Controlador de Pacientes]
-        A2[Controlador de Alertas]
-        A3[Interface do Usuário]
-    end
-
-    subgraph Aplicação
-        B1[ConsultaService]
-        B2[AlertaService]
-    end
-
-    subgraph Domínio
-        C1[Paciente]
-        C2[Consulta]
-        C3[Alerta]
-        C4[Regra de Limite]
-    end
-
-    subgraph Infraestrutura
-        D1[PacienteRepository]
-        D2[ConsultaRepository]
-        D3[AlertaRepository]
-    end
-    
 ---
