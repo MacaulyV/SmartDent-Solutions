@@ -194,36 +194,5 @@ Aqui está um resumo de como as camadas da **Clean Architecture** interagem entr
 
 ## 🖼️ Diagrama de Arquitetura
 
-```mermaid
-graph TD
-    Apresentacao -->|Recebe Requisições| Aplicacao
-    Aplicacao -->|Verifica Limites| Dominio
-    Dominio -->|Envia Alerta| Aplicacao
-    Aplicacao -->|Grava Dados| Infraestrutura
-    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
-    Aplicacao -->|Retorna Dados| Apresentacao
-    
-    subgraph Apresentacao
-        A1[Controlador de Pacientes]
-        A2[Controlador de Alertas]
-        A3[Interface do Usuário]
-    end
-
-    subgraph Aplicacao
-        B1[ConsultaService]
-        B2[AlertaService]
-    end
-
-    subgraph Dominio
-        C1[Paciente]
-        C2[Consulta]
-        C3[Alerta]
-        C4[Regra de Limite]
-    end
-
-    subgraph Infraestrutura
-        D1[PacienteRepository]
-        D2[ConsultaRepository]
-        D3[AlertaRepository]
-    end
+![Descrição da Imagem](https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485)
 ---
