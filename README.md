@@ -220,6 +220,14 @@ graph TD
     Aplicacao -->|Grava Dados| Infraestrutura
     Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
     Aplicacao -->|Retorna Dados| Apresentacao
+
+graph TD
+    Apresentacao -->|Recebe Requisições| Aplicacao
+    Aplicacao -->|Verifica Limites| Dominio
+    Dominio -->|Envia Alerta| Aplicacao
+    Aplicacao -->|Grava Dados| Infraestrutura
+    Infraestrutura -->|Banco de Dados| EntityFramework[(EF Core)]
+    Aplicacao -->|Retorna Dados| Apresentacao
     
     subgraph Apresentacao
         A1[Controlador de Pacientes]
