@@ -212,9 +212,11 @@ O diagrama a seguir mostra a interação entre as camadas da **Clean Architectur
 
 ![Descrição da Imagem](https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485)
 
+---
+
 ## Lógica do diagrama usando linguagem de marcação Mermaid
 
-graph TD
+## graph TD
     Apresentação -->|Recebe Requisições| Aplicação
     Aplicação -->|Verifica Limites| Domínio
     Domínio -->|Envia Alerta| Aplicação
