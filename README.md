@@ -131,7 +131,7 @@ A estrutura do banco de dados da **SmartDent Solutions** foi projetada para supo
 
 ---
 
-## 🌟 **Benefícios Globais da SmartDent Plataforma**
+## 🌟 **Benefícios Globais da SmartDent Solutions**
 
 ### **1. Otimização de Custos** 💰
 - **Redução de Sinistros:** Identificação precoce de situações que podem gerar custos elevados.
