@@ -132,7 +132,7 @@ O projeto utiliza um banco de dados relacional para armazenar informações sobr
    - **Campos:** `ConsultaID`, `PacienteID`, `DataConsulta`, `DescricaoProcedimento`.
 
 3. **Alertas**
-   - Armazena os alertas gerados quando o limite de consultas é excedido.
+   - Armazena alertas gerados quando o número de consultas se desvia da média.
    - **Campos:** `AlertaID`, `PacienteID`, `DataAlerta`, `MotivoAlerta`.
 
 ### Relacionamentos
