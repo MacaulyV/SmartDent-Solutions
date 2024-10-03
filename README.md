@@ -117,7 +117,7 @@ A IA rastreia os agendamentos de consultas de acompanhamento. Quando um paciente
 
 ---
 
-## 🗄️ Estrutura do Banco de Dados
+## 🗄️ Estrutura do Banco de Dados Usado no Projeto .NET
 
 O projeto utiliza um banco de dados relacional para armazenar informações sobre pacientes, consultas e alertas. Abaixo estão as principais tabelas utilizadas:
 
@@ -252,5 +252,5 @@ graph TD
         D2[ConsultaRepository]
         D3[AlertaRepository]
     end
-
+    
 ---
