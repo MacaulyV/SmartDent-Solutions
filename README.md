@@ -176,5 +176,3 @@ A **SmartDent Solutions** é uma solução estrategicamente alinhada ao modelo d
 Esta estrutura de banco de dados robusta e bem planejada garante que os modelos de IA operem de forma eficiente e precisa, proporcionando à OdontoPrev a capacidade de tomar decisões informadas e proativas. Com isso, a empresa poderá manter a sustentabilidade financeira, oferecer serviços de alta qualidade e fortalecer a confiança dos seus beneficiários.
 
 ---
-
-**Nota:** Esta documentação está sujeita a ajustes conforme feedback e necessidades específicas identificadas durante o processo de implementação.
