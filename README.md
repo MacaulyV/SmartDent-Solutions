@@ -150,7 +150,7 @@ No contexto do projeto **SmartDent**, o sistema foi dividido em camadas que sepa
 
 ## 🔄 Integração da Arquitetura no Projeto .NET
 
-A arquitetura implementada segue os mesmos princípios do projeto principal, mas focamos em simular o caso de uso da **detecção de consultas excessivas**. No projeto **.NET**, implementamos o controle de pacientes, consultas e alertas, usando o **Entity Framework Core** para persistência de dados.
+A arquitetura implementada segue os mesmos princípios do projeto principal, mas focamos em simular o caso de uso da **detecção de consultas excessivas de forma simples, pois no projeto final a funcionalidade vai muita além do que fizemos**. No projeto **.NET**, implementamos o controle de pacientes, consultas e alertas, usando o **Entity Framework Core** para persistência de dados.
 
 A seguir, detalhamos as camadas da arquitetura e como cada uma delas foi estruturada e implementada no **projeto C#**:
 
