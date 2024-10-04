@@ -59,34 +59,31 @@ A IA rastreia os agendamentos de consultas de acompanhamento. Quando um paciente
 1. **📋 Cadastro e Gerenciamento de Pacientes**
    - Permitir o registro, atualização e exclusão de informações dos beneficiários.
    
-2. **🦷 Cadastro e Gerenciamento de Dentistas**
-   - Facilitar o registro, atualização e exclusão de dados dos profissionais.
-   
-3. **🛠️ Cadastro e Gerenciamento de Procedimentos**
+2. **🛠️ Cadastro e Gerenciamento de Procedimentos**
    - Gerenciar o catálogo de procedimentos odontológicos disponíveis.
    
-4. **📅 Agendamento de Consultas**
+3. **📅 Agendamento de Consultas**
    - Permitir que pacientes agendem, visualizem e cancelem consultas.
    
-5. **📝 Registro de Consultas e Procedimentos Realizados**
+4. **📝 Registro de Consultas e Procedimentos Realizados**
    - Documentar cada consulta realizada e os procedimentos executados durante a mesma.
    
-6. **🛡️ Monitoramento de Uso Excessivo de Serviços**
+5. **🛡️ Monitoramento de Uso Excessivo de Serviços**
    - Identificar e alertar sobre padrões de uso que excedem a média.
    
-7. **💰 Detecção de Cobranças Indevidas**
+6. **💰 Detecção de Cobranças Indevidas**
    - Analisar e identificar discrepâncias nos valores cobrados por procedimentos.
    
-8. **📉 Monitoramento de Acompanhamento dos Pacientes**
+7. **📉 Monitoramento de Acompanhamento dos Pacientes**
    - Rastrear e notificar sobre faltas a consultas de acompanhamento.
    
-9. **⚠️ Geração e Gerenciamento de Alertas**
+8. **⚠️ Geração e Gerenciamento de Alertas**
    - Criar, atualizar e gerenciar alertas gerados pelos modelos de IA.
     
-10. **📊 Visualização de Dashboards e Relatórios**
+9. **📊 Visualização de Dashboards e Relatórios**
     - Exibir dados analíticos e insights gerados pela IA através de dashboards interativos.
     
-11. **📢 Notificações e Comunicações aos Pacientes**
+10. **📢 Notificações e Comunicações aos Pacientes**
     - Enviar lembretes e comunicações sobre consultas e acompanhamentos.
 
 ### 🛠️ **Requisitos Não Funcionais**
