@@ -129,7 +129,6 @@ O projeto utiliza um banco de dados relacional para armazenar informações sobr
    - **Campos:** `NomePaciente`, `E-mailPaciente`, `Quantidade de Consultas Acumuladas`,.
 
 ### Relacionamentos
-- Um **Paciente** pode ter várias **Consultas**.
 - Um **Alerta** está relacionado a um **Paciente** e suas consultas.
 
 ---
