@@ -122,15 +122,11 @@ O projeto utiliza um banco de dados relacional para armazenar informações sobr
 
 1. **Pacientes**
    - Armazena os dados dos pacientes.
-   - **Campos:** `PacienteID`, `Nome`, `DataNascimento`, `Contato`.
-
-2. **Consultas**
-   - Registra as consultas realizadas.
-   - **Campos:** `ConsultaID`, `PacienteID`, `DataConsulta`, `DescricaoProcedimento`.
-
-3. **Alertas**
+   - **Campos:** `PacienteID`, `Nome`, `Email`, `DataConsulta`, QuantidadeConsulta.
+  
+2. **Alertas**
    - Armazena alertas gerados quando o número de consultas se desvia da média.
-   - **Campos:** `AlertaID`, `PacienteID`, `DataAlerta`, `MotivoAlerta`.
+   - **Campos:** `NomePaciente`, `E-mailPaciente`, `Quantidade de Consultas Acumuladas`,.
 
 ### Relacionamentos
 - Um **Paciente** pode ter várias **Consultas**.
