@@ -1,5 +1,5 @@
-![Descrição da Imagem](https://github.com/user-attachments/assets/83cd9ed6-6cbd-4102-ad10-d4f76acab151)
-# SmartDent Solutions
+![🌟 Descrição da Imagem](https://github.com/user-attachments/assets/83cd9ed6-6cbd-4102-ad10-d4f76acab151)
+# 💡 SmartDent Solutions
 ### *Previna e resolva problemas odontológicos com mais agilidade e precisão.*
 
 ---
@@ -25,7 +25,7 @@ A IA analisa o histórico de utilização dos conveniados, identificando padrõe
 
 **Benefícios:**
 - **💰 Controle de Custos:** Identifica possíveis abusos ou fraudes, evitando gastos desnecessários.
-- **🏆 Aprimoramento do Atendimento:** Compreende as necessidades dos beneficiários, possibilitando ajustes nos planos ou oferta de suporte adicional.
+- **🌟 Aprimoramento do Atendimento:** Compreende as necessidades dos beneficiários, possibilitando ajustes nos planos ou oferta de suporte adicional.
 
 ---
 
@@ -114,7 +114,7 @@ A IA rastreia os agendamentos de consultas de acompanhamento. Quando um paciente
 
 ---
 
-## 🗄️ Estrutura do Banco de Dados Usado no Projeto .NET
+## 💄 Estrutura do Banco de Dados Usado no Projeto .NET
 
 O projeto utiliza um banco de dados relacional para armazenar informações sobre pacientes, consultas e alertas. Abaixo estão as principais tabelas utilizadas:
 
@@ -126,14 +126,14 @@ O projeto utiliza um banco de dados relacional para armazenar informações sobr
   
 2. **Alertas**
    - Armazena alertas gerados quando o número de consultas se desvia da média.
-   - **Campos:** `NomePaciente`, `E-mailPaciente`, `Quantidade de Consultas Acumuladas`,.
+   - **Campos:** `NomePaciente`, `E-mailPaciente`, `QuantidadeConsultasAcumuladas`,.
 
 ### Relacionamentos
-- Um **Alerta** está relacionado a um **Paciente** e suas consultas.
+- Um **📢 Alerta** está relacionado a um **👨️‍⚕️ Paciente** e suas consultas.
 
 ---
 
-# 📐 Desenho da Arquitetura do Sistema .NET de Monitoramento de Consultas Odontológicas
+# 💉 Desenho da Arquitetura do Sistema .NET de Monitoramento de Consultas Odontológicas
 
 ## Contexto e Propósito da Arquitetura
 
@@ -151,39 +151,39 @@ A seguir, detalhamos as camadas da arquitetura e como cada uma delas foi estrutu
 
 ---
 
-## 🏗️ Estrutura das Camadas
+## 🏰 Estrutura das Camadas
 
 ### 1. **Apresentação (Presentation)**
 
 Esta camada lida com a interface de usuário e a comunicação com os serviços de aplicação. No projeto **.NET**, essa camada é responsável pelos controladores que recebem e processam as requisições do usuário ou da API.
 
-- **Controlador de Pacientes:** Gerencia as requisições relacionadas ao cadastro e listagem de pacientes.
-- **Controlador de Alertas:** Gerencia os alertas gerados para pacientes com consultas excessivas.
-- **Interface do Usuário:** Exibe os dados e interações para o administrador da OdontoPrev.
+- **👨️‍💻 Controlador de Pacientes:** Gerencia as requisições relacionadas ao cadastro e listagem de pacientes.
+- **📢 Controlador de Alertas:** Gerencia os alertas gerados para pacientes com consultas excessivas.
+- **💻 Interface do Usuário:** Exibe os dados e interações para o administrador da OdontoPrev.
 
 ---
 
 ### 2. **Aplicação (Application)**
 
-A camada de aplicação contém os **Serviços de Aplicação** que coordenam a lógica dos casos de uso, conectando a apresentação ao domínio.
+A camada de aplicação contém os **🛠️ Serviços de Aplicação** que coordenam a lógica dos casos de uso, conectando a apresentação ao domínio.
 
-- **ConsultaService:** Responsável por verificar o número de consultas dos pacientes e gerar alertas se necessário.
-- **AlertaService:** Lida com a geração e exibição de alertas baseados nos dados de consultas.
-- **Casos de Uso:** Implementa a lógica que identifica consultas excessivas e aciona o alerta para a equipe.
+- **📑 ConsultaService:** Responsável por verificar o número de consultas dos pacientes e gerar alertas se necessário.
+- **📢 AlertaService:** Lida com a geração e exibição de alertas baseados nos dados de consultas.
+- **📊 Casos de Uso:** Implementa a lógica que identifica consultas excessivas e aciona o alerta para a equipe.
 
 ---
 
 ### 3. **Domínio (Domain)**
 
-A camada de domínio contém as **Entidades** que representam os conceitos de negócio e as **Regras de Negócio** que regem o comportamento do sistema. Nesta parte, focamos nas entidades relacionadas a pacientes, consultas e alertas.
+A camada de domínio contém as **📚 Entidades** que representam os conceitos de negócio e as **💸 Regras de Negócio** que regem o comportamento do sistema. Nesta parte, focamos nas entidades relacionadas a pacientes, consultas e alertas.
 
 - **Entidades:**
-  - **Paciente:** Representa os dados do paciente, como histórico de consultas.
-  - **Consulta:** Registra os dados de cada consulta realizada.
-  - **Alerta:** Contém informações sobre os alertas gerados quando o limite de consultas é excedido.
+  - **👨️‍⚕️ Paciente:** Representa os dados do paciente, como histórico de consultas.
+  - **🗓️ Consulta:** Registra os dados de cada consulta realizada.
+  - **📢 Alerta:** Contém informações sobre os alertas gerados quando o limite de consultas é excedido.
   
 - **Regras de Negócio:**
-  - A regra central é verificar se o paciente excedeu o número de consultas permitidas em um período específico.
+  - 💡 A regra central é verificar se o paciente excedeu o número de consultas permitidas em um período específico.
 
 ---
 
@@ -191,58 +191,57 @@ A camada de domínio contém as **Entidades** que representam os conceitos de ne
 
 Esta camada lida com o acesso ao banco de dados e outras integrações externas. No projeto **.NET**, usamos o **Entity Framework Core** para mapear as entidades e realizar operações CRUD (Create, Read, Update, Delete).
 
-- **PacienteRepository:** Acessa o banco de dados para gerenciar pacientes.
-- **ConsultaRepository:** Armazena e consulta os dados de consultas.
-- **AlertaRepository:** Gerencia a persistência dos alertas gerados.
-- **Entity Framework Core:** Usado para mapear as entidades e sincronizar com o banco de dados.
+- **💻 PacienteRepository:** Acessa o banco de dados para gerenciar pacientes.
+- **🗓️ ConsultaRepository:** Armazena e consulta os dados de consultas.
+- **📢 AlertaRepository:** Gerencia a persistência dos alertas gerados.
+- **📏 Entity Framework Core:** Usado para mapear as entidades e sincronizar com o banco de dados.
 
 ---
 
-## 🖼️ Diagrama de Arquitetura
+## 🖼 Diagrama de Arquitetura
 
 O diagrama a seguir mostra a interação entre as camadas da **Clean Architecture** para o caso de uso implementado de **detecção de consultas excessivas**.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485" alt="Descrição da Imagem" />
+  <img src="https://github.com/user-attachments/assets/881c80f8-184c-4d17-b718-271523db6485" alt="🖼 Descrição da Imagem" />
 </p>
 
 ---
 
-## Lógica do Diagrama
+## 🤖 Lógica do Diagrama
 
-**Apresentação** -->|Recebe Requisições| **Aplicação**  
+**🏛️ Apresentação** -->|Recebe Requisições| **🚀 Aplicação**  
 
-**Aplicação** -->|Verifica Limites| **Domínio**  
+**🚀 Aplicação** -->|Verifica Limites| **📚 Domínio**  
 
-**Domínio** -->|Envia Alerta| **Aplicação**  
+**📚 Domínio** -->|Envia Alerta| **🚀 Aplicação**  
 
-**Aplicação** -->|Grava Dados| **Infraestrutura**  
+**🚀 Aplicação** -->|Grava Dados| **🏢 Infraestrutura**  
 
-**Infraestrutura** -->|Banco de Dados| **EntityFramework**  
+**🏢 Infraestrutura** -->|Banco de Dados| **📏 EntityFramework**  
 
-**Aplicação** -->|Retorna Dados| **Apresentação**
+**🚀 Aplicação** -->|Retorna Dados| **🏛️ Apresentação**
     
 ---
 
 ---
 
-## Status Atual do Projeto
+## 🛠️ Status Atual do Projeto
 
 Ainda não concluímos todas as funcionalidades do projeto, mas continuaremos e finalizaremos na próxima entrega, na segunda fase do desenvolvimento.
 
-### Funcionalidades Implementadas
-- **Agendamento de Consultas**: Concluímos a funcionalidade de agendamento, incluindo o salvamento dos dados no banco de dados Oracle.
-- **Exibição dos Dados**: Implementamos a exibição dos dados em uma tabela destinada aos funcionários.
+### 💻 Funcionalidades Implementadas
+- **📅 Agendamento de Consultas**: Concluímos a funcionalidade de agendamento, incluindo o salvamento dos dados no banco de dados Oracle.
+- **📈 Exibição dos Dados**: Implementamos a exibição dos dados em uma tabela destinada aos funcionários.
 
-## Próximos Passos - Sprint 2
+## 🛍️ Próximos Passos - Sprint 2
 
 Na Sprint 2, focaremos em implementar as seguintes melhorias e novas funcionalidades:
 
-1. **Funcionalidade Principal de Alertas**: Conclusão da lógica para a funcionalidade de alertas.
-2. **CRUD Completo**: Implementação de um CRUD para controle dos dados dos pacientes na página de funcionários.
-3. **Página de Login**: Criação de uma página de login para simular um cenário real de acesso a informações importantes.
-4. **Melhoria de UI/UX**: Reestilização completa da aplicação, tornando-a mais agradável e intuitiva.
-5. **Possíveis Novas Funcionalidades**: Avaliaremos a inclusão de novas funcionalidades para melhorar a experiência do usuário e as capacidades do sistema.
+1. **📢 Funcionalidade Principal de Alertas**: Conclusão da lógica para a funcionalidade de alertas.
+2. **💻 CRUD Completo**: Implementação de um CRUD para controle dos dados dos pacientes na página de funcionários.
+3. **🔐 Página de Login**: Criação de uma página de login para simular um cenário real de acesso a informações importantes.
+4. **🌸 Melhoria de UI/UX**: Reestilização completa da aplicação, tornando-a mais agradável e intuitiva.
+5. **💡 Possíveis Novas Funcionalidades**: Avaliaremos a inclusão de novas funcionalidades para melhorar a experiência do usuário e as capacidades do sistema.
 
 ---
-
