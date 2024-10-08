@@ -148,6 +148,30 @@ No contexto do projeto **SmartDent**, o sistema foi dividido em camadas que sepa
 
 ---
 
+## Status Atual do Projeto
+
+Ainda não concluímos todas as funcionalidades do projeto, mas continuaremos e finalizaremos na próxima entrega, na segunda fase do desenvolvimento.
+
+### Funcionalidades Implementadas
+- **Agendamento de Consultas**: Concluímos a funcionalidade de agendamento, incluindo o salvamento dos dados no banco de dados Oracle.
+- **Exibição dos Dados**: Implementamos a exibição dos dados em uma tabela destinada aos funcionários.
+
+## Próximos Passos - Sprint 2
+
+Na Sprint 2, focaremos em implementar as seguintes melhorias e novas funcionalidades:
+
+1. **Funcionalidade Principal de Alertas**: Conclusão da lógica para a funcionalidade de alertas.
+2. **CRUD Completo**: Implementação de um CRUD para controle dos dados dos pacientes na página de funcionários.
+3. **Página de Login**: Criação de uma página de login para simular um cenário real de acesso a informações importantes.
+4. **Melhoria de UI/UX**: Reestilização completa da aplicação, tornando-a mais agradável e intuitiva.
+5. **Possíveis Novas Funcionalidades**: Avaliaremos a inclusão de novas funcionalidades para melhorar a experiência do usuário e as capacidades do sistema.
+
+---
+
+## Importante no momento nao finalizamos tudo ainda continuaremos e terminaremos o restante na segunda entrega parte da descrição da logica da aplcação que ira ver abaixo segue pra ser desenvolvido na exata logica para a sprint 2 no projeto .net, finalimaos o agendamento de consultas exibição dos dados, e salvo no daabse oracle e exibi em tabela os dados salvos na tela destinada pra fundionarios, o que mudara na spirnt 2: funcionalidade principal de aletas sera finalizada, CRUD completo para controle dos dados dos pacientes na pagina funcionario, tera uma pagina de login pra poder estar simulando um cenario real de acesso a pagina com dados importantes, e será totalmente restilizado para algo muito mais agradevel e intuitivo toda aplicção, e talvez trazeremos novas funcionalidades
+
+---
+
 ## 🔄 Integração da Arquitetura no Projeto .NET
 
 A arquitetura implementada segue os mesmos princípios do projeto principal, mas focamos em apenas por enquanto simular o caso de uso da **detecção de consultas excessivas** de forma simples, pois no projeto final a funcionalidade vai funcionar de forma bem mais profunda e elaborada. 
