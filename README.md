@@ -1,9 +1,8 @@
+```markdown
 # SmartDent Solutions - Back-end
 
 ## Objetivo
-Este repositório contém o código do sistema de gerenciamento central do back-end da plataforma SmartDent.  
-Ele gerencia a lógica de negócio e se conecta ao banco de dados Oracle, integrando as diferentes partes do sistema, como Front-end e Mobile.  
-Além disso, ele controla todos os dados que são exibidos nas interfaces, como Mobile e Front-end, garantindo que os dados sejam corretamente processados e disponibilizados aos usuários após passarem pelo banco de dados.
+Este repositório contém o código do sistema de gerenciamento central do back-end da plataforma SmartDent. Ele gerencia a lógica de negócio e se conecta ao banco de dados Oracle, integrando as diferentes partes do sistema, como Front-end e Mobile. Além disso, ele controla todos os dados que são exibidos nas interfaces, como Mobile e Front-end, garantindo que os dados sejam corretamente processados e disponibilizados aos usuários após passarem pelo banco de dados.
 
 ## Tecnologias Utilizadas
 - Java 11
@@ -16,6 +15,7 @@ Além disso, ele controla todos os dados que são exibidos nas interfaces, como 
    - Clone o repositório em sua máquina local:
    ```bash
    git clone [link do repositório]
+   ```
 
 2. **Crie uma Branch de Trabalho**:
    - Para manter a organização do desenvolvimento, crie uma nova branch a partir da branch `Back-end`:
