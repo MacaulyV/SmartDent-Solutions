@@ -14,7 +14,7 @@ Este repositório contém o código do sistema de gerenciamento central do back-
 1. **Clone o Repositório**:
    - Clone o repositório em sua máquina local:
    ```bash
-   git clone [link do repositório]
+   git clone -b Back-end https://github.com/MacaulyV/SmartDent-Solutions.git
    ```
 
 2. **Crie uma Branch de Trabalho**:
