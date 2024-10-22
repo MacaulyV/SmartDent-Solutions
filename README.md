@@ -1,3 +1,5 @@
+## 1. Back-end - README.md
+
 ```markdown
 # SmartDent Solutions - Back-end
 
@@ -14,7 +16,7 @@ Este repositório contém o código do sistema de gerenciamento central do back-
 1. **Clone o Repositório**:
    - Clone o repositório em sua máquina local:
    ```bash
-   git clone -b Back-end https://github.com/MacaulyV/SmartDent-Solutions.git
+   git clone --branch Back-end https://github.com/MacaulyV/SmartDent-Solutions.git
    ```
 
 2. **Crie uma Branch de Trabalho**:
@@ -22,6 +24,7 @@ Este repositório contém o código do sistema de gerenciamento central do back-
    ```bash
    git checkout -b minha-branch-de-desenvolvimento
    ```
+   - **Nota**: Criar uma branch a partir de Back-end gera uma nova cópia baseada no estado atual dessa branch. A nova branch pode ter qualquer nome, permitindo trabalhar de forma isolada, sem impactar Back-end.
 
 3. **Baixar Dependências**:
    - Instale todas as dependências do projeto:
