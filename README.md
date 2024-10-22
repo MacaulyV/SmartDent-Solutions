@@ -84,7 +84,7 @@ Este repositório contém o código do sistema de gerenciamento central do back-
 - Certifique-se de seguir os padrões de mensagens de commit para garantir a clareza do histórico.
 
 ## Membros Responsável:
-   [Gustavo Rocha Caxias]
+   [Gustavo Rocha Caxias] <br>
    [Macauly Vivaldo da Silva]
    
 ```
