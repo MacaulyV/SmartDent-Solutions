@@ -85,4 +85,6 @@ Este repositório contém o código do sistema de gerenciamento central do back-
 
 ## Membros Responsável:
    [Gustavo Rocha Caxias]
+   [Macauly Vivaldo da Silva]
+   
 ```
