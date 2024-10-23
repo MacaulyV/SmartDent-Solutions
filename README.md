@@ -90,5 +90,3 @@ processados e disponibilizados aos usuários após passarem pelo banco de dados.
 ## Membros Responsável:
    [Gustavo Rocha Caxias] <br>
    [Macauly Vivaldo da Silva]
-   
-```
