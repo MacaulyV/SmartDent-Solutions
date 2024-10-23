@@ -4,7 +4,8 @@
 # SmartDent Solutions - Models-IA
 
 ## Objetivo
-Este repositório é responsável pelo código do treinamento e testes simples de integração dos modelos de IA que serão utilizados para análise preditiva no SmartDent.
+Este repositório é responsável pelo código do treinamento e testes simples de integração dos modelos
+de IA que serão utilizados para análise preditiva no SmartDent.
 
 ## Tecnologias Utilizadas
 - Python
