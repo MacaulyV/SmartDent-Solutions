@@ -1,3 +1,41 @@
+## 2. Front-end - README.md
+
+```markdown
+# SmartDent Solutions - Front-end
+
+## Objetivo
+Este repositório contém o código do front-end da plataforma SmartDent, que será usado pela equipe
+da OdontoPrev para visualizar e interagir com os dados.
+
+## Tecnologias Utilizadas
+- React.js
+- TypeScript
+- CSS/SCSS
+
+## Como Configurar Localmente
+1. Clone o repositório:
+   ```bash
+   git clone --branch Front-end https://github.com/MacaulyV/SmartDent-Solutions.git
+   ```
+2. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
+3. Execute o projeto:
+   ```bash
+   npm start
+   ```
+
+## Estrutura do Código
+- `/src`: Componentes React e lógica de interface
+- `/public`: Arquivos estáticos
+
+## Regras de Commit
+- Siga o padrão de commit: `feat:`, `fix:`, `style:`, etc.
+
+## Contato
+Responsável: [Macauly vivaldo da silva]
+
 ![🌟 Descrição da Imagem](https://github.com/user-attachments/assets/83cd9ed6-6cbd-4102-ad10-d4f76acab151)
 # 💡 SmartDent Solutions
 ### *Previna e resolva problemas odontológicos com mais agilidade e precisão.*
