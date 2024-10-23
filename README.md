@@ -84,7 +84,6 @@ processados e disponibilizados aos usuários após passarem pelo banco de dados.
 - `/docs`: Documentação e instruções sobre a integração com outros componentes
 
 ## Regras de Commit
-- Commits devem ser feitos na branch `Back-end`.
 - Certifique-se de seguir os padrões de mensagens de commit para garantir a clareza do histórico.
 
 ## Membros Responsável:
