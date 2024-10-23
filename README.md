@@ -18,7 +18,6 @@ a integração entre os modelos de IA e o front-end na plataforma.
 sistema, como os modelos de IA e o front-end.
 
 ## Regras de Commit
-- Commits devem ser feitos na branch `Testing`.
 - Mantenha os testes bem documentados, explicando os cenários cobertos.
 
 ## Contato
