@@ -33,7 +33,7 @@ da OdontoPrev para visualizar e interagir com os dados.
 ## Regras de Commit
 - Siga o padrão de commit: `feat:`, `fix:`, `style:`, etc.
 
-## Contato
+## Membros Responsável:
 Responsável: [Macauly vivaldo da silva]
 
 ![🌟 Descrição da Imagem](https://github.com/user-attachments/assets/83cd9ed6-6cbd-4102-ad10-d4f76acab151)
