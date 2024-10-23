@@ -6,10 +6,6 @@
 ## Objetivo
 Este repositório é destinado aos testes automatizados das funcionalidades do sistema SmartDent. Aqui serão criados e mantidos os testes para todas as partes do sistema, principalmente para testar a integração entre os modelos de IA e o front-end na plataforma.
 
-## Tecnologias Utilizadas
-- JUnit (Java)
-- Selenium (Automatização de testes do front-end)
-
 ## Como Configurar Localmente
 1. Clone o repositório:
    ```bash
