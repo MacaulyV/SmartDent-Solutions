@@ -18,9 +18,9 @@ da plataforma SmartDent, unificando Mobile, Front-end, Back-end, e Modelos de IA
 ## Como Configurar Localmente
 1. Clone o repositório:
    ```bash
-   git clone git clone clone --branch Models-IA https://github.com/MacaulyV/SmartDent-Solutions.git
+   git clone --branch main https://github.com/MacaulyV/SmartDent-Solutions.git
    ```
-   
+
 2. Siga as instruções específicas de cada subprojeto (Back-end, Front-end, Mobile, Models-IA) para
 configurar o ambiente.
 
@@ -32,7 +32,7 @@ configurar o ambiente.
 
 ## Regras de Commit
 - Commits devem ser feitos na branch `Main` somente após o Pull Request ser revisado e aprovado,
-- garantindo que o código na branch `Main` esteja sempre estável e pronto para o deploy.
+  garantindo que o código na branch `Main` esteja sempre estável e pronto para o deploy.
 
 ## Contato
 Responsável: Toda equipe
