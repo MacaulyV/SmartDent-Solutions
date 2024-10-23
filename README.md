@@ -1,3 +1,31 @@
-# Para testar use o seguinte comando no Prompt de comando ou Porshell
+## 3. Mobile - README.md
 
-## git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
+```markdown
+# SmartDent Solutions - Mobile
+
+## Objetivo
+Este repositório contém o código da solução mobile que permite aos beneficiários da OdontoPrev
+marcarem consultas, visualizarem tratamentos e terem acesso às principais funcionalidades da
+plataforma.
+
+## Tecnologias Utilizadas
+- Kotlin
+- React-native
+
+## Como Configurar Localmente
+1. Clone o repositório:
+   ```bash
+   git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
+   ```
+2. Abra o projeto no Android Studio.
+3. Conecte um dispositivo ou use um emulador para executar o aplicativo.
+
+## Estrutura do Código
+- `/app/src`: Código fonte do aplicativo mobile
+- `/res`: Arquivos de layout e recursos visuais
+
+## Regras de Commit
+- Realize commits pequenos e objetivos para facilitar a revisão do código.
+
+## Contato
+Responsável: [Daniel Bezerra da Silva Melo]
