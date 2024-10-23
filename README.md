@@ -1,49 +1,34 @@
-![Descrição da Imagem](https://github.com/user-attachments/assets/d84ebb09-da5e-44ca-8f47-2040577eb913)
+## 4. Models-IA - README.md
 
-# 📋 Descrição Geral do Projeto: OdontoPrev AI Platform
+```markdown
+# SmartDent Solutions - Models-IA
 
-## 🎯 Objetivo
+## Objetivo
+Este repositório é responsável pelo código do treinamento e testes simples de integração dos modelos de IA que serão utilizados para análise preditiva no SmartDent.
 
-Criar uma plataforma web que usa inteligência artificial (IA) para ajudar a Odontoprev a identificar e prevenir problemas comuns no setor odontológico, focando em:
+## Tecnologias Utilizadas
+- Python
+- Scikit-learn
+- Pandas
+- Etc
 
-- 🦷 Consultas Excessivas
-- ⚖️ Supertratamento
-- 💰 Upcoding (Cobrança por Procedimentos Mais Caros)
-- 📉 Falta de Acompanhamento Pós-Tratamento
+## Como Configurar Localmente
+1. Clone o repositório:
+   ```bash
+   git clone clone --branch Models-IA https://github.com/MacaulyV/SmartDent-Solutions.git
+   ```
+2. Crie um ambiente virtual e instale as dependências:
+   ```bash
+   python -m venv venv
+   pip install -r requirements.txt
+   ```
 
-## 🔍 Funcionamento
+## Estrutura do Código
+- `/notebooks`: Notebooks com experiências de treinamento
+- `/scripts`: Scripts de treinamento e integração dos modelos
 
-A plataforma analisa dados odontológicos e apresenta insights através de dashboards interativos, facilitando a tomada de decisões e a implementação de ações preventivas.
+## Regras de Commit
+- Inclua explicações para qualquer alteração no código dos modelos, destacando o impacto.
 
-### 🦷 Consultas Excessivas
-
-- **Problema:** Pacientes com consultas excessivas podem indicar uso indevido ou necessidade de atenção especial.
-- **Solução:** Dashboards e análises de IA identificam padrões de consultas anormais e geram alertas para ação.
-
-### ⚖️ Supertratamento
-
-- **Problema:** Procedimentos desnecessários podem aumentar custos e riscos.
-- **Solução:** Dashboards e IA identificam dentistas que realizam procedimentos excessivos, ajudando a controlar a qualidade e os custos.
-
-### 💰 Upcoding (Cobrança de Procedimentos Mais Caros)
-
-- **Problema:** Cobranças indevidas por procedimentos caros não realizados.
-- **Solução:** Dashboards e IA detectam inconsistências entre diagnósticos e procedimentos cobrados, ajudando a corrigir cobranças erradas.
-
-### 📉 Falta de Acompanhamento Pós-Tratamento
-
-- **Problema:** Pacientes não retornam para acompanhamento, o que pode levar a complicações.
-- **Solução:** Dashboards e IA monitoram retornos para acompanhamento e enviam lembretes para pacientes e equipe.
-
-## 🛠️ Funcionalidades Gerais
-
-- **Interface Amigável:** Design intuitivo com gráficos e indicadores visuais.
-- **Alertas e Recomendações:** Notificações automáticas sobre riscos e sugestões de ações.
-- **Análise Personalizada:** Filtros e segmentações de dados para análises detalhadas.
-
-## 🎁 Benefícios para a Odontoprev
-
-- **💸 Redução de Custos:** Menos gastos desnecessários e fraudes.
-- **🏆 Melhoria na Qualidade:** Tratamentos adequados e acompanhamento eficaz.
-- **⚙️ Eficiência Operacional:** Processos automatizados para focar em atividades estratégicas.
-- **😊 Satisfação do Cliente:** Ações preventivas melhoram a confiança nos serviços.
+## Contato
+Responsável: [Macauly Vivaldo da Silva]
