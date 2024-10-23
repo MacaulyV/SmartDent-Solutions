@@ -17,8 +17,6 @@ plataforma.
    ```bash
    git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
    ```
-2. Abra o projeto no Android Studio.
-3. Conecte um dispositivo ou use um emulador para executar o aplicativo.
 
 ## Estrutura do Código
 - `/app/src`: Código fonte do aplicativo mobile
