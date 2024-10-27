@@ -37,7 +37,7 @@ Demonstrar como o monitoramento e os alertas funcionarão na prática. O objetiv
 ### 🔹 🧹 Limpeza de Alertas
 
 1. **🖱️ Solicitação de Limpeza**: Um funcionário pode acionar a limpeza dos alertas gerados.
-2. **🗑️ Remoção dos Alertas**: Todos os alertas existentes são removidos da tabela de **Alertas** no banco de dados.<br><br><br>
+2. **🗑️ Remoção dos Alertas**: Todos os alertas existentes são removidos da tabela de **Alertas** no banco de dados.<br><br>
 
 ```markdown
 ## 📁 Estrutura de Pastas e Arquivos
