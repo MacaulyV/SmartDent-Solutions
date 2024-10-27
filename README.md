@@ -18,6 +18,27 @@ Demonstrar como o monitoramento e os alertas funcionarão na prática. O objetiv
 - **📊 Análise IA**: Utiliza IA para identificar possíveis **usos excessivos dos serviços** odontológicos e **gerar alertas**.
 - **🛑 Limpar Alertas**: Remove alertas pendentes do sistema.
 
+- ## 📊 🦷 Funcionamento do Sistema - Explicação Técnica
+
+### 🔹 🗓️ Fluxo de Marcação de Consulta
+
+1. **📝 Entrada de Dados**: O usuário acessa a página de marcação de consulta e insere informações como **👤 Nome**, **✉️ Email**, e **📅 Data da Consulta**.
+2. **✅ Validação**: O sistema valida os dados inseridos, garantindo que o **nome** e o **email** sejam válidos e que a **data da consulta** seja uma data futura.
+3. **💾 Persistência**: Caso o paciente não exista no sistema, ele é cadastrado; caso já exista, seus dados são atualizados e a **quantidade de consultas** é incrementada.
+4. **📄 Confirmação**: O usuário é redirecionado para uma página de confirmação, exibindo os detalhes da **consulta marcada**.
+
+### 🔹 🤖 Análise de IA para Detecção de Uso Excessivo
+
+1. **📋 Recuperação de Dados**: O sistema recupera a lista de pacientes e suas respectivas **quantidades de consultas**.
+2. **📊 Cálculo da Média**: A média do número de consultas de todos os pacientes é calculada.
+3. **⚠️ Identificação de Anomalias**: Pacientes cujo número de consultas ultrapassa **duas vezes** a média são marcados como casos suspeitos de **uso excessivo**.
+4. **🚨 Geração de Alerta**: Para cada paciente identificado, um alerta é gerado ou atualizado no banco de dados.
+
+### 🔹 🧹 Limpeza de Alertas
+
+1. **🖱️ Solicitação de Limpeza**: Um funcionário pode acionar a limpeza dos alertas gerados.
+2. **🗑️ Remoção dos Alertas**: Todos os alertas existentes são removidos da tabela de **Alertas** no banco de dados.
+
 ```markdown
 ## 📁 Estrutura de Pastas e Arquivos
 
