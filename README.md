@@ -141,8 +141,8 @@ As **Views** são responsáveis pela interface do usuário. São utilizadas para
 
 - **MarcarConsulta.cshtml**: Página de formulário para marcar uma nova consulta.
 - **Confirmacao.cshtml**: Página de confirmação após a consulta ser marcada.
-- **ListaPacientes.cshtml**: Exibe uma lista de todos os pacientes.
-- **ListaAlertas.cshtml**: Exibe os alertas gerados pela **IA**.
+- **Lista.cshtml**: Exibe uma lista de todos os pacientes.
+- **Alertas.cshtml**: Exibe os alertas gerados pela **IA**.
 
 ## ⚙️ Configuração e Uso do Banco de Dados
 
