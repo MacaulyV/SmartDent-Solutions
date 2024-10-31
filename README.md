@@ -2,7 +2,7 @@
 
 ## 📋 Visão Geral
 
-**SmartDentAlertas** é um sistema desenvolvido para monitoramento de consultas odontológicas, visando a prevenção de **sinistros** e **fraudes de uso excessivo de serviços/consultas por paciente**. Este sistema é voltado para o acompanhamento e análise do comportamento dos pacientes, utilizando uma lógica de simulação de tecnologia avançada de **Inteligência Artificial (IA)**, exemplificando como funcionará no projeto final quando utilizarmos **Machine Learning**.
+**SmartDentAlertas** é um sistema desenvolvido para monitoramento de consultas odontológicas, visando a prevenção de **sinistros** e **fraudes de uso excessivo de serviços/consultas por paciente**. Este sistema é voltado para o acompanhamento e análise do comportamento dos pacientes, utilizando uma lógica de simulação de analise por (IA), exemplificando como funcionará no projeto final quando utilizarmos **Machine Learning**.
 
 Este projeto é uma demonstração simples e preliminar de como o sistema final funcionará. A ideia é fornecer uma visão geral de como a **IA** pode ser integrada para monitorar consultas e evitar abusos, porém, nesta versão demo, não há implementação real de **Machine Learning**, apenas uma simulação de lógica que, no futuro, será aprimorada.
 
@@ -18,7 +18,7 @@ Demonstrar como o monitoramento e os alertas funcionarão na prática. O objetiv
 - **📊 Análise IA**: Utiliza IA para identificar possíveis **usos excessivos dos serviços** odontológicos e **gerar alertas**.
 - **🛑 Limpar Alertas**: Remove alertas pendentes do sistema.
 
-- ## 📊 🦷 Funcionamento do Sistema - Explicação Técnica
+## 📊 🦷 Funcionamento do Sistema - Explicação Técnica
 
 ### 🔹 🗓️ Fluxo de Marcação de Consulta
 
@@ -37,85 +37,76 @@ Demonstrar como o monitoramento e os alertas funcionarão na prática. O objetiv
 ### 🔹 🧹 Limpeza de Alertas
 
 1. **🖱️ Solicitação de Limpeza**: Um funcionário pode acionar a limpeza dos alertas gerados.
-2. **🗑️ Remoção dos Alertas**: Todos os alertas existentes são removidos da tabela de **Alertas** no banco de dados.<br><br>
+2. **🗑️ Remoção dos Alertas**: Todos os alertas existentes são removidos da tabela de **Alertas** no banco de dados.
 
-```markdown
 ## 📁 Estrutura de Pastas e Arquivos
 
-Abaixo está a estrutura do projeto **SmartDentAlertas** e a descrição dos arquivos e pastas mais importantes:
+Com as recentes mudanças no projeto, implementamos uma nova organização para seguir o padrão de **Repository** e **Interface**, melhorando a separação de responsabilidades e facilitando a manutenção do código.
 
-## Controllers
+### Controllers
+
 Os controladores são responsáveis por gerenciar as operações e funcionalidades específicas da aplicação.
 
-- **HomeController.cs**  
-  Controla a página inicial e a página de erro.
+- **HomeController.cs**: Controla a página inicial e a página de erro.
+- **PacienteController.cs**: Refatorado para se integrar ao padrão de repositório. Agora, as operações de criação, atualização e remoção de pacientes são realizadas através dos repositórios, garantindo uma separação mais clara das responsabilidades.
+- **FuncionarioController.cs**: Gerencia a exibição de funcionalidades para funcionários.
 
-- **PacienteController.cs**  
-  Gerencia operações relacionadas aos pacientes.
+### Repository e Interface
 
-- **FuncionarioController.cs**  
-  Gerencia a exibição de funcionalidades para funcionários.
+Com o padrão de **Repository**, separamos a lógica de acesso ao banco de dados, mantendo o código mais organizado e modular.
 
-## Models
+- **Interface/IPacienteRepository.cs, IAlertaRepository.cs, IConsultaRepository.cs**: Definem as operações que cada repositório deve implementar, como **adicionar**, **atualizar**, **remover** e **buscar** dados.
+- **Repository/PacienteRepository.cs, AlertaRepository.cs, ConsultaRepository.cs**: Implementam as interfaces, contendo a lógica de acesso aos dados no banco de dados **Oracle**.
+
+### Models
+
 Os modelos representam a estrutura dos dados usados pelo sistema.
 
-- **Paciente.cs**  
-  Modela os pacientes do sistema.
+- **Paciente.cs**: Modela os pacientes do sistema.
+- **Alertas.cs**: Modela os alertas gerados pelo sistema.
+- **Consulta.cs**: Modela as consultas odontológicas.
+- **ErrorViewModel.cs**: Modela informações de erros.
 
-- **Alertas.cs**  
-  Modela os alertas gerados pelo sistema.
+### ViewModels
 
-- **Consulta.cs**  
-  Modela as consultas odontológicas.
+As **ViewModels** são usadas para validar e transportar os dados entre a **View** e o **Controller** durante as operações de CRUD. Elas garantem que os dados estejam corretos e dentro dos requisitos antes de serem enviados para a camada de repositório ou apresentados ao usuário.
 
-- **ErrorViewModel.cs**  
-  Modela informações de erros.
+- **CreatePacienteViewModel.cs**: Valida os dados ao criar um novo paciente, como nome, email e data da consulta.
+- **UpdatePacienteViewModel.cs**: Valida os dados ao atualizar um paciente, como nome, email, data da consulta e quantidade de consultas.
+- **DeletePacienteViewModel.cs**: Valida o ID do paciente para garantir que a exclusão seja feita de maneira segura.
 
-## Views
+### Views
+
 As views são responsáveis pela interface do usuário.
 
-### Home
-- **Index.cshtml**  
-  Página inicial.
+#### Home
 
-- **Error.cshtml**  
-  Página de erro.
+- **Index.cshtml**: Página inicial.
 
-### Paciente
-- **MarcarConsulta.cshtml**  
-  Formulário para marcar uma consulta.
+#### Paciente
 
-- **Confirmacao.cshtml**  
-  Página de confirmação da consulta.
+- **MarcarConsulta.cshtml**: Formulário para marcar uma consulta.
+- **Confirmacao.cshtml**: Página de confirmação da consulta.
+- **Listar.cshtml**: Lista todos os pacientes.
 
-- **ListaPacientes.cshtml**  
-  Lista todos os pacientes.
+#### Alertas
 
-### Alertas
-- **ListaAlertas.cshtml**  
-  Lista os alertas gerados pelo sistema.
+- **Alertas.cshtml**: Lista os alertas gerados pelo sistema.
 
-## wwwroot
+### wwwroot
+
 Arquivos estáticos usados pela aplicação, como CSS, JavaScript e bibliotecas externas.
 
-- **css/**  
-  Arquivos CSS customizados.
+- **css/**: Arquivos CSS customizados.
+- **js/**: Arquivos JavaScript customizados.
+- **lib/**: Bibliotecas externas, como Bootstrap e jQuery.
 
-- **js/**  
-  Arquivos JavaScript customizados.
+### Arquivos Principais
 
-- **lib/**  
-  Bibliotecas externas, como Bootstrap e jQuery.
-
-## Arquivos Principais
 Configurações e inicialização do aplicativo.
 
-- **appsettings.json**  
-  Configurações da aplicação, incluindo a string de conexão com o banco de dados.
-
-- **Program.cs**  
-  Inicializa e configura o aplicativo.
-```
+- **appsettings.json**: Configurações da aplicação, incluindo a string de conexão com o banco de dados.
+- **Program.cs**: Inicializa e configura o aplicativo, registrando os repositórios e serviços necessários.
 
 ## 🔧 Tecnologias Utilizadas
 
@@ -132,14 +123,14 @@ Configurações e inicialização do aplicativo.
 Os **Controllers** são responsáveis pela lógica de negócio do sistema. Eles processam as requisições feitas pelo usuário e retornam as views correspondentes.
 
 - **HomeController.cs**: Controla a página inicial e a página de erro.
-- **PacienteController.cs**: Gerencia todas as operações relacionadas aos pacientes, incluindo **marcação de consultas**, **atualização** e **análise por IA**.
+- **PacienteController.cs**: Refatorado para implementar o padrão repositório, garantindo uma separação mais clara entre a lógica de acesso ao banco de dados e a lógica da aplicação.
 - **FuncionarioController.cs**: Exibe as funcionalidades disponíveis para funcionários, como **listagem de pacientes**.
 
 ### 🔹 Models
 
 Os **Models** representam a camada de dados do projeto. Cada classe modela uma tabela do banco de dados.
 
-- **Paciente.cs**: Representa os pacientes do sistema, com informações como **nome**, **email**, **data da consulta** e **quantidade de consultas acumuladas**.
+- **Paciente.cs**: Representa os pacientes do sistema, com informações como **nome**, **email**, **data da consulta**, e **quantidade de consultas acumuladas**.
 - **Alertas.cs**: Representa os alertas gerados pelo sistema quando é identificado um uso excessivo dos serviços.
 - **Consulta.cs**: Representa uma consulta odontológica.
 - **ErrorViewModel.cs**: Representa informações de erros a serem exibidos ao usuário.
@@ -164,7 +155,7 @@ O sistema utiliza um banco de dados **Oracle** para armazenar as informações d
 
 ### 🔸 Contexto de Dados
 
-- **AppDbContext.cs**: Define o contexto de banco de dados utilizado pelo **Entity Framework** para mapear as entidades **Paciente**, e **Alertas**, nas tabelas do banco de dados.
+- **AppDbContext.cs**: Define o contexto de banco de dados utilizado pelo **Entity Framework** para mapear as entidades **Paciente**, **Alertas**, e **Consultas** nas tabelas do banco de dados.
 
 ## 🔍 Testes e Validações
 
