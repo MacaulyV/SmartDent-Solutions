@@ -1,5 +1,10 @@
 # 🦷 SmartDentAlertas - Plataforma de Monitoramento Odontológico
 
+##**Desenvolvido por:**
+- **Daniel Bezerra da Silva Melo - RM: 553792**
+- **Gustavo Rocha Caxias - RM: 553310**
+- **Macauly Vivaldo da Silva - RM: 553350**
+
 ## 📋 Visão Geral
 
 **SmartDentAlertas** é um sistema desenvolvido para monitoramento de consultas odontológicas, visando a prevenção de **sinistros** e **fraudes de uso excessivo de serviços/consultas por paciente**. Este sistema é voltado para o acompanhamento e análise do comportamento dos pacientes, utilizando uma lógica de simulação de analise por (IA), exemplificando como funcionará no projeto final quando utilizarmos **Machine Learning**.
@@ -168,8 +173,6 @@ O sistema possui validações para garantir que os dados inseridos estejam corre
 ## 🖼️ Layout e Design
 
 O layout do sistema foi desenvolvido utilizando **Bootstrap** e **CSS** customizado, com foco na responsividade e experiência do usuário. O uso de **gradientes**, **efeitos hover** e **transições** foi feito para tornar a aplicação visualmente atraente e moderna.
-
-Desenvolvido por **Macauly**, **Daniel** e **Gustavo**.
 
 ## 2. Front-end - README.md
 
