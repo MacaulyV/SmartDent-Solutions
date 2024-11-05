@@ -27,5 +27,4 @@ plataforma.
 
 ## Contato
 Responsável: 
-[Daniel Bezerra da Silva Melo] 
-[Macauly Vivaldo da Silva]
+[Daniel Bezerra da Silva Melo] & [Macauly Vivaldo da Silva]
