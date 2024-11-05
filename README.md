@@ -26,4 +26,5 @@ plataforma.
 - Realize commits pequenos e objetivos para facilitar a revisão do código.
 
 ## Contato
-Responsável: [Daniel Bezerra da Silva Melo], [Macauly Vivaldo da Silva]
+Responsável: 
+[Daniel Bezerra da Silva Melo] & [Macauly Vivaldo da Silva]
