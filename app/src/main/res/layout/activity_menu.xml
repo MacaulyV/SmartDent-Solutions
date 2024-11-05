@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".MenuActivity">
+
+    <ImageView
+        android:id="@+id/imgFundo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fundo" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_background"
+        android:layout_width="411dp"
+        android:layout_height="119dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Botão Voltar"
+        android:src="@drawable/iconvoltar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Explore Opções"
+        android:textColor="@android:color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnVoltar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_agendar"
+        android:layout_width="324dp"
+        android:layout_height="200dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <LinearLayout
+            android:layout_width="326dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_highlight_title"
+                android:layout_width="301dp"
+                android:layout_height="wrap_content"
+                android:text="Encontre o que você Precisa"
+                android:textColor="#0075FF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_highlight_description"
+                android:layout_width="301dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Agende suas consultas e veja seu histórico facilmente"
+                android:textColor="@color/material_dynamic_neutral20"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="283dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_agendar"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue"
+                    android:text="Agendar"
+                    android:textColor="@android:color/white" />
+
+                <ImageView
+                    android:id="@+id/gif_agendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="GIF animado"
+                    app:srcCompat="@drawable/clinicaodontologica" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_opcoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="Opções"
+        android:textColor="#0075FF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_agendar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grid_options"
+        android:layout_width="340dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_opcoes">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_consulta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/card_historico"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_consulta"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Ícone Marcar Consulta"
+                    android:src="@drawable/logoconsulta" />
+
+                <TextView
+                    android:id="@+id/tv_marcar_consulta"
+                    android:layout_width="73dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Marcar Consulta"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_historico"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_consulta"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_historico"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Ícone Histórico de Consultas"
+                    android:src="@drawable/historico" />
+
+                <TextView
+                    android:id="@+id/tv_historico_consultas"
+                    android:layout_width="66dp"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Histórico Consultas"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/card_perfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_consulta">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_chat_suporte"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Ícone Chat de Suporte"
+                    android:src="@drawable/logobot" />
+
+                <TextView
+                    android:id="@+id/tv_chat_suporte"
+                    android:layout_width="66dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Chat de Suporte"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_perfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_chat"
+            app:layout_constraintTop_toBottomOf="@id/card_historico">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_perfil"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Ícone Tela de Perfil"
+                    android:src="@drawable/logoperfil" />
+
+                <TextView
+                    android:id="@+id/tv_tela_perfil"
+                    android:layout_width="61dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Tela de Perfil"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
