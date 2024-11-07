@@ -62,15 +62,10 @@ mvn spring-boot:run
 
 ## 🏗️ Arquitetura Geral
 
-### Diagrama de Arquitetura Geral
-
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d" alt="Arquitetura">
-</div>
-
-### Diagrama de Arquitetura Geral
+<div align="center">
 
 ![Arquitetura](https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d)
+</div>
 
 *Nota:* Este diagrama mostra a arquitetura do SmartDent Central Controller, incluindo como ele se comunica com outros componentes, como o sistema da OdontoPrev, o banco de dados Oracle e a interface da dashboard. Nesta versão inicial, a arquitetura foi planejada para atender aos seguintes pontos:
 
@@ -93,15 +88,20 @@ Futuramente, a arquitetura será expandida para incluir novos módulos e funcion
 
 ## 🗺️ Entidade e Relacionamento (ERD)
 
+<div align="center">
 ### Diagrama de Entidade e Relacionamento (ERD)
 
-![ERD]()
+![ERD](https://github.com/user-attachments/assets/94882307-1898-4754-adb7-0dc9a7c7ed4e)
+</div>
 
 *Nota:* Neste diagrama ERD, mostramos todas as tabelas do projeto. Nesta versão alfa, estamos utilizando apenas as tabelas de **Pacientes**, **Endereços** e **Empresas**. A tabela **Empresa** foi adicionada de última hora para atender às necessidades do projeto e, por isso, ainda não está completamente integrada ao diagrama ERD apresentado. Essa integração será aprimorada nas próximas entregas para garantir a consistência do banco de dados.
 
+<div align="center">
+  
 ### Diagrama de Classes
 
 ![CLASSES](https://github.com/user-attachments/assets/79f32929-f4b1-436c-986a-01214331c1e0)
+</div>
 
 *Nota:* Neste diagrama de classes, apresentamos as três classes principais utilizadas nesta versão alfa do projeto: **Paciente**, **Empresa** e **Endereço**. Essas classes representam as entidades fundamentais para o gerenciamento dos dados no sistema. Cada classe contém atributos essenciais, como `pacienteID`, que atua como identificador único na classe **Paciente**, garantindo a unicidade dos registros. Além disso, o relacionamento entre as classes, como a associação entre **Paciente** e **Endereço** por meio do atributo `pacienteID`, está claramente estabelecido. Essa estrutura inicial permite o armazenamento e a manipulação de informações de forma organizada, e será ampliada nas próximas versões para incluir relacionamentos mais complexos e novas funcionalidades.
 
