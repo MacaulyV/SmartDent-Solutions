@@ -64,6 +64,12 @@ mvn spring-boot:run
 
 ### Diagrama de Arquitetura Geral
 
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d" alt="Arquitetura">
+</div>
+
+### Diagrama de Arquitetura Geral
+
 ![Arquitetura](https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d)
 
 *Nota:* Este diagrama mostra a arquitetura do SmartDent Central Controller, incluindo como ele se comunica com outros componentes, como o sistema da OdontoPrev, o banco de dados Oracle e a interface da dashboard. Nesta versão inicial, a arquitetura foi planejada para atender aos seguintes pontos:
