@@ -91,6 +91,8 @@ Futuramente, a arquitetura será expandida para incluir novos módulos e funcion
 
 ### Diagrama de Classes
 
+![CLASSES](https://github.com/user-attachments/assets/79f32929-f4b1-436c-986a-01214331c1e0)
+
 *Nota:* Neste diagrama de classes, apresentamos as três classes principais utilizadas nesta versão alfa do projeto: **Paciente**, **Empresa** e **Endereço**. Essas classes representam as entidades fundamentais para o gerenciamento dos dados no sistema. Cada classe contém atributos essenciais, como `pacienteID`, que atua como identificador único na classe **Paciente**, garantindo a unicidade dos registros. Além disso, o relacionamento entre as classes, como a associação entre **Paciente** e **Endereço** por meio do atributo `pacienteID`, está claramente estabelecido. Essa estrutura inicial permite o armazenamento e a manipulação de informações de forma organizada, e será ampliada nas próximas versões para incluir relacionamentos mais complexos e novas funcionalidades.
 
 ## 🎥 Link para o Vídeo de Apresentação
