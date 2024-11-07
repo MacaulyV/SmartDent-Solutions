@@ -60,9 +60,8 @@ mvn spring-boot:run
 
 # SmartDent Central Controller
 
-## 🏗️ Arquitetura Geral
-
 <div align="center">
+## 🏗️ Arquitetura Geral
 
 ![Arquitetura](https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d)
 </div>
@@ -86,10 +85,8 @@ mvn spring-boot:run
 
 Futuramente, a arquitetura será expandida para incluir novos módulos e funcionalidades mais complexas.
 
-## 🗺️ Entidade e Relacionamento (ERD)
-
 <div align="center">
-### Diagrama de Entidade e Relacionamento (ERD)
+## 🗺️ Entidade e Relacionamento (ERD)
 
 ![ERD](https://github.com/user-attachments/assets/94882307-1898-4754-adb7-0dc9a7c7ed4e)
 </div>
