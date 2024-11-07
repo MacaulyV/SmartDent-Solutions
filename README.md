@@ -64,6 +64,8 @@ mvn spring-boot:run
 
 ### Diagrama de Arquitetura Geral
 
+![Arquitetura](https://github.com/user-attachments/assets/b0ae0d0b-bd9e-432b-a19a-1031ec118c3d)
+
 *Nota:* Este diagrama mostra a arquitetura do SmartDent Central Controller, incluindo como ele se comunica com outros componentes, como o sistema da OdontoPrev, o banco de dados Oracle e a interface da dashboard. Nesta versão inicial, a arquitetura foi planejada para atender aos seguintes pontos:
 
 - **Interface do Usuário - Dashboard:**  
@@ -86,6 +88,8 @@ Futuramente, a arquitetura será expandida para incluir novos módulos e funcion
 ## 🗺️ Entidade e Relacionamento (ERD)
 
 ### Diagrama de Entidade e Relacionamento (ERD)
+
+![ERD]()
 
 *Nota:* Neste diagrama ERD, mostramos todas as tabelas do projeto. Nesta versão alfa, estamos utilizando apenas as tabelas de **Pacientes**, **Endereços** e **Empresas**. A tabela **Empresa** foi adicionada de última hora para atender às necessidades do projeto e, por isso, ainda não está completamente integrada ao diagrama ERD apresentado. Essa integração será aprimorada nas próximas entregas para garantir a consistência do banco de dados.
 
