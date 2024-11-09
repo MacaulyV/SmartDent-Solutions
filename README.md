@@ -1,3 +1,8 @@
+## O **Importante**:
+
+### A documentação e arquitetura foram cuidadosamente pensadas e planejadas antes do projeto. Mesmo que tenhamos vacilado e não tenha sobrado tempo suficiente, tudo que vier a seguir ainda não concluímos, mas estamos determinados a terminar. 🚀
+
+
 # 🦷 SmartDent Central Controller
 
 ## 📝 Descrição do Projeto
