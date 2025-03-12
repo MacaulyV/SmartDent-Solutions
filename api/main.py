@@ -328,12 +328,13 @@ def generate_justificativa(features, add_info, prediction):
 def load_model():
     base_dir = os.path.join(os.getcwd(), "model", "artifacts")
     model_path = os.path.join(base_dir, "model_rf.joblib")
-    print("Tentando carregar o modelo em:", model_path)
+    print("Diretório atual:", os.getcwd())
+    print("Caminho do modelo:", model_path)
     if os.path.exists(model_path):
         print("Modelo carregado com sucesso.")
         return load(model_path)
     else:
-        print("Modelo não encontrado. Usando heurística.")
+        print("Modelo não encontrado em:", model_path)
         return None
 
 def infer_patient(paciente_dict):
