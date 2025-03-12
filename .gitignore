@@ -1,0 +1,35 @@
+# Ignorar arquivos de metadados Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignorar ambientes virtuais (depende do nome da pasta)
+venv/
+env/
+
+# Ignorar configs de IDE
+.vscode/
+.idea/
+*.swp
+
+# Ignorar logs, caches e arquivos temporários
+*.log
+*.cache
+*.tmp
+*.egg-info/
+
+#  credenciais locais (API keys) ou variáveis de ambiente
+.env
+
+# Ignorar dados brutos ou grandes arquivos da pasta data/):
+
+
+# remova a pasta data/ daqui e ignore apenas arquivos gigantes (depende da sua estratégia)
+
+# Caso tenha builds específicos ou artefatos de distribuição
+dist/
+build/
+
+# gerar imagens Docker localmente
+*.tar
