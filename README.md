@@ -281,13 +281,13 @@ Porque no momento não temos acesso a dados reais (que por questões de privacid
 ### 🏷 Deploys Disponíveis
 
 - **API de IA (FastAPI)**
-[API de IA (FastAPI)](https://smartdent-ai.onrender.com/docs)  
+  [https://smartdent-ai.onrender.com/docs](#)  
 
 - **API Principal (C#)**  
-  [https://smartdent-api.azurewebsites.net](#)  
+  [https://smartdent-ai.onrender.com/docs](#)  
 
 ### 🎬 Vídeo Demonstrativo
-[Link para vídeo no YouTube](#)  
+[https://smartdent-ai.onrender.com/docs](#)  
 
 ---
 
