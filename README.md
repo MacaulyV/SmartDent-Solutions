@@ -214,7 +214,7 @@ Apesar das dificuldades iniciais, as lições aprendidas durante essa fase forta
 
 ## 🧠 **Arquitetura de IA**
 
-No SmartDent Solutions, optamos por usar FastAPI (Python) como camada de serviço de IA, onde rodamos o modelo de Machine Learning. Esse modelo foi construído em Scikit-learn, e usamos um Random Forest porque ele lida bem com diferentes tipos de dados (como número de consultas, custo total, histórico de procedimentos) e oferece resultados interpretáveis.
+Na SmartDent Solutions, optamos por usar FastAPI (Python) como camada de serviço de IA, onde rodamos o modelo de Machine Learning. Esse modelo foi construído em Scikit-learn, e usamos um Random Forest porque ele lida bem com diferentes tipos de dados (como número de consultas, custo total, histórico de procedimentos) e oferece resultados interpretáveis.
 
 A razão para escolher essa arquitetura é que a API de IA fica independente do restante do sistema (ou seja, separada do backend .NET e do front-end Java/Mobile). Assim, quando a gente precisa atualizar o modelo ou adicionar alguma lógica de análise nova, não mexemos no código do backend principal. Isso deixa tudo mais modular e facilita o deploy de forma independente—no caso, a API de IA está sendo hospedada no Render.
 
