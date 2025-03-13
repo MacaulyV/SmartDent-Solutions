@@ -278,10 +278,30 @@ Porque no momento não temos acesso a dados reais (que por questões de privacid
 
 ## 🎥 **Demonstração e Apresentação**
 
-- *(Inserir link para um vídeo demonstrativo do projeto funcionando.)*  
-- *(Adicionar imagens mostrando a API em funcionamento, chamadas ao endpoint e exemplos de resposta.)*
+### 🏷 Deploys Disponíveis
 
-- ```json
+- **API de IA (FastAPI)**  
+  *(Insira aqui o link para a API de IA em produção, por exemplo:*  
+  [https://smartdent-ai.onrender.com/analisar-uso](#)  
+  *Explique em uma frase o que esse endpoint faz e por que é importante.)*
+
+- **API Principal (C#)**  
+  *(Insira aqui o link para a sua API .NET em produção, por exemplo:*  
+  [https://smartdent-api.azurewebsites.net](#)  
+  *Comente brevemente que essa API orquestra chamadas, faz CRUD no Banco de Dados, etc.)*
+
+### 🎬 Vídeo Demonstrativo
+*(Insira aqui o link de um vídeo mostrando o sistema em funcionamento, como:  
+[Link para vídeo no YouTube](#)  
+Explique rapidamente o que o vídeo cobre: fluxos principais, integração com IA, CRUD, etc.)*
+
+---
+
+### 📋 Exemplo de Teste em JSON
+
+Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando o formato esperado para análise:
+
+ ```json
 {
   "idPaciente": 912345,
   "nomeCompleto": "Fulano de Tal",
