@@ -185,9 +185,9 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
 
-- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*
-- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*
-- **[Gustavo Rocha Caxias]** *(Banco de Dados & Infraestrutura)* 
+- **Macauly Vivaldo da Silva** – *Frontend & UX/UI, IA & Backend*  
+- **Daniel Bezerra da Silva Melo** – *Mobile Developer & Infraestrutura DevOps (Deploy)*  
+- **Gustavo Rocha Caxias** – *Banco de Dados*  
 
 ---
 
