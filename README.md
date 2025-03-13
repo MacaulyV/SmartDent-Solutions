@@ -344,7 +344,7 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
     }
   ]
 }
-
+ ```
 ---
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
