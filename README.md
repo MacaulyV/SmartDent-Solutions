@@ -168,6 +168,174 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 
 ---
 
+## 🤔 **Considerações Finais e Problemas Enfrentados**
+
+Durante a Sprint 3 do projeto, foi necessário adaptar e reformular diversas partes da solução para atender tanto às novas exigências quanto à evolução das entregas. Esse processo envolveu a reestruturação do pipeline de análise de uso odontológico, principalmente na integração entre a API em C# e o módulo de IA. A seguir, destacam-se os principais pontos e desafios:
+
+---
+
+### ⚙️ **Adaptação do Modelo de Análise**
+
+**Evolução do Conceito:**  
+Inicialmente, a abordagem adotada era puramente heurística, baseada em regras pré-definidas (como a quantidade de consultas realizadas e intervalos entre elas) para classificar o risco do paciente.
+
+**Hibridização da Lógica:**  
+Após revisarmos os requisitos e entendermos melhor as necessidades do projeto, optamos por uma abordagem híbrida. Essa nova estratégia combina a predição de um modelo treinado (usando técnicas de Machine Learning, como RandomForest) com a geração de justificativas por meio de templates. Essa combinação permitiu capturar nuances dos dados históricos e, ao mesmo tempo, fornecer respostas em linguagem natural e detalhadas para cada paciente.
+
+---
+
+### 🔍 **Problemas com o Tratamento dos Dados**
+
+**Formato dos Dados:**  
+Um dos grandes desafios foi lidar com a variedade de formatos presentes no JSON de entrada, especialmente no que tange aos valores monetários (ex.: "R$ 860,00") e datas. Foi necessário desenvolver funções específicas para limpar e converter esses dados (por exemplo, converter o custo para número e formatar as datas para o padrão %d/%m/%Y %H:%M).
+
+**Extração de Features:**  
+A definição das features corretas para treinar o modelo também exigiu ajustes. Tivemos que alinhar as colunas do CSV de treinamento com os dados extraídos do JSON, garantindo que contagens por categoria (como "count_ConsultaseDiagnóstico" ou "count_PrevençãoeProfilaxia") fossem calculadas de forma consistente.
+
+---
+
+### 🔗 **Integração entre Módulos**
+
+**Conexão com a API em C#:**  
+O desenvolvimento da API da IA teve como objetivo final ser integrada com a API em C#. Durante o desenvolvimento, surgiram desafios relativos à padronização do formato de entrada e saída dos dados, bem como à comunicação entre os módulos, que foram resolvidos através da utilização do FastAPI e de esquemas Pydantic para garantir a consistência dos dados.
+
+**Testes Locais e Validação:**  
+Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e scripts de teste) para validar a lógica de inferência e garantir que tanto a entrada de um único paciente quanto de múltiplos fossem processadas corretamente.
+
+---
+
+## ✅ **Conclusão**
+
+A Sprint 3 foi marcada por uma significativa evolução no desenvolvimento do projeto, onde desafios de integração, padronização de dados e a definição de uma abordagem híbrida foram superados. Essa nova estratégia não só permitiu capturar padrões mais sutis nos dados por meio do modelo treinado, como também garantiu a geração de justificativas detalhadas e naturalizadas, proporcionando uma análise robusta e de fácil entendimento para os usuários finais.
+
+Apesar das dificuldades iniciais, as lições aprendidas durante essa fase fortaleceram o projeto, preparando-o para a próxima etapa de integração com das APIs com ás interfaces.
+
+---
+
+## 🧠 **Arquitetura de IA**
+
+Na SmartDent Solutions, optamos por usar FastAPI (Python) como camada de serviço de IA, onde rodamos o modelo de Machine Learning. Esse modelo foi construído em Scikit-learn, e usamos um Random Forest porque ele lida bem com diferentes tipos de dados (como número de consultas, custo total, histórico de procedimentos) e oferece resultados interpretáveis.
+
+A razão para escolher essa arquitetura é que a API de IA fica independente do restante do sistema (ou seja, separada do backend .NET e do front-end Java/Mobile). Assim, quando a gente precisa atualizar o modelo ou adicionar alguma lógica de análise nova, não mexemos no código do backend principal. Isso deixa tudo mais modular e facilita o deploy de forma independente—no caso, a API de IA está sendo hospedada no Render.
+
+---
+
+## ⚙️ **Implementação na Prática**
+
+No repositório, há uma pasta específica (chamada `api/`) que contém os scripts de treinamento e o código da API em FastAPI. A gente treina o modelo localmente (ou num ambiente de dados), salva o arquivo `.joblib`, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, **UsoExcessivo**) mais uma justificativa.
+
+---
+
+### 🗂 **Base de Dados Usada**
+
+Para o treinamento e teste do modelo, nós ultilizamos dados sintéticos que refletem cenários de uso odontológico (quantidade de consultas, custo, status de cada consulta, tipo de procedimento, etc.). A ideia é simular comportamentos de pacientes abusando ou não do convênio, pra conseguirmos treinar a IA a distinguir entre uso normal e uso excessivo. Esses dados foram gerados num script Python que cria registros aleatórios com diferentes padrões de frequência e custo. Assim, a IA aprende com uma variedade de cenários que representam bem o que acontece no dia a dia de um plano odontológico.
+
+#### Por que dados sintéticos?
+Porque no momento não temos acesso a dados reais. Mesmo assim, essa base sintética é suficiente para a prova de conceito e pra demonstrar como a IA seria integrada no fluxo real da Odontoprev.
+
+---
+
+## ♻️ Refatoração e Organização do Código
+
+Durante o desenvolvimento da API **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
+
+### 📂 Estrutura dos Arquivos
+Abaixo está a organização atual do projeto, refletindo a separação de responsabilidades:
+
+- **`api/`**  
+  - `main.py`  
+    Arquivo principal da API em **FastAPI**, responsável pela inferência do modelo e exposição dos endpoints.
+
+- **`data/`**  
+  - `dataset_treino.csv`  
+    Base de dados utilizada para treinar o modelo.  
+  - `synthetic_patients.json`  
+    Dados sintéticos gerados para teste e validação.
+
+- **`model/`**  
+  - **`artifacts/`**  
+    - `model_rf.joblib`  
+      Arquivo do modelo Random Forest salvo após o treinamento.  
+  - **`preprocessing/`**  
+    - `prepare_dataset.py`  
+      Script para limpar e preparar o dataset antes do treinamento.  
+  - **`training/`**  
+    - `train_model.py`  
+      Script responsável por treinar o modelo e salvá-lo em `artifacts/`.
+
+- **`scripts/`**  
+  - `generate_synthetic_data.py`  
+    Script auxiliar para gerar dados sintéticos de pacientes, ajudando nos testes.
+
+### 📝 Documentação e Logs
+
+Foi fundamental garantir que o comportamento do modelo pudesse ser monitorado:
+
+- Adicionamos **logs detalhados** para indicar quando o modelo foi carregado corretamente e para relatar possíveis falhas.
+- Incluímos o campo **"modelo_utilizado"** nas respostas da API, permitindo identificar de forma clara se a predição foi feita pelo modelo treinado.
+
+Essas medidas facilitam identificar rapidamente qualquer problema na inferência e manter o modelo operando corretamente em produção.
+
+---
+
+### 📋 Exemplo de Teste em JSON dos Dados
+
+Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando um formato esperado para análise:
+
+ ```json
+{
+  "idPaciente": 912345,
+  "nomeCompleto": "Fulano de Tal",
+  "cpf": "123.456.789-10",
+  "dataNascimento": "01/03/1985",
+  "email": "fulano@example.com",
+  "telefone": "(11) 91234-5678",
+  "endereco": "Rua Exemplo, 123, Bairro, Cidade, Estado",
+  "planoOdontologico": "Bem Estar Pró",
+  "empresa": "Independente",
+  "numConsultas": 3,
+  "gastoTotal": "R$ 450,00",
+  "consultas": [
+    {
+      "idConsulta": 1001,
+      "dataConsulta": "10/06/2024 14:00",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 50001,
+        "tipoProcedimento": "Limpeza dental (profilaxia)",
+        "descricao": null,
+        "custo": "R$ 120,00"
+      }
+    },
+    {
+      "idConsulta": 1002,
+      "dataConsulta": "15/07/2024 09:30",
+      "status": "Agendada",
+      "procedimento": {
+        "idProcedimento": 50002,
+        "tipoProcedimento": "Restauração em resina composta",
+        "descricao": null,
+        "custo": "R$ 330,00"
+      }
+    },
+    {
+      "idConsulta": 1003,
+      "dataConsulta": "02/09/2024 11:45",
+      "status": "Cancelada",
+      "procedimento": {
+        "idProcedimento": 50003,
+        "tipoProcedimento": "Aplicação de flúor",
+        "descricao": null,
+        "custo": "R$ 100,00"
+      }
+    }
+  ]
+}
+
+ ```
+
+---
+
 ## 🎥 **Demonstração e Apresentação**
 
 ### 🏷 Deploys Disponíveis
@@ -185,8 +353,6 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 - **Macauly Vivaldo da Silva** – *Frontend & UX/UI, IA & Backend*  
 - **Daniel Bezerra da Silva Melo** – *Mobile Developer & Infraestrutura DevOps (Deploy)*  
 - **Gustavo Rocha Caxias** – *Banco de Dados*  
-
----
 
 ## Main - README.md
 
