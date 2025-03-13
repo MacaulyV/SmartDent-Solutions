@@ -1,3 +1,5 @@
+![Descrição banner](https://github.com/user-attachments/assets/acf148aa-b44a-4ebd-9085-9ce4f31ecaf0)
+
 # 🦷 **SmartDent Solutions**
 
 ### 🤖 **IA Aplicada à Odontologia**
