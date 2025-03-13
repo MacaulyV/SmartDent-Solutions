@@ -210,6 +210,8 @@ A Sprint 3 foi marcada por uma significativa evolução no desenvolvimento do pr
 
 Apesar das dificuldades iniciais, as lições aprendidas durante essa fase fortaleceram o projeto, preparando-o para a próxima etapa de integração com das APIs com ás interfaces.
 
+---
+
 ## ♻️ Refatoração e Organização do Código
 
 Durante o desenvolvimento da API **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
