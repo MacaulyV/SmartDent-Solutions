@@ -206,7 +206,7 @@ Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e sc
 
 ## ♻️ Refatoração e Organização do Código
 
-Durante o desenvolvimento do **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
+Durante o desenvolvimento da API **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
 
 ### 📂 Estrutura dos Arquivos
 Abaixo está a organização atual do projeto, refletindo a separação de responsabilidades:
