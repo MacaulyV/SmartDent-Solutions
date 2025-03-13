@@ -101,7 +101,24 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 
 ## 🏗 **Diagrama da Arquitetura**
 
-*(Inserir aqui um diagrama explicativo com as conexões entre os módulos: Mobile, .NET, FastAPI e Banco de Dados.)*
+![Descrição banner](https://github.com/user-attachments/assets/2f15db1a-d6bf-44f3-a7d1-da50122ae3fe)
+
+### Descrição Lógica do Fluxo da Arquitetura
+
+1. **Interação do Usuário:**  
+   Usuários acessam o sistema através do frontend web ou do aplicativo móvel.
+
+2. **Comunicação com a API Central:**  
+   Tanto o frontend quanto o mobile enviam requisições HTTP para a API central implementada em .NET, que processa as informações e aplica as regras de negócio.
+
+3. **Chamada à API de IA:**  
+   Quando necessário, a API central realiza chamadas à API de IA (desenvolvida com FastAPI e Scikit-learn) para obter análises de risco e justificativas.
+
+4. **Persistência dos Dados:**  
+   Os dados processados, incluindo logs e análises, são armazenados no banco de dados Oracle para garantir rastreabilidade e integridade.
+
+5. **Infraestrutura e Deploy:**  
+   Toda a solução é implantada em uma infraestrutura robusta (Azure Cloud, Docker, CI/CD), garantindo escalabilidade, facilidade de manutenção e atualizações contínuas.
 
 ---
 
