@@ -263,37 +263,22 @@ A razão para escolher essa arquitetura é que a API de IA fica independente do 
 
 ## ⚙️ **Implementação na Prática**
 
-No repositório, há uma pasta específica (chamada algo como `api/` ou `IA/`) que contém os scripts de treinamento e o código da API em FastAPI. A gente treina o modelo localmente (ou num ambiente de dados), salva o arquivo `.joblib`, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, "UsoExcessivo") mais uma justificativa.
+No repositório, há uma pasta específica (chamada `api/`) que contém os scripts de treinamento e o código da API em FastAPI. A gente treina o modelo localmente (ou num ambiente de dados), salva o arquivo `.joblib`, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, **UsoExcessivo**) mais uma justificativa.
 
 ---
 
 ### 🗂 **Base de Dados Usada**
 
-Para o treinamento e teste do modelo, nós estamos trabalhando com dados sintéticos que refletem cenários de uso odontológico (quantidade de consultas, custo, status de cada consulta, tipo de procedimento, etc.). A ideia é simular comportamentos de pacientes abusando ou não do convênio, pra conseguirmos treinar a IA a distinguir entre uso normal e uso excessivo. Esses dados foram gerados num script Python que cria registros aleatórios com diferentes padrões de frequência e custo. Assim, a IA aprende com uma variedade de cenários que representam bem o que acontece no dia a dia de um plano odontológico.
+Para o treinamento e teste do modelo, nós ultilizamos dados sintéticos que refletem cenários de uso odontológico (quantidade de consultas, custo, status de cada consulta, tipo de procedimento, etc.). A ideia é simular comportamentos de pacientes abusando ou não do convênio, pra conseguirmos treinar a IA a distinguir entre uso normal e uso excessivo. Esses dados foram gerados num script Python que cria registros aleatórios com diferentes padrões de frequência e custo. Assim, a IA aprende com uma variedade de cenários que representam bem o que acontece no dia a dia de um plano odontológico.
 
 #### Por que dados sintéticos?
-Porque no momento não temos acesso a dados reais (que por questões de privacidade e compliance não podem ser usados livremente). Mesmo assim, essa base sintética é suficiente para a prova de conceito e pra demonstrar como a IA seria integrada no fluxo real.
+Porque no momento não temos acesso a dados reais. Mesmo assim, essa base sintética é suficiente para a prova de conceito e pra demonstrar como a IA seria integrada no fluxo real da Odontoprev.
 
 ---
 
-## 🎥 **Demonstração e Apresentação**
+### 📋 Exemplo de Teste em JSON dos Dados
 
-### 🏷 Deploys Disponíveis
-
-- **API de IA (FastAPI)**  
-  [https://smartdent-ai.onrender.com/docs](#)  
-
-- **API Principal (C#)**  
-  [https://smartdent-ai.onrender.com/docs](#)  
-
-### 🎬 Vídeo Demonstrativo
-[https://smartdent-ai.onrender.com/docs](#)  
-
----
-
-### 📋 Exemplo de Teste em JSON
-
-Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando o formato esperado para análise:
+Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando um formato esperado para análise:
 
  ```json
 {
@@ -346,6 +331,21 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 }
 
  ```
+
+---
+
+## 🎥 **Demonstração e Apresentação**
+
+### 🏷 Deploys Disponíveis
+
+- **API de IA (FastAPI)**  
+  [https://smartdent-ai.onrender.com/docs](#)  
+
+- **API Principal (C#)**  
+  [https://smartdent-ai.onrender.com/docs](#)  
+
+### 🎬 Vídeo Demonstrativo
+[https://smartdent-ai.onrender.com/docs](#)  
 
 ---
 
