@@ -351,6 +351,6 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
 
-- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*<br><br> 
-- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*<br><br>   
+- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*
+- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*
 - **[Gustavo Rocha Caxias]** *(Banco de Dados & Infraestrutura)* 
