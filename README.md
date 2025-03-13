@@ -120,6 +120,9 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 5. **Infraestrutura e Deploy:**  
    Toda a solução é implantada em uma infraestrutura robusta (Azure Cloud, Docker, CI/CD), garantindo escalabilidade, facilidade de manutenção e atualizações contínuas.
 
+> **Nota Importante:**  
+> Esta visão da arquitetura representa o planejamento final previsto para a Sprint 4 e não reflete completamente a implementação atual.
+
 ---
 
 ## 📈 **Evolução entre as Entregas**
