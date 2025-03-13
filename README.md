@@ -281,7 +281,7 @@ Porque no momento não temos acesso a dados reais (que por questões de privacid
 ### 🏷 Deploys Disponíveis
 
 - **API de IA (FastAPI)**
-[](https://smartdent-ai.onrender.com/docs)  
+[API de IA (FastAPI)](https://smartdent-ai.onrender.com/docs)  
 
 - **API Principal (C#)**  
   [https://smartdent-api.azurewebsites.net](#)  
@@ -351,6 +351,6 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
 
-- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*<br>  
-- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*<br>  
+- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*<br><br> 
+- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*<br><br>   
 - **[Gustavo Rocha Caxias]** *(Banco de Dados & Infraestrutura)* 
