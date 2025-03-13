@@ -118,7 +118,7 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
    Os dados processados, incluindo logs e análises, são armazenados no banco de dados Oracle para garantir rastreabilidade e integridade.
 
 5. **Infraestrutura e Deploy:**  
-   Toda a solução é implantada em uma infraestrutura robusta (Azure Cloud, Docker, CI/CD), garantindo escalabilidade, facilidade de manutenção e atualizações contínuas.
+   Toda a solução é implantada em uma infraestrutura robusta como (Azure Cloud, Docker, CI/CD), garantindo escalabilidade, facilidade de manutenção e atualizações contínuas.
 
 > **Nota Importante:**  
 > Esta visão da arquitetura representa o planejamento final previsto para a Sprint 4 e não reflete completamente a implementação atual.
@@ -170,7 +170,7 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 
 ## 🤔 **Considerações Finais e Problemas Enfrentados**
 
-Durante a Sprint 3 do projeto, foi necessário adaptar e reformular diversas partes da solução para atender tanto às novas exigências quanto à evolução das entregas. Esse processo envolveu a reestruturação do pipeline de análise de uso odontológico, principalmente na integração entre a API em C# e o módulo de Inteligência Artificial. A seguir, destacam-se os principais pontos e desafios:
+Durante a Sprint 3 do projeto, foi necessário adaptar e reformular diversas partes da solução para atender tanto às novas exigências quanto à evolução das entregas. Esse processo envolveu a reestruturação do pipeline de análise de uso odontológico, principalmente na integração entre a API em C# e o módulo de IA. A seguir, destacam-se os principais pontos e desafios:
 
 ---
 
@@ -197,20 +197,53 @@ A definição das features corretas para treinar o modelo também exigiu ajustes
 ### 🔗 **Integração entre Módulos**
 
 **Conexão com a API em C#:**  
-O desenvolvimento da API de Inteligência Artificial teve como objetivo final ser integrada com a API em C#. Durante o desenvolvimento, surgiram desafios relativos à padronização do formato de entrada e saída dos dados, bem como à comunicação entre os módulos, que foram resolvidos através da utilização do FastAPI e de esquemas Pydantic para garantir a consistência dos dados.
+O desenvolvimento da API da IA teve como objetivo final ser integrada com a API em C#. Durante o desenvolvimento, surgiram desafios relativos à padronização do formato de entrada e saída dos dados, bem como à comunicação entre os módulos, que foram resolvidos através da utilização do FastAPI e de esquemas Pydantic para garantir a consistência dos dados.
 
 **Testes Locais e Validação:**  
 Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e scripts de teste) para validar a lógica de inferência e garantir que tanto a entrada de um único paciente quanto de múltiplos fossem processadas corretamente.
 
 ---
 
-### ♻️ **Refatoração e Organização do Código**
+## ♻️ Refatoração e Organização do Código
 
-**Estrutura dos Arquivos:**  
-Devido às constantes mudanças, a organização dos arquivos foi um ponto crítico. Foi necessário repensar a estrutura dos diretórios, separando a lógica de treinamento, inferência e a definição dos schemas para manter a modularidade e facilitar futuras manutenções.
+Durante o desenvolvimento do **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
 
-**Documentação e Logs:**  
-Foram adicionados logs e indicadores (como o campo “modelo_utilizado”) para identificar se a predição estava sendo realizada com o modelo treinado ou se, por falha, o sistema caía no fallback heurístico.
+### 📂 Estrutura dos Arquivos
+Abaixo está a organização atual do projeto, refletindo a separação de responsabilidades:
+
+- **`api/`**  
+  - `main.py`  
+    Arquivo principal da API em **FastAPI**, responsável pela inferência do modelo e exposição dos endpoints.
+
+- **`data/`**  
+  - `dataset_treino.csv`  
+    Base de dados utilizada para treinar o modelo.  
+  - `synthetic_patients.json`  
+    Dados sintéticos gerados para teste e validação.
+
+- **`model/`**  
+  - **`artifacts/`**  
+    - `model_rf.joblib`  
+      Arquivo do modelo Random Forest salvo após o treinamento.  
+  - **`preprocessing/`**  
+    - `prepare_dataset.py`  
+      Script para limpar e preparar o dataset antes do treinamento.  
+  - **`training/`**  
+    - `train_model.py`  
+      Script responsável por treinar o modelo e salvá-lo em `artifacts/`.
+
+- **`scripts/`**  
+  - `generate_synthetic_data.py`  
+    Script auxiliar para gerar dados sintéticos de pacientes, ajudando nos testes.
+
+### 📝 Documentação e Logs
+
+Foi fundamental garantir que o comportamento do modelo pudesse ser monitorado:
+
+- Adicionamos **logs detalhados** para indicar quando o modelo foi carregado corretamente e para relatar possíveis falhas.
+- Incluímos o campo **"modelo_utilizado"** nas respostas da API, permitindo identificar de forma clara se a predição foi feita pelo modelo treinado.
+
+Essas medidas facilitam identificar rapidamente qualquer problema na inferência e manter o modelo operando corretamente em produção.
 
 ---
 
