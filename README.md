@@ -208,7 +208,7 @@ Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e sc
 
 A Sprint 3 foi marcada por uma significativa evolução no desenvolvimento do projeto, onde desafios de integração, padronização de dados e a definição de uma abordagem híbrida foram superados. Essa nova estratégia não só permitiu capturar padrões mais sutis nos dados por meio do modelo treinado, como também garantiu a geração de justificativas detalhadas e naturalizadas, proporcionando uma análise robusta e de fácil entendimento para os usuários finais.
 
-Apesar das dificuldades iniciais, as lições aprendidas durante essa fase fortaleceram o projeto, preparando-o para a próxima etapa de integração com a API em C#. Acreditamos que essa abordagem híbrida representa um avanço significativo na capacidade de análise e justificativa do sistema, garantindo uma solução alinhada tanto com as necessidades do cliente quanto com os objetivos acadêmicos do projeto.
+Apesar das dificuldades iniciais, as lições aprendidas durante essa fase fortaleceram o projeto, preparando-o para a próxima etapa de integração com das APIs com ás interfaces.
 
 ## ♻️ Refatoração e Organização do Código
 
