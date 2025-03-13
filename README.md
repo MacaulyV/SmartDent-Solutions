@@ -235,49 +235,6 @@ Porque no momento não temos acesso a dados reais. Mesmo assim, essa base sinté
 
 ---
 
-## ♻️ Refatoração e Organização do Código
-
-Durante o desenvolvimento da API **SmartDentAI**, a estrutura foi organizada para garantir modularidade, clareza e facilitar futuras manutenções. A separação em diferentes diretórios mantém **treinamento**, **inferência** e **pré-processamento** bem delimitados.
-
-### 📂 Estrutura dos Arquivos
-Abaixo está a organização atual do projeto, refletindo a separação de responsabilidades:
-
-- **`api/`**  
-  - `main.py`  
-    Arquivo principal da API em **FastAPI**, responsável pela inferência do modelo e exposição dos endpoints.
-
-- **`data/`**  
-  - `dataset_treino.csv`  
-    Base de dados utilizada para treinar o modelo.  
-  - `synthetic_patients.json`  
-    Dados sintéticos gerados para teste e validação.
-
-- **`model/`**  
-  - **`artifacts/`**  
-    - `model_rf.joblib`  
-      Arquivo do modelo Random Forest salvo após o treinamento.  
-  - **`preprocessing/`**  
-    - `prepare_dataset.py`  
-      Script para limpar e preparar o dataset antes do treinamento.  
-  - **`training/`**  
-    - `train_model.py`  
-      Script responsável por treinar o modelo e salvá-lo em `artifacts/`.
-
-- **`scripts/`**  
-  - `generate_synthetic_data.py`  
-    Script auxiliar para gerar dados sintéticos de pacientes, ajudando nos testes.
-
-### 📝 Documentação e Logs
-
-Foi fundamental garantir que o comportamento do modelo pudesse ser monitorado:
-
-- Adicionamos **logs detalhados** para indicar quando o modelo foi carregado corretamente e para relatar possíveis falhas.
-- Incluímos o campo **"modelo_utilizado"** nas respostas da API, permitindo identificar de forma clara se a predição foi feita pelo modelo treinado.
-
-Essas medidas facilitam identificar rapidamente qualquer problema na inferência e manter o modelo operando corretamente em produção.
-
----
-
 ### 📋 Exemplo de Teste em JSON dos Dados
 
 Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando um formato esperado para análise:
