@@ -281,11 +281,60 @@ Porque no momento não temos acesso a dados reais (que por questões de privacid
 - *(Inserir link para um vídeo demonstrativo do projeto funcionando.)*  
 - *(Adicionar imagens mostrando a API em funcionamento, chamadas ao endpoint e exemplos de resposta.)*
 
+- ```json
+{
+  "idPaciente": 912345,
+  "nomeCompleto": "Fulano de Tal",
+  "cpf": "123.456.789-10",
+  "dataNascimento": "01/03/1985",
+  "email": "fulano@example.com",
+  "telefone": "(11) 91234-5678",
+  "endereco": "Rua Exemplo, 123, Bairro, Cidade, Estado",
+  "planoOdontologico": "Bem Estar Pró",
+  "empresa": "Independente",
+  "numConsultas": 3,
+  "gastoTotal": "R$ 450,00",
+  "consultas": [
+    {
+      "idConsulta": 1001,
+      "dataConsulta": "10/06/2024 14:00",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 50001,
+        "tipoProcedimento": "Limpeza dental (profilaxia)",
+        "descricao": null,
+        "custo": "R$ 120,00"
+      }
+    },
+    {
+      "idConsulta": 1002,
+      "dataConsulta": "15/07/2024 09:30",
+      "status": "Agendada",
+      "procedimento": {
+        "idProcedimento": 50002,
+        "tipoProcedimento": "Restauração em resina composta",
+        "descricao": null,
+        "custo": "R$ 330,00"
+      }
+    },
+    {
+      "idConsulta": 1003,
+      "dataConsulta": "02/09/2024 11:45",
+      "status": "Cancelada",
+      "procedimento": {
+        "idProcedimento": 50003,
+        "tipoProcedimento": "Aplicação de flúor",
+        "descricao": null,
+        "custo": "R$ 100,00"
+      }
+    }
+  ]
+}
+
 ---
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
 
-- **Macauly V.** *(Líder do Projeto, IA & Backend)*  
-- **[Nome do Integrante]** *(Mobile Developer)*  
-- **[Nome do Integrante]** *(Banco de Dados & Infraestrutura)*  
-- **[Nome do Integrante]** *(Frontend & UX/UI)*
+- **[Macauly Vivaldo da silva]** *(Frontend & UX/UI, IA & Backend)*  
+- **[Daniel Bezerra da Silva Melo]** *(Mobile Developer)*  
+- **[Gustavo Rocha Caxias]** *(Banco de Dados & Infraestrutura)*  
