@@ -178,9 +178,6 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 - **API Principal (C#)**  
   [https://smartdent-ai.onrender.com/docs](#)  
 
-### 🎬 Vídeo Demonstrativo
-[https://smartdent-ai.onrender.com/docs](#)  
-
 ---
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
@@ -191,7 +188,7 @@ Neste estágio, consolidamos a arquitetura e fizemos ajustes importantes:
 
 ---
 
-## 6. Main - README.md
+## Main - README.md
 
 ```markdown
 # SmartDent Solutions - Main
