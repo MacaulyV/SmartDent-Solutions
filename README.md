@@ -204,7 +204,7 @@ Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e sc
 
 ---
 
-### ✅ **Conclusão**
+## ✅ **Conclusão**
 
 A Sprint 3 foi marcada por uma significativa evolução no desenvolvimento do projeto, onde desafios de integração, padronização de dados e a definição de uma abordagem híbrida foram superados. Essa nova estratégia não só permitiu capturar padrões mais sutis nos dados por meio do modelo treinado, como também garantiu a geração de justificativas detalhadas e naturalizadas, proporcionando uma análise robusta e de fácil entendimento para os usuários finais.
 
