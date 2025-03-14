@@ -10,8 +10,8 @@
     <!-- Dependências Essenciais -->
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2"/>
-        <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.0.0"/> <!-- Pacote do EF Core para Oracle -->
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0"/> <!-- Ferramentas do EF Core -->
+        <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.0.3"/> <!-- Pacote do EF Core para Oracle -->
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3"/> <!-- Ferramentas do EF Core -->
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/> <!-- Swagger -->
     </ItemGroup>
 
