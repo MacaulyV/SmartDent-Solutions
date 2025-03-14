@@ -10,7 +10,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Etapa 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
 # Copia a pasta de build da etapa anterior
