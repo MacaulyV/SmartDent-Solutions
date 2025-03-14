@@ -204,14 +204,6 @@ Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e sc
 
 ---
 
-## ✅ **Conclusão**
-
-A Sprint 3 foi marcada por uma significativa evolução no desenvolvimento do projeto, onde desafios de integração, padronização de dados e a definição de uma abordagem híbrida foram superados. Essa nova estratégia não só permitiu capturar padrões mais sutis nos dados por meio do modelo treinado, como também garantiu a geração de justificativas detalhadas e naturalizadas, proporcionando uma análise robusta e de fácil entendimento para os usuários finais.
-
-Apesar das dificuldades iniciais, as lições aprendidas durante essa fase fortaleceram o projeto, preparando-o para a próxima etapa de integração com das APIs com ás interfaces.
-
----
-
 ## 🧠 **Arquitetura de IA**
 
 Na SmartDent Solutions, optamos por usar FastAPI (Python) como camada de serviço de IA, onde rodamos o modelo de Machine Learning. Esse modelo foi construído em Scikit-learn, e usamos um Random Forest porque ele lida bem com diferentes tipos de dados (como número de consultas, custo total, histórico de procedimentos) e oferece resultados interpretáveis.
