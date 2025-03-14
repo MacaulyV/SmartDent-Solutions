@@ -241,104 +241,60 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
  ```json
 {
-  "idPaciente": 20820516,
-  "nomeCompleto": "Bruno Costa",
-  "cpf": "607.408.751-30",
-  "dataNascimento": "25/04/1997",
-  "email": "bruno.costa@exemplo.com",
-  "telefone": "(11) 10193-0760",
-  "endereco": "Rua Exemplo, 52, Bairro 7, Itapeva",
-  "planoOdontologico": "Premium",
+  "idPaciente": 248247482,
+  "nomeCompleto": "Eduardo Rocha",
+  "cpf": "343.919.106-22",
+  "dataNascimento": "04/11/1981",
+  "email": "eduardo.rocha@exemplo.com",
+  "telefone": "(11) 17255-2789",
+  "endereco": "Rua Exemplo, 378, Bairro 1, Guaratinguetá",
+  "planoOdontologico": "Bem Estar Orto",
   "empresa": "Individual",
-  "numConsultas": 8,
-  "gastoTotal": "R$ 660,00",
+  "numConsultas": 4,
+  "gastoTotal": "R$ 870,00",
   "consultas": [
     {
-      "idConsulta": 310695008,
-      "dataConsulta": "26/05/2024 09:57",
-      "status": "Não Realizada",
-      "procedimento": {
-        "idProcedimento": 726567325,
-        "tipoProcedimento": "Retirada do aparelho ortodôntico",
-        "descricao": null,
-        "custo": "R$ 350,00"
-      }
-    },
-    {
-      "idConsulta": 258701131,
-      "dataConsulta": "02/07/2024 15:09",
+      "idConsulta": 974258209,
+      "dataConsulta": "01/05/2024 10:30",
       "status": "Realizada",
       "procedimento": {
-        "idProcedimento": 316492721,
-        "tipoProcedimento": "Avaliação clínica e diagnóstico",
+        "idProcedimento": 857706282,
+        "tipoProcedimento": "Instrução de higiene bucal",
         "descricao": null,
-        "custo": "R$ 120,00"
+        "custo": "R$ 70,00"
       }
     },
     {
-      "idConsulta": 581255255,
-      "dataConsulta": "24/08/2024 18:51",
+      "idConsulta": 581313226,
+      "dataConsulta": "27/05/2024 16:59",
       "status": "Realizada",
       "procedimento": {
-        "idProcedimento": 241020345,
-        "tipoProcedimento": "Limpeza dental (profilaxia)",
-        "descricao": null,
-        "custo": "R$ 120,00"
-      }
-    },
-    {
-      "idConsulta": 272152776,
-      "dataConsulta": "28/09/2024 09:08",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 305039687,
-        "tipoProcedimento": "Limpeza dental (profilaxia)",
-        "descricao": null,
-        "custo": "R$ 120,00"
-      }
-    },
-    {
-      "idConsulta": 287692216,
-      "dataConsulta": "20/10/2024 08:31",
-      "status": "Não Realizada",
-      "procedimento": {
-        "idProcedimento": 174651742,
-        "tipoProcedimento": "Aplicação de flúor e selante",
-        "descricao": null,
-        "custo": "R$ 150,00"
-      }
-    },
-    {
-      "idConsulta": 181868504,
-      "dataConsulta": "04/01/2025 12:47",
-      "status": "Cancelada",
-      "procedimento": {
-        "idProcedimento": 467280265,
-        "tipoProcedimento": "Frenectomia lingual e labial",
-        "descricao": null,
-        "custo": "R$ 500,00"
-      }
-    },
-    {
-      "idConsulta": 79560090,
-      "dataConsulta": "27/01/2025 10:24",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 979588618,
-        "tipoProcedimento": "Restauração em resina composta",
-        "descricao": null,
-        "custo": "R$ 300,00"
-      }
-    },
-    {
-      "idConsulta": 154936160,
-      "dataConsulta": "27/04/2025 18:09",
-      "status": "Não Realizada",
-      "procedimento": {
-        "idProcedimento": 765476085,
-        "tipoProcedimento": "Clareamento estético em consultório",
+        "idProcedimento": 934230516,
+        "tipoProcedimento": "Cirurgia periodontal",
         "descricao": null,
         "custo": "R$ 600,00"
+      }
+    },
+    {
+      "idConsulta": 44468131,
+      "dataConsulta": "18/07/2024 11:52",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 523901337,
+        "tipoProcedimento": "Tratamento restaurador em dentes de leite",
+        "descricao": null,
+        "custo": "R$ 200,00"
+      }
+    },
+    {
+      "idConsulta": 982321214,
+      "dataConsulta": "19/07/2024 12:00",
+      "status": "Agendada",
+      "procedimento": {
+        "idProcedimento": 441760667,
+        "tipoProcedimento": "Instrução de higiene bucal",
+        "descricao": null,
+        "custo": "R$ 70,00"
       }
     }
   ]
@@ -351,16 +307,16 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
  ```json
 {
-  "idPaciente": 20820516,
-  "nomePaciente": "Bruno Costa",
+  "idPaciente": 248247482,
+  "nomePaciente": "Eduardo Rocha",
   "tipoAlerta": "Uso Moderado",
-  "grauRisco": "31%",
-  "justificativa": "Após avaliação dos dados entre 02/07/2024 e 27/01/2025, constatei que o paciente realizou 4 consultas, com um gasto total de R$ 660.00 e uma média de 69.3 dias entre atendimentos. Foram observadas algumas repetições (Prevenção e Profilaxia (2 vezes)), mas elas permanecem dentro dos limites aceitáveis, configurando um uso moderado dos serviços.",
-  "totalConsultas": 4,
-  "gastoTotal": "R$ 660,00",
-  "dataAnalise": "14/03/2025 03:49",
+  "grauRisco": "44%",
+  "justificativa": "Ao analisar os atendimentos entre 01/05/2024 e 18/07/2024, verifiquei que o paciente teve 3 consultas com um gasto acumulado de R$ 870.00 e intervalos de 38.5 dias. Embora haja repetições, como (nenhuma repetição de procedimentos), elas não ultrapassam os limites normais, indicando um uso moderado.",
+  "totalConsultas": 3,
+  "gastoTotal": "R$ 870,00",
+  "dataAnalise": "14/03/2025 03:53",
   "modelo_utilizado": true,
-  "confiança": 0.69
+  "confiança": 0.5
 }
 
  ```
