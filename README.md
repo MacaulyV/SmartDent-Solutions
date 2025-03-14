@@ -214,7 +214,7 @@ A razão para escolher essa arquitetura é que a API de IA fica independente do 
 
 ## ⚙️ **Implementação na Prática**
 
-No repositório, há uma pasta específica (chamada `api/`) que contém os scripts de treinamento e o código da API em FastAPI. A gente treina o modelo localmente (ou num ambiente de dados), salva o arquivo `.joblib`, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, **UsoExcessivo**) mais uma justificativa.
+No repositório, há uma pasta específica (chamada api/) que contém os scripts de treinamento e o código da API em FastAPI. A gente treinou o modelo localmente, salvou o arquivo .joblib, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, UsoExcessivo) mais uma justificativa.
 
 ---
 
