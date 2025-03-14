@@ -278,61 +278,128 @@ Essas medidas facilitam identificar rapidamente qualquer problema na inferência
 
 ---
 
-### 📋 Exemplo de Teste em JSON dos Dados
+### 📋 Exemplo de Teste em JSON para IA
 
-Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando um formato esperado para análise:
+Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API da IA**, demonstrando um formato esperado para análise:
 
  ```json
 {
-  "idPaciente": 912345,
-  "nomeCompleto": "Fulano de Tal",
-  "cpf": "123.456.789-10",
-  "dataNascimento": "01/03/1985",
-  "email": "fulano@example.com",
-  "telefone": "(11) 91234-5678",
-  "endereco": "Rua Exemplo, 123, Bairro, Cidade, Estado",
-  "planoOdontologico": "Bem Estar Pró",
-  "empresa": "Independente",
-  "numConsultas": 3,
-  "gastoTotal": "R$ 450,00",
+  "idPaciente": 248247482,
+  "nomeCompleto": "Eduardo Rocha",
+  "cpf": "343.919.106-22",
+  "dataNascimento": "04/11/1981",
+  "email": "eduardo.rocha@exemplo.com",
+  "telefone": "(11) 17255-2789",
+  "endereco": "Rua Exemplo, 378, Bairro 1, Guaratinguetá",
+  "planoOdontologico": "Bem Estar Orto",
+  "empresa": "Individual",
+  "numConsultas": 4,
+  "gastoTotal": "R$ 870,00",
   "consultas": [
     {
-      "idConsulta": 1001,
-      "dataConsulta": "10/06/2024 14:00",
+      "idConsulta": 974258209,
+      "dataConsulta": "01/05/2024 10:30",
       "status": "Realizada",
       "procedimento": {
-        "idProcedimento": 50001,
-        "tipoProcedimento": "Limpeza dental (profilaxia)",
+        "idProcedimento": 857706282,
+        "tipoProcedimento": "Instrução de higiene bucal",
         "descricao": null,
-        "custo": "R$ 120,00"
+        "custo": "R$ 70,00"
       }
     },
     {
-      "idConsulta": 1002,
-      "dataConsulta": "15/07/2024 09:30",
+      "idConsulta": 581313226,
+      "dataConsulta": "27/05/2024 16:59",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 934230516,
+        "tipoProcedimento": "Cirurgia periodontal",
+        "descricao": null,
+        "custo": "R$ 600,00"
+      }
+    },
+    {
+      "idConsulta": 44468131,
+      "dataConsulta": "18/07/2024 11:52",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 523901337,
+        "tipoProcedimento": "Tratamento restaurador em dentes de leite",
+        "descricao": null,
+        "custo": "R$ 200,00"
+      }
+    },
+    {
+      "idConsulta": 982321214,
+      "dataConsulta": "19/07/2024 12:00",
       "status": "Agendada",
       "procedimento": {
-        "idProcedimento": 50002,
-        "tipoProcedimento": "Restauração em resina composta",
+        "idProcedimento": 441760667,
+        "tipoProcedimento": "Instrução de higiene bucal",
         "descricao": null,
-        "custo": "R$ 330,00"
-      }
-    },
-    {
-      "idConsulta": 1003,
-      "dataConsulta": "02/09/2024 11:45",
-      "status": "Cancelada",
-      "procedimento": {
-        "idProcedimento": 50003,
-        "tipoProcedimento": "Aplicação de flúor",
-        "descricao": null,
-        "custo": "R$ 100,00"
+        "custo": "R$ 70,00"
       }
     }
   ]
 }
 
  ```
+---
+
+### 💡 Modelos de Respostas Geradas pela IA
+
+ ```json
+{
+  "idPaciente": 248247482,
+  "nomePaciente": "Eduardo Rocha",
+  "tipoAlerta": "Uso Moderado",
+  "grauRisco": "44%",
+  "justificativa": "Ao analisar os atendimentos entre 01/05/2024 e 18/07/2024, verifiquei que o paciente teve 3 consultas com um gasto acumulado de R$ 870.00 e intervalos de 38.5 dias. Embora haja repetições, como (nenhuma repetição de procedimentos), elas não ultrapassam os limites normais, indicando um uso moderado.",
+  "totalConsultas": 3,
+  "gastoTotal": "R$ 870,00",
+  "dataAnalise": "14/03/2025 03:53",
+  "modelo_utilizado": true,
+  "confiança": 0.5
+}
+
+ ```
+---
+## 🏆 Sprint 4: Direcionamento Estratégico e Próximos Passos
+
+A quarta sprint do **SmartDent Solutions** tem como foco o refinamento e a integração de todas as camadas do projeto, garantindo um sistema mais robusto, seguro e alinhado com as necessidades da **OdontoPrev**. Abaixo, destacamos os principais objetivos e ações planejadas para esta fase.
+
+---
+
+### 🔎 Refinamento e Integração dos Modelos de IA
+
+- Aprimorar os modelos preditivos para garantir maior precisão na identificação de padrões de uso excessivo, acompanhamento de pacientes e confiabilidade dos resultados.
+- Integrar definitivamente os modelos com a plataforma principal, tornando a IA interativa e funcional na interface. Isso inclui a conexão com os demais endpoints da **API Central em C#**.
+
+### 🔗 Aprimoramento da Arquitetura e Integração dos Módulos
+
+- Revisar a arquitetura em camadas para garantir uma comunicação eficiente entre backend, IA e as interfaces web e mobile.
+- Implementar testes de integração que assegurem um fluxo de dados consistente e confiável entre todos os componentes do sistema.
+
+### 🔒 Segurança e Atualização da Documentação
+
+- Implementar medidas de segurança avançadas, incluindo **JWT para autenticação**, reforçando a proteção dos dados dos usuários.
+- Atualizar a documentação do projeto, incluindo **diagramas de integração e fluxos de dados**, para facilitar a compreensão e manutenção futura da solução.
+
+### ⚡ Otimização de Performance e Coleta de Feedback
+
+- Analisar o desempenho da plataforma para identificar possíveis gargalos e propor melhorias que suportem um volume maior de acessos simultâneos.
+- Realizar testes com usuários para coletar feedback sobre a experiência de uso, promovendo ajustes na interface e usabilidade conforme necessário.
+
+### 🚀 Preparação para o Deploy Final e Continuidade do Projeto
+
+- Consolidar todas as integrações e configurar um **ambiente de staging** para testes finais antes da implantação em produção.
+- Estabelecer um plano de **monitoramento pós-deploy**, incluindo métricas de desempenho e relatórios periódicos para aprimoramento contínuo da solução.
+
+---
+
+### 🎯 Conclusão
+
+Os objetivos desta sprint estão planejados de forma estratégica para garantir que a **SmartDent Solutions** funcione de forma mais eficiente, segura e escalável. A integração dos modelos de IA será realizada de forma fluida, consolidando uma solução que otimiza custos, melhora a qualidade dos serviços e proporciona uma experiência superior para os beneficiários e operadores da **OdontoPrev**.
 
 ---
 
@@ -346,8 +413,9 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 - **API Principal (C#)**  
   [https://smartdent-ai.onrender.com/docs](#)  
 
-### 🎬 Vídeo Demonstrativo
-[https://smartdent-ai.onrender.com/docs](#)  
+Ambas as APIs estão hospedadas no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
+
+⚠ **Importante:** Ao realizar o primeiro teste, aguarde entre **1 a 2 minutos** para que a API seja iniciada. Após esse tempo inicial, as requisições subsequentes serão processadas de forma instantânea e sem atrasos.
 
 ---
 
