@@ -218,7 +218,7 @@ No repositório na **branch: Models-IA**, há uma pasta específica (chamada `ap
 
 ---
 
-### 🗂 **Base de Dados Usada**
+### 🗂 **Base de Dados Usada Para Treinamento**
 
 Para o treinamento e teste do modelo, nós ultilizamos dados sintéticos que refletem cenários de uso odontológico (quantidade de consultas, custo, status de cada consulta, tipo de procedimento, etc.). A ideia é simular comportamentos de pacientes abusando ou não do convênio, pra conseguirmos treinar a IA a distinguir entre uso normal e uso excessivo. Esses dados foram gerados num script Python que cria registros aleatórios com diferentes padrões de frequência e custo. Assim, a IA aprende com uma variedade de cenários que representam bem o que acontece no dia a dia de um plano odontológico.
 
