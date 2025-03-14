@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>SmartDentAPI</RootNamespace> <!-- Nome correto do namespace do projeto -->
+    </PropertyGroup>
+
+    <!-- Dependências Essenciais -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2"/>
+        <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.0.0"/> <!-- Pacote do EF Core para Oracle -->
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0"/> <!-- Ferramentas do EF Core -->
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/> <!-- Swagger -->
+    </ItemGroup>
+
+    <!-- Definição das pastas para manter a organização do projeto -->
+    <ItemGroup>
+        <Folder Include="Config\" />
+        <Folder Include="Middleware\" />
+        <Folder Include="Migrations\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="Migrations\20250226135858_InitialCreate.cs" />
+      <Compile Remove="Migrations\20250226135858_InitialCreate.Designer.cs" />
+      <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    </ItemGroup>
+
+</Project>

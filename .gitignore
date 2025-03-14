@@ -1,0 +1,34 @@
+﻿# Pastas de build e publicação
+bin/
+obj/
+out/
+publish/
+
+# Arquivos e pastas gerados pelo Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos de log e cache
+*.log
+*.cache
+
+# Pacotes NuGet
+*.nupkg
+# Pasta do pacote NuGet
+.nuget/
+
+# Arquivos de configuração sensíveis
+appsettings.json
+appsettings.*.json
+!appsettings.example.json
+
+# Ambiente virtual do .NET (se houver)
+.venv/
+env/
+
+# Outros arquivos temporários
+_ReSharper*/
+*.DotSettings.user
