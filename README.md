@@ -20,7 +20,7 @@ O **SmartDent Solutions** é uma plataforma baseada em Inteligência Artificial 
 
 A arquitetura do SmartDent Solutions foi projetada para garantir integração eficiente entre seus diversos módulos, proporcionando escalabilidade e um fluxo de dados otimizado. O sistema é composto por:
 
-- **Frontend & Mobile (Java Spring MVC, React Native)**
+- **Frontend & Mobile (Java Spring MVC & React Native)**
 - **Backend (.NET - C#)**
 - **API de IA (FastAPI + Scikit-learn)**
 - **Banco de Dados (Oracle)**
