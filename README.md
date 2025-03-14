@@ -469,7 +469,7 @@ A quarta sprint do **SmartDent Solutions** tem como foco o refinamento e a integ
 
 ---
 
-### 🎯 Conclusão
+## 🎯 Conclusão Final
 
 Os objetivos desta sprint estão planejados de forma estratégica para garantir que a **SmartDent Solutions** funcione de forma mais eficiente, segura e escalável. A integração dos modelos de IA será realizada de forma fluida, consolidando uma solução que otimiza custos, melhora a qualidade dos serviços e proporciona uma experiência superior para os beneficiários e operadores da **OdontoPrev**.
 
