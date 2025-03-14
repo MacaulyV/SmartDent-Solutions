@@ -8,6 +8,10 @@ using SmartDentAPI.Repositories;
 /// </summary>
 var builder = WebApplication.CreateBuilder(args);
 
+// Captura a connection string para fins de debug (remova este log em produção!)
+var oracleConn = builder.Configuration.GetConnectionString("OracleConnection");
+Console.WriteLine($"[DEBUG] Connection string: {oracleConn}");
+
 // Configurar o Entity Framework para Oracle
 // Aqui configuramos o EF para utilizar o banco de dados Oracle usando a connection string definida no appsettings.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
