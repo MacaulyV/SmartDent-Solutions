@@ -42,9 +42,16 @@ using (var scope = app.Services.CreateScope())
     await DataSeeder.SeedDatabase(services);
 }
 
-// Habilita o Swagger sempre, tanto no ambiente de desenvolvimento quanto em produção
+// Habilita o Swagger sempre, mas personaliza a UI no ambiente de produção
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
+{
+    if (!app.Environment.IsDevelopment())
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartDent API V1");
+        options.RoutePrefix = string.Empty; // Deixa o Swagger como página inicial (opcional)
+    }
+});
 
 // Configuração do middleware de autorização (se houver regras de autorização definidas)
 app.UseAuthorization();
