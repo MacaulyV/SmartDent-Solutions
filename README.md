@@ -364,6 +364,86 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
  ```
 ---
+
+## 📊 Detalhes Importantes sobre o Modelo
+
+### ⏳ Janela de Análise (Período de 365 dias)
+O modelo analisa apenas as consultas realizadas dentro de um período de **365 dias** a partir da última consulta agendada ou realizada do paciente. Essa abordagem torna as análises mais eficientes, permitindo que a IA trabalhe com **dados mais recentes e relevantes**, sem se sobrecarregar com informações antigas que podem não ser mais úteis para o contexto atual do paciente.
+
+---
+
+### 💰 Cálculo do Gasto Total
+O modelo considera no cálculo do gasto total **apenas as consultas e procedimentos efetivamente realizados**. Consultas canceladas ou ainda agendadas **não entram nessa soma** e, portanto, não influenciam a justificativa final da IA. Isso evita **distorções nos dados financeiros** do paciente.
+
+---
+
+### 🚦 Status de Retorno do Modelo
+Além de calcular o grau de risco, a justificativa e o nível de alerta, o modelo também fornece um valor essencial:
+
+#### 📌 Valor de Confiança
+Esse valor indica **o quão "certa" a IA está em relação à predição feita**. Em outras palavras, além de classificar um paciente (por exemplo, como **"Uso Moderado"** ou **"Uso Excessivo"**), o modelo também atribui **uma probabilidade à sua decisão**, baseada nos padrões aprendidos durante o treinamento.
+
+🔹 **Exemplo:** Se o modelo atribui **90% de confiança** a uma predição, isso significa que, com base nos dados históricos, ele acredita fortemente que essa classificação está correta.
+
+Essa medida é essencial porque **ajuda os usuários a entenderem o nível de segurança da decisão**. Quando a confiança é baixa, isso pode indicar a necessidade de uma revisão ou de mais informações para validar a análise.
+
+---
+
+## ⚙️ Aspectos Técnicos
+Quando o modelo é treinado (**por exemplo, utilizando RandomForest**), ele aprende a identificar padrões nos dados e utiliza o método **predict_proba()** para calcular a probabilidade de cada classe ser a correta.
+
+🔹 **Como funciona?**
+- O modelo gera **probabilidades** para cada possível classificação.
+- No caso do **RandomForest**, essas probabilidades são calculadas a partir dos votos de diversas árvores de decisão.
+- A **maior probabilidade** é usada como a predição final.
+
+🔹 **Exemplo:** Se a maior probabilidade calculada for **90%**, esse será o nível de **confiança da predição**.
+
+Esse processo garante que o modelo **não apenas classifique um paciente**, mas também comunique **o quão seguro** ele está na sua decisão, tornando a análise **mais transparente**.
+
+---
+
+## 🔥 Desafios e Melhorias
+Atualmente, o modelo está funcionando bem, mas alguns pontos críticos precisam ser observados:
+
+### ⚠️ Confiança em Casos de Alto Risco
+- Quanto maior o nível de alerta, menor tende a ser a **confiança da predição**.
+- Isso acontece porque **casos extremos** (como **"Uso Excessivo"**) são **menos frequentes** no conjunto de treinamento.
+- Como há **menos exemplos desse tipo**, o modelo tem mais dificuldade em identificar padrões consistentes, resultando em **uma confiança inferior a 50%** em muitos casos.
+
+### 🎯 Melhoria na Precisão para Casos Extremos
+**Problema:** O modelo tem menos dados representativos para **casos raros**, reduzindo sua capacidade de fazer previsões confiáveis nesses cenários.
+
+**Solução:**
+✅ Ajustar os **hiperparâmetros** do modelo.  
+✅ Melhorar o **balanceamento dos dados** para garantir que casos extremos tenham uma **representação justa** no treinamento.  
+✅ Aplicar **técnicas de calibragem de probabilidade**, que ajudam a tornar as previsões mais confiáveis.  
+
+🚀 **Essas melhorias serão priorizadas na próxima sprint.**
+
+---
+
+## 📈 Precisão Atual do Modelo
+Nos testes realizados, o modelo foi treinado com **1.000 dados de pacientes**, cada um contendo entre **10 e 20 consultas/procedimentos**. O resultado foi uma **acurácia de 99,1%**, um valor alto.
+
+🔹 **No entanto, vale destacar que:**
+✅ A quantidade de **dados influencia diretamente a acurácia**.  
+✅ Quanto **maior o volume e a qualidade** dos dados reais utilizados, **mais confiável será o modelo**.  
+⚠️ No momento, os dados usados **não foram otimizados ao máximo** para refletirem casos **100% reais**. Isso significa que a **acurácia ainda não pode ser considerada definitiva**.
+
+---
+
+## 🏁 Conclusão
+O modelo está apresentando **bons resultados**, mas ainda há espaço para melhorias, especialmente em:
+
+📌 **Aumentar a confiança** das predições em casos extremos.  
+📌 **Refinar o balanceamento** dos dados para tornar as análises mais precisas.  
+📌 **Implementar ajustes finos** nos hiperparâmetros e calibragem das probabilidades.  
+
+🚀 **Essas melhorias serão o foco da próxima sprint para garantir que o modelo continue evoluindo e se tornando mais robusto!**
+
+---
+
 ## 🏆 Sprint 4: Direcionamento Estratégico e Próximos Passos
 
 A quarta sprint do **SmartDent Solutions** tem como foco o refinamento e a integração de todas as camadas do projeto, garantindo um sistema mais robusto, seguro e alinhado com as necessidades da **OdontoPrev**. Abaixo, destacamos os principais objetivos e ações planejadas para esta fase.
