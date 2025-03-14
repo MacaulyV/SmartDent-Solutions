@@ -42,12 +42,9 @@ using (var scope = app.Services.CreateScope())
     await DataSeeder.SeedDatabase(services);
 }
 
-// Habilita o Swagger somente no ambiente de desenvolvimento
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Habilita o Swagger sempre, tanto no ambiente de desenvolvimento quanto em produção
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Configuração do middleware de autorização (se houver regras de autorização definidas)
 app.UseAuthorization();
