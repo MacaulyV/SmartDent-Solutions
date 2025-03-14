@@ -235,9 +235,119 @@ Porque no momento não temos acesso a dados reais. Mesmo assim, essa base sinté
 
 ---
 
-### 📋 Exemplo de Teste em JSON dos Dados
+### 📋 Exemplo de Teste em JSON para IA
 
-Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API de IA**, demonstrando um formato esperado para análise:
+Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API da IA**, demonstrando um formato esperado para análise:
+
+ ```json
+{
+  "idPaciente": 20820516,
+  "nomeCompleto": "Bruno Costa",
+  "cpf": "607.408.751-30",
+  "dataNascimento": "25/04/1997",
+  "email": "bruno.costa@exemplo.com",
+  "telefone": "(11) 10193-0760",
+  "endereco": "Rua Exemplo, 52, Bairro 7, Itapeva",
+  "planoOdontologico": "Premium",
+  "empresa": "Individual",
+  "numConsultas": 8,
+  "gastoTotal": "R$ 660,00",
+  "consultas": [
+    {
+      "idConsulta": 310695008,
+      "dataConsulta": "26/05/2024 09:57",
+      "status": "Não Realizada",
+      "procedimento": {
+        "idProcedimento": 726567325,
+        "tipoProcedimento": "Retirada do aparelho ortodôntico",
+        "descricao": null,
+        "custo": "R$ 350,00"
+      }
+    },
+    {
+      "idConsulta": 258701131,
+      "dataConsulta": "02/07/2024 15:09",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 316492721,
+        "tipoProcedimento": "Avaliação clínica e diagnóstico",
+        "descricao": null,
+        "custo": "R$ 120,00"
+      }
+    },
+    {
+      "idConsulta": 581255255,
+      "dataConsulta": "24/08/2024 18:51",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 241020345,
+        "tipoProcedimento": "Limpeza dental (profilaxia)",
+        "descricao": null,
+        "custo": "R$ 120,00"
+      }
+    },
+    {
+      "idConsulta": 272152776,
+      "dataConsulta": "28/09/2024 09:08",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 305039687,
+        "tipoProcedimento": "Limpeza dental (profilaxia)",
+        "descricao": null,
+        "custo": "R$ 120,00"
+      }
+    },
+    {
+      "idConsulta": 287692216,
+      "dataConsulta": "20/10/2024 08:31",
+      "status": "Não Realizada",
+      "procedimento": {
+        "idProcedimento": 174651742,
+        "tipoProcedimento": "Aplicação de flúor e selante",
+        "descricao": null,
+        "custo": "R$ 150,00"
+      }
+    },
+    {
+      "idConsulta": 181868504,
+      "dataConsulta": "04/01/2025 12:47",
+      "status": "Cancelada",
+      "procedimento": {
+        "idProcedimento": 467280265,
+        "tipoProcedimento": "Frenectomia lingual e labial",
+        "descricao": null,
+        "custo": "R$ 500,00"
+      }
+    },
+    {
+      "idConsulta": 79560090,
+      "dataConsulta": "27/01/2025 10:24",
+      "status": "Realizada",
+      "procedimento": {
+        "idProcedimento": 979588618,
+        "tipoProcedimento": "Restauração em resina composta",
+        "descricao": null,
+        "custo": "R$ 300,00"
+      }
+    },
+    {
+      "idConsulta": 154936160,
+      "dataConsulta": "27/04/2025 18:09",
+      "status": "Não Realizada",
+      "procedimento": {
+        "idProcedimento": 765476085,
+        "tipoProcedimento": "Clareamento estético em consultório",
+        "descricao": null,
+        "custo": "R$ 600,00"
+      }
+    }
+  ]
+}
+
+ ```
+---
+
+### 💡 Modelos de Respostas Geradas pela IA
 
  ```json
 {
@@ -290,6 +400,7 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 }
 
  ```
+---
 
 ## 🏆 Sprint 4: Direcionamento Estratégico e Próximos Passos
 
@@ -326,7 +437,7 @@ A quarta sprint do **SmartDent Solutions** tem como foco o refinamento e a integ
 
 ### 🎯 Conclusão
 
-Os objetivos desta sprint foram planejados de forma estratégica para garantir um **SmartDent Solutions** ainda mais eficiente, seguro e escalável. A integração dos modelos de IA será realizada de forma fluida, consolidando uma solução tecnológica que otimiza custos, melhora a qualidade dos serviços e proporciona uma experiência superior para os beneficiários da **OdontoPrev**.
+Os objetivos desta sprint estão planejados de forma estratégica para garantir que a **SmartDent Solutions** funcione de forma mais eficiente, segura e escalável. A integração dos modelos de IA será realizada de forma fluida, consolidando uma solução que otimiza custos, melhora a qualidade dos serviços e proporciona uma experiência superior para os beneficiários e operadores da **OdontoPrev**.
 
 ---
 
