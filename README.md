@@ -351,52 +351,16 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
  ```json
 {
-  "idPaciente": 912345,
-  "nomeCompleto": "Fulano de Tal",
-  "cpf": "123.456.789-10",
-  "dataNascimento": "01/03/1985",
-  "email": "fulano@example.com",
-  "telefone": "(11) 91234-5678",
-  "endereco": "Rua Exemplo, 123, Bairro, Cidade, Estado",
-  "planoOdontologico": "Bem Estar Pró",
-  "empresa": "Independente",
-  "numConsultas": 3,
-  "gastoTotal": "R$ 450,00",
-  "consultas": [
-    {
-      "idConsulta": 1001,
-      "dataConsulta": "10/06/2024 14:00",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 50001,
-        "tipoProcedimento": "Limpeza dental (profilaxia)",
-        "descricao": null,
-        "custo": "R$ 120,00"
-      }
-    },
-    {
-      "idConsulta": 1002,
-      "dataConsulta": "15/07/2024 09:30",
-      "status": "Agendada",
-      "procedimento": {
-        "idProcedimento": 50002,
-        "tipoProcedimento": "Restauração em resina composta",
-        "descricao": null,
-        "custo": "R$ 330,00"
-      }
-    },
-    {
-      "idConsulta": 1003,
-      "dataConsulta": "02/09/2024 11:45",
-      "status": "Cancelada",
-      "procedimento": {
-        "idProcedimento": 50003,
-        "tipoProcedimento": "Aplicação de flúor",
-        "descricao": null,
-        "custo": "R$ 100,00"
-      }
-    }
-  ]
+  "idPaciente": 20820516,
+  "nomePaciente": "Bruno Costa",
+  "tipoAlerta": "Uso Moderado",
+  "grauRisco": "31%",
+  "justificativa": "Após avaliação dos dados entre 02/07/2024 e 27/01/2025, constatei que o paciente realizou 4 consultas, com um gasto total de R$ 660.00 e uma média de 69.3 dias entre atendimentos. Foram observadas algumas repetições (Prevenção e Profilaxia (2 vezes)), mas elas permanecem dentro dos limites aceitáveis, configurando um uso moderado dos serviços.",
+  "totalConsultas": 4,
+  "gastoTotal": "R$ 660,00",
+  "dataAnalise": "14/03/2025 03:49",
+  "modelo_utilizado": true,
+  "confiança": 0.69
 }
 
  ```
