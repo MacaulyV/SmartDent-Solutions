@@ -480,14 +480,14 @@ Os objetivos desta sprint estão planejados de forma estratégica para garantir 
 ### 🏷 Deploys Disponíveis
 
 - **API de IA (FastAPI)**  
-  [https://smartdent-ai.onrender.com/docs](#)  
+  (https://smartdent-ai.onrender.com/docs)
 
-- **API Principal (C#)**  
-  [https://smartdent-api.onrender.com/swagger/index.html](#)  
+- **API Principal (C# .NET)**  
+  (https://smartdent-api.onrender.com/swagger)
 
-Ambas as APIs estão hospedadas no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
+As APIs estão hospedadas no Render e, devido às limitações da versão gratuita, podem entrar em modo de suspensão quando inativas. Ao receber a primeira requisição, elas podem levar entre 1 a 2 minutos para serem reativadas antes de processar novas chamadas.
 
-⚠ **Importante:** Ao realizar o primeiro teste, aguarde entre **1 a 2 minutos** para que a API seja iniciada. Após esse tempo inicial, as requisições subsequentes serão processadas de forma instantânea e sem atrasos.
+⚠ **Importante:** Caso vá testar os Endpoints de IA via API .NET, primeiro acesse a URL da FastAPI diretamente (https://smartdent-ai.onrender.com/docs) e aguarde cerca de 1 minuto para garantir que ela esteja ativa. Isso evitará erros de requisição ao chamá-la via API .NET.
 
 ---
 
