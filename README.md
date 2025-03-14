@@ -488,7 +488,7 @@ Os objetivos desta sprint estão planejados de forma estratégica para garantir 
   [https://smartdent-ai.onrender.com/docs](#)
 
 - **API Principal (C#)**  
-  [https://smartdent-ai.onrender.com/docs](#)
+  [https://smartdent-api.onrender.com/swagger/index.html](#)
 
 Ambas as APIs estão hospedadas no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
 
