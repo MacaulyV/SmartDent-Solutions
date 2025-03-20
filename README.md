@@ -1,162 +1,123 @@
-# SmartDentApp 🦷
+![Descrição banner](https://github.com/user-attachments/assets/acf148aa-b44a-4ebd-9085-9ce4f31ecaf0)
 
-## Descrição do Projeto
-SmartDentApp é uma aplicação móvel desenvolvida em React Native para gerenciamento de serviços odontológicos. O aplicativo oferece uma interface moderna e intuitiva para pacientes e profissionais da área odontológica, facilitando o acesso a serviços e informações.
+# 🦷 **SmartDent Solutions**
 
-## 🚀 Tecnologias Utilizadas
+### 🤖 **IA Aplicada à Odontologia**
 
-### Core
-- React Native
-- TypeScript
-- React Navigation
-- Axios para requisições HTTP
+## 📖 **Sobre o Projeto**
 
-### UI/UX
-- React Native Animated para animações suaves
-- React Native Linear Gradient para elementos visuais gradientes
-- Componentes customizados para formulários e alertas
+O **SmartDent Solutions** é uma plataforma baseada em Inteligência Artificial desenvolvida para a **OdontoPrev**, com o objetivo de **identificar e prevenir sinistros odontológicos**. O projeto visa reduzir custos e melhorar a experiência dos beneficiários, utilizando IA para analisar padrões de uso e comportamento dos pacientes.
 
-### Segurança e Armazenamento
-- React Native Encrypted Storage para armazenamento seguro
-- Device Info para identificação única de dispositivos
-- Validações client-side robustas
+### 🎯 **Objetivo da Solução**
+- Detectar **uso excessivo** dos serviços odontológicos.  
+- Monitorar o **acompanhamento dos pacientes** e identificar ausências.  
+- **Reduzir custos operacionais** da operadora de planos odontológicos.  
+- Melhorar a **qualidade do serviço** prestado aos clientes.
 
-### Desenvolvimento
-- ESLint para linting de código
-- Prettier para formatação consistente
-- Jest para testes automatizados
-- TypeScript para tipagem estática
+---
 
-## 📱 Funcionalidades Principais
+## 🏗 **Visão Geral da Arquitetura da Solução**
 
-### Sistema de Autenticação
-- Registro de usuários com validação de dados
-- Login com email/nome + CPF
-- Armazenamento seguro de credenciais
-- Validação de dispositivo
+A arquitetura do SmartDent Solutions foi projetada para garantir integração eficiente entre seus diversos módulos, proporcionando escalabilidade e um fluxo de dados otimizado. O sistema é composto por:
 
-### Validações de Formulário
-- Validação de CPF
-- Validação de nome completo (mínimo 3 palavras)
-- Validação de formato de email
-- Feedback visual imediato
+- **Frontend & Mobile (Java Spring MVC & React Native)**
+- **Backend (.NET - C#)**
+- **API de IA (FastAPI + Scikit-learn)**
+- **Banco de Dados (Oracle)**
+- **Infraestrutura e Deploy (Render, Azure Cloud, Docker, CI/CD)**
 
-### Interface do Usuário
-- Animações suaves de transição
-- Feedback visual para ações do usuário
-- Alertas personalizados com gradientes
-- Formulários responsivos
+Cada componente desempenha um papel essencial na operação do sistema, conforme detalhado abaixo.
 
-## 🏗️ Arquitetura do Projeto
+---
 
-### Estrutura de Diretórios
-```
-SmartDentApp/
-├── android/                 # Configurações nativas Android
-├── ios/                    # Configurações nativas iOS
-├── src/
-│   ├── screens/           # Telas da aplicação
-│   │   ├── Auth/         # Telas de autenticação
-│   │   └── Main/         # Telas principais
-│   ├── components/       # Componentes reutilizáveis
-│   ├── services/         # Serviços e APIs
-│   │   ├── api.ts       # Configuração base da API
-│   │   ├── auth.ts      # Serviço de autenticação
-│   │   └── storage.ts   # Serviço de armazenamento
-│   ├── navigation/       # Configuração de rotas
-│   ├── context/         # Contextos React
-│   ├── utils/           # Utilitários
-│   ├── types/           # Definições de tipos TypeScript
-│   └── assets/          # Recursos estáticos
-├── __tests__/           # Testes automatizados
-└── config/              # Arquivos de configuração
-```
+### 🔹 **1. Frontend & Mobile**
 
-### Serviços Principais
+#### Frontend (Java Spring MVC + React & JavaScript)
 
-#### API Service (api.ts)
-- Configuração base do Axios
-- Interface para dados do paciente
-- Endpoints para criação e consulta de usuários
-- Interceptors para logging de requisições e respostas
+Responsável por oferecer uma interface interativa e intuitiva para operadores e funcionários da OdontoPrev. Suas principais funcionalidades incluem:
 
-#### Authentication Service (auth.ts)
-- Singleton pattern para gerenciamento de estado
-- Registro de novos usuários com validação
-- Login com suporte a email ou nome + CPF
-- Validação local de credenciais
-- Gerenciamento de sessão
+- Exibição estruturada dos dados dos pacientes, incluindo gráficos, tabelas e dashboards interativos.  
+- Monitoramento detalhado do estado dos pacientes, auxiliando na detecção de padrões.  
+- Integração com a IA, permitindo análises preditivas e geração de relatórios inteligentes.  
 
-#### Storage Service (storage.ts)
-- Armazenamento criptografado de dados sensíveis
-- Identificação única de dispositivos
-- Validação de tempo de sessão
-- Limpeza automática de dados expirados
+#### Aplicativo Mobile (React Native)
 
-## 🔒 Segurança
+Projetado para que os beneficiários acompanhem, em tempo real, informações como:
 
-### Armazenamento Local
-- Criptografia de dados sensíveis
-- Validação de dispositivo
-- Expiração automática de dados
-- Limpeza segura de informações
+- Histórico de consultas e procedimentos.  
+- Gastos acumulados no plano odontológico.  
+- Recomendações da IA para otimizar o uso do convênio e evitar alertas de uso excessivo.
 
-### Validações
-- Sanitização de inputs
-- Validação client-side
-- Proteção contra inputs maliciosos
-- Timeout de sessão
+---
 
-## 💻 Como Executar o Projeto
+### 🔹 **2. Backend (.NET - C#)**
 
-### Pré-requisitos
-- Node.js 18 ou superior
-- React Native CLI
-- Android Studio (para Android)
-- Xcode (para iOS)
-- JDK 11
+Atua como ponte central do sistema, sendo responsável por:
 
-### Instalação
-1. Clone o repositório
-2. Instale as dependências:
-```bash
-npm install
-```
+- Expor endpoints REST para comunicação com o Frontend e o Mobile.  
+- Capturar, processar e armazenar informações dos usuários e pacientes.  
+- Realizar chamadas para a API de IA, enviando os dados necessários para análise.  
+- Aplicar as regras de negócio específicas da OdontoPrev e gerenciar o fluxo de dados.
 
-### Execução
-Para Android:
-```bash
-npm run android
-```
+---
 
-Para iOS:
-```bash
-npm run ios
-```
+### 🔹 **3. API de IA (FastAPI + Scikit-learn)**
 
-## 🧪 Testes
-O projeto inclui testes automatizados usando Jest:
-```bash
-npm test
-```
+A API de IA tem um papel fundamental na análise dos dados dos pacientes. Suas funções incluem:
 
-## 📱 Compatibilidade
-- iOS 13.0 ou superior
-- Android 6.0 (API 23) ou superior
+- Pré-processamento e inferência das informações (histórico de consultas, custos, etc.).  
+- Carregamento do modelo de Machine Learning (Random Forest) para avaliação de risco.  
+- Classificação dos pacientes com base no uso do convênio (ex.: Uso Moderado, Uso Excessivo).  
+- Geração de justificativas textuais explicando o motivo da classificação.
 
-## 🔄 CI/CD
-- ESLint para qualidade de código
-- Prettier para formatação consistente
-- TypeScript para prevenção de erros
-- Testes automatizados
+Inicialmente, a API de IA está hospedada no Render, permitindo acesso pelo Backend .NET via HTTP.
 
-## 👥 Autores
-[Nome do Autor]
+---
 
-## 📄 Licença
-[Tipo de Licença]
+### 🔹 **4. Banco de Dados (Oracle)**
 
-## 🤝 Agradecimentos
-- Professores e orientadores
-- Contribuidores do projeto
-- Comunidade React Native
+Responsável pelo armazenamento centralizado de todas as informações do sistema, incluindo:
+
+- Dados dos pacientes e seus históricos de consultas e procedimentos.  
+- Parâmetros de negócio relevantes para a OdontoPrev.  
+- Logs de análises e alertas gerados pela IA, garantindo rastreabilidade e auditoria.
+
+---
+
+### 🔹 **5. Infraestrutura e Deploy**
+
+#### Deploy Inicial
+
+Atualmente, a API de IA está sendo hospedada no Render, permitindo testes e ajustes iniciais.
+
+#### Fase Final de Deploy
+
+O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
+
+- Docker para containerização dos serviços.  
+- Repositórios e pipelines CI/CD para automação de deploys e atualizações.
+
+---
+
+
+
+---
+
+## 🎥 **Demonstração e Apresentação**
+
+### 🏷 Deploys Disponíveis
+
+- **API Principal (C# .NET)**  
+  (https://smartdent-api.onrender.com/swagger)
+
+A API estã hospedadas no Render e, devido às limitações da versão gratuita, podem entrar em modo de suspensão quando inativas. Ao receber a primeira requisição, elas podem levar entre 1 a 2 minutos para serem reativadas antes de processar novas chamadas.
+
+⚠ **Importante:** Caso vá testar os Endpoints de IA via API .NET, primeiro acesse a URL da FastAPI diretamente (https://smartdent-ai.onrender.com/docs) e aguarde cerca de 1 minuto para garantir que ela esteja ativa. Isso evitará erros de requisição ao chamá-la via API .NET.
+
+---
+
+## 🧑‍💻 **Equipe de Desenvolvimento**
+
+- **Macauly Vivaldo da Silva** – *Frontend & UX/UI, IA & Backend*  
+- **Daniel Bezerra da Silva Melo** – *Mobile Developer & Infraestrutura DevOps (Deploy)*  
+- **Gustavo Rocha Caxias** – *Banco de Dados*  
