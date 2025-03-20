@@ -105,6 +105,12 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 
 ---
 
+## 🏗️ Diagrama de Arquitetura
+
+![Diagrama de Pastas](https://github.com/user-attachments/assets/c18fc194-4b46-4673-ace1-73fefb873183)
+
+---
+
 ## 📂 Estrutura de Pastas do Projeto
 
 - 📁 **app/** → Diretório principal contendo toda a lógica do aplicativo.
@@ -146,6 +152,20 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 - 📁 **utils/** → Funções utilitárias usadas por toda a aplicação.
 
 - **App.tsx** → Ponto de entrada do aplicativo, renderiza o `AppNavigator`.
+
+---
+
+## 🛠️ Tecnologias e Bibliotecas Utilizadas
+
+- ⚛️ **React Native**: Framework base para desenvolvimento cross-platform de alta performance.
+- 🚀 **React Navigation**: Gerenciamento intuitivo das rotas e pilhas de navegação entre telas (Stack Navigator).
+- 🎨 **LinearGradient & RadialGradient**: Adicionam gradientes modernos a botões e fundos, realçando a experiência visual.
+- 🔍 **Axios**: Biblioteca para consumo de APIs REST, simplificando requisições e interceptores.
+- 📦 **react-native-encrypted-storage**: Garante segurança ao armazenar dados sensíveis (token, CPF do usuário).
+- ⚡ **Animated & Easing**: Permitem animações detalhadas (fade, scale, slide) e efeitos de clique (press-in/out) com alta fluidez.
+- 🏞️ **FastImage** (AnimatedFastImage): Otimiza carregamento de imagens e manipulação de GIFs, crucial para telas animadas como Welcome e Main.
+- 🔧 **AuthService** e **StorageService**: Arquitetura de serviços para separar lógica de autenticação e armazenamento local, garantindo coesão e manutenibilidade do código.
+- 📝 **TypeScript**: Fornece tipagens seguras (interfaces como `UserData`, `LoginCredentials`), reduzindo erros em tempo de compilação.
 
 ---
 
@@ -278,28 +298,6 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 5. **Fluxo Interno**  
    - Tela monta → inicia animações de background e revelação (`revealAnim`).  
    - Quando o usuário seleciona uma opção, navega para a tela correspondente (ex.: `ProfileScreen`).  
-
----
-
-## 🛠️ Tecnologias e Bibliotecas Utilizadas
-
-- ⚛️ **React Native**: Framework base para desenvolvimento cross-platform de alta performance.
-- 🚀 **React Navigation**: Gerenciamento intuitivo das rotas e pilhas de navegação entre telas (Stack Navigator).
-- 🎨 **LinearGradient & RadialGradient**: Adicionam gradientes modernos a botões e fundos, realçando a experiência visual.
-- 🔍 **Axios**: Biblioteca para consumo de APIs REST, simplificando requisições e interceptores.
-- 📦 **react-native-encrypted-storage**: Garante segurança ao armazenar dados sensíveis (token, CPF do usuário).
-- ⚡ **Animated & Easing**: Permitem animações detalhadas (fade, scale, slide) e efeitos de clique (press-in/out) com alta fluidez.
-- 🏞️ **FastImage** (AnimatedFastImage): Otimiza carregamento de imagens e manipulação de GIFs, crucial para telas animadas como Welcome e Main.
-- 🔧 **AuthService** e **StorageService**: Arquitetura de serviços para separar lógica de autenticação e armazenamento local, garantindo coesão e manutenibilidade do código.
-- 📝 **TypeScript**: Fornece tipagens seguras (interfaces como `UserData`, `LoginCredentials`), reduzindo erros em tempo de compilação.
-
----
-
-## 📌 Diagrama de Arquitetura
-
-> **[ESPAÇO RESERVADO PARA DIAGRAMA]**
-
-![Diagrama de Pastas](https://github.com/user-attachments/assets/c18fc194-4b46-4673-ace1-73fefb873183)
 
 ---
 
