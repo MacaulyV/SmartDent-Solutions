@@ -351,12 +351,10 @@ Para testar um novo cadastro, altere um dígito do CPF (por exemplo, o último n
 
 Para conferir se o cadastro foi registrado corretamente no banco de dados da API, acesse um dos seguintes endpoints da API pelo Swagger:
 
-### 🏷 **Deploys Disponíveis**
+### 🏷 **Deploy da API**
 
 - **API Principal (C# .NET)**  
   (https://smartdent-api.onrender.com/swagger)
-
----
 
 Se o campo "Empresa" não foi preenchido no cadastro:
 
