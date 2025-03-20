@@ -301,7 +301,7 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 
 ---
 
-##  **📌 Detalhes importantes do Cadastro + Login e Solução de Problemas**
+#  **📌 Detalhes importantes do Cadastro + Login e Solução de Problemas**
 
 ### 📝 Visão Geral do Cadastro
 
