@@ -319,7 +319,7 @@ Esse erro ocorre porque nossa API está hospedada na plataforma Render (plano gr
 
 Antes de cadastrar, abra a API no Swagger e aguarde cerca de um minuto para que ela seja reativada.
 
-- **API Principal (C# .NET)**  
+- **API (C# .NET)**  
   (https://smartdent-api.onrender.com/swagger)
 
 Após a API carregar completamente no navegador, o endpoint estará pronto para receber a requisição POST e salvar os dados no banco Oracle.
@@ -356,7 +356,7 @@ Para conferir se o cadastro foi registrado corretamente no banco de dados da API
 
 ### 🏷 **Deploy da API**
 
-- **API Principal (C# .NET)**  
+- **API (C# .NET)**  
   (https://smartdent-api.onrender.com/swagger)
 
 Se o campo "Empresa" não foi preenchido no cadastro:
