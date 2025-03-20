@@ -99,7 +99,228 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 
 ---
 
+## 📝 Descrição Geral do Aplicativo
 
+O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, desenvolvido para facilitar a interação dos usuários com os serviços odontológicos. Ele permite o gerenciamento de consultas, acesso ao histórico odontológico e suporte inteligente, garantindo maior transparência e praticidade na utilização do seu convênio odontológico.
+
+---
+
+## 📂 Estrutura de Pastas do Projeto
+
+- 📁 **app/** → Diretório principal contendo toda a lógica do aplicativo.
+
+  - 📁 **assets/** → Armazena arquivos estáticos como imagens e animações.
+    - 📂 animations/
+    - 📂 images/
+  - 📁 **components/** → Componentes reutilizáveis que são usados em várias telas.
+  - 📁 **config/** → Arquivos de configuração geral (endpoints, parâmetros).
+  - 📁 **context/** → Gestão de estados globais da aplicação (autenticação, dados do usuário).
+    - 🔐 AuthContext.tsx
+    - 👤 UserContext.tsx
+  - 📁 **navigation/** → Controle e configuração das rotas da aplicação.
+    - 🗺️ AppNavigator.tsx
+  - 📁 **screens/** → Telas principais agrupadas logicamente.
+    - 🔑 **Auth/** (LoginScreen.tsx, RegisterScreen.tsx)
+    - 🌟 **Main/** (MainScreen.tsx, ProfileScreen.tsx)
+    - 🎉 **Onboarding/** (ChoiceScreen.tsx, WelcomeScreen.tsx)
+
+- 📁 **services/** → Camada para comunicação com APIs e autenticação.
+
+  - 🌐 api.ts  
+    - Configurações do Axios para chamadas à API do SmartDent.
+    - Interceptores de requisição e resposta para log e tratamento de erros.
+    - Funções específicas para criar e obter pacientes (`createUser`, `getUser`).
+  - 🔒 auth.ts  
+    - `AuthService` centraliza a lógica de registro e login.  
+    - Chama `StorageService` para guardar dados do usuário após a criação ou login.
+    - Valida dados no login local (nome, CPF).
+  - 💾 storage.ts  
+    - `StorageService` utiliza `react-native-encrypted-storage` para manter dados sensíveis seguros no dispositivo.  
+    - Salva e recupera objetos do tipo `UserData`, garantindo persistência local.
+
+- 📁 **types/** → Arquivos contendo tipagens TypeScript.
+
+  - 📘 auth.ts  
+    - Tipos e interfaces como `UserData`, `LoginCredentials`, `AuthResponse`.
+
+- 📁 **utils/** → Funções utilitárias usadas por toda a aplicação.
+
+- **App.tsx** → Ponto de entrada do aplicativo, renderiza o `AppNavigator`.
+
+---
+
+## 📱 Explicação das Telas do Aplicativo
+
+### 🎉 **WelcomeScreen (Onboarding/WelcomeScreen.tsx)**
+
+**Objetivo da Tela**  
+- Apresentar uma tela de boas-vindas repleta de animações e efeitos visuais para causar impacto positivo ao iniciar o app.
+- Servir de introdução ao usuário, mostrando o logotipo do SmartDent e algumas informações básicas.
+
+**Elementos e Fluxo Interno**  
+1. **Animações de Título e Elementos**:  
+   - Usa `Animated` e `Easing` para controlar opacidade, escala e translação do título “Bem-vindo à SmartDent”, além de ícones e texto descritivo.  
+   - Possui um GIF (Esfera.gif) e um ícone (IconCapa.png) animados via `AnimatedFastImage`.  
+2. **Botão de Avançar**:  
+   - Implementado com `BotaoAnimado` usando Animated para efeito de clique (pequena redução de escala ao pressionar).  
+   - Ao clicar, navega para `ChoiceScreen` através de `navigation.navigate('Choice')`.  
+3. **Responsividade**:  
+   - Funções como `normalize(size: number)` ajustam dinamicamente tamanhos de fonte e layout conforme a resolução do dispositivo.  
+4. **Bibliotecas**  
+   - `react-native-fast-image` (para GIFs e imagens com cache otimizado).  
+   - `react-native-linear-gradient` e animações do React Native (fade, scale, translate) para criar transições suaves e destacar o visual.
+
+### 🎉 **ChoiceScreen (Onboarding/ChoiceScreen.tsx)**
+
+**Objetivo da Tela**  
+- Permitir ao usuário escolher entre criar conta (`RegisterScreen`) ou fazer login (`LoginScreen`).
+- Continuar a experiência de animações e partícula, mantendo a identidade visual desde a tela de boas-vindas.
+
+**Elementos e Fluxo Interno**  
+1. **Botões de Navegação**:  
+   - “Criar Conta” → chama `navigation.navigate('Register')`.  
+   - “Fazer Login” → chama `navigation.navigate('Login')`.  
+2. **Animações de Background**:  
+   - Partículas subindo na tela, gradientes animados (RadialGradient, LinearGradient).  
+   - `Animated.sequence(...)` e `Animated.parallel(...)` para gerenciar a entrada de cada elemento (logo, título, subtítulo, botões).  
+3. **Responsividade**:  
+   - Ajustes de fonte e layout com base em breakpoints do dispositivo (uso de `useWindowDimensions()` e `normalize()`).
+4. **Bibliotecas**  
+   - `react-native-radial-gradient` para efeitos de gradiente circular nos botões.  
+   - `Animated` + `Easing` para coordenar a entrada sequencial de texto e botões.  
+
+### 🔐 **LoginScreen (Auth/LoginScreen.tsx)**
+
+**Objetivo da Tela**  
+- Autenticar o usuário no sistema, verificando CPF e nome/email.  
+- Se válido, permitir acesso à `MainScreen` (área logada).
+
+**Elementos Principais**  
+1. **Campos de Formulário**:  
+   - `CampoFormulario` com inputs animados.  
+   - Inputs para “Nome completo ou Email” e “CPF” (limitado a 11 dígitos).  
+   - Opção “Lembrar-me” (checkbox) que sinaliza se deve armazenar dados localmente.  
+2. **Botão “Entrar”**:  
+   - Envia as credenciais via `AuthService.login(credentials)`.  
+   - Se retorno `success = true`, exibe alerta de sucesso e navega para `MainScreen`.
+   - Caso contrário, apresenta modal de erro.  
+3. **Validações de Formulário**:  
+   - CPF é formatado dinamicamente (`000.000.000-00`) e validado quanto ao número de dígitos.  
+   - Nome completo deve ter pelo menos 3 palavras se for loginType=`name`.  
+   - Mensagens de erro detalhadas exibidas em `Alert`/Modal.  
+4. **Fluxo de Autenticação e Armazenamento**:  
+   - `AuthService` verifica se os dados armazenados localmente (`StorageService`) coincidem com as credenciais informadas.  
+   - **Sem JWT** neste caso. O login está usando uma validação local ou chamando a API (dependendo da configuração do `authService.login()`).
+   - Em caso de sucesso, `AuthService` salva dados no `EncryptedStorage`, permitindo “login offline” em aberturas futuras.  
+5. **Bibliotecas**  
+   - **Axios**: Envio de requisições à API (caso a API exija, `authService.login()` faz POST).  
+   - **react-native-encrypted-storage**: Salvamento de dados.  
+   - **Animated** para transições de tela e elementos do formulário.  
+
+**Fluxo Interno Completo**  
+1. Usuário digita “Nome” ou “Email” (identifier) e “CPF”.  
+2. Verifica formatações (via `handleCpfChange` e `handleNomeChange`).  
+3. Ao pressionar “Entrar”, chama `AuthService.getInstance()` → `authService.login(credentials)`.  
+4. `AuthService` faz validações locais e/ou consulta a API via `createUser` e `getUser` (dependendo do design).  
+5. Se sucessful, `AuthService` chama `StorageService.saveUserData(...)`.  
+6. Exibe modal de sucesso e navega para `MainScreen`.  
+7. Se erro, exibe modal com mensagem do erro.
+
+### 📝 **RegisterScreen (Auth/Register.tsx)**
+
+**Objetivo da Tela**  
+- Criar novo usuário no sistema, enviando dados obrigatórios à API e armazenando localmente no dispositivo em caso de sucesso.
+
+**Elementos Principais**  
+1. **Formulário de Cadastro**:  
+   - Campos: nome completo, CPF, email, e opção de empresa.  
+   - Gera campos fictícios (ex.: dataNascimento, telefone) se não fornecidos.  
+2. **Botão “Cadastrar”**:  
+   - Aciona `AuthService.register(...)`, que faz POST em `/api/A_Pacientes`.  
+   - Exibe alerta de sucesso e salva local com `StorageService.saveUserData(...)`, ou alerta de erro com a mensagem correspondente.  
+3. **Validações de Formulário**:  
+   - Nome deve ter >= 3 palavras.  
+   - CPF com 11 dígitos formatado.  
+   - E-mail no padrão “exemplo@gmail.com”.  
+   - Checkbox “Aceitar termos”.  
+4. **Alertas**  
+   - Modal customizada (usando `Modal` do React Native) para avisar erro (ex.: “Preencha todos os campos!”) ou sucesso (“Cadastro realizado com sucesso!”).
+5. **Armazenamento Local**  
+   - Em caso de registro bem-sucedido, o app chama `StorageService.saveUserData(...)` para reter dados do usuário, inclusive gerando `deviceId` e `encryptionKey`.  
+6. **Bibliotecas**  
+   - **Axios**: Posta dados do paciente no endpoint configurado (`createUser`).
+   - **Animated**: Efeitos de fade e scale nos campos ao carregar a tela.  
+
+**Fluxo Interno Completo**  
+1. Usuário preenche nome completo, CPF, e-mail e (opcional) empresa.  
+2. Ao clicar “Cadastrar”, chama `AuthService.register(...)`.  
+3. AuthService → `createUser(...)`: POST no endpoint `/api/A_Pacientes`.  
+4. Se status 201/200, `StorageService.saveUserData(...)`.  
+5. Exibe modal “Cadastro realizado com sucesso!” e, ao fechar, redireciona para `MainScreen`.
+
+### 🏠 **MainScreen (Main/Main.tsx)**
+
+**Objetivo da Tela**  
+- Servir de “hub” para funcionalidades centrais (marcar consulta, histórico, chat de suporte) e permitir acesso ao perfil do usuário.
+
+**Elementos Principais**  
+1. **DestaqueTopo**: Card animado que exibe breve chamada à ação (“Encontre o que você precisa”) e um botão “Agendar”.  
+2. **Grid de Opções** (OpcaoCard):  
+   - Cada card representa uma função (Marcar Consulta, Histórico, Chat, Perfil).  
+   - Ao clicar, chama métodos como `handleMarcarConsulta` ou `handlePerfil`.  
+3. **Partículas Animadas**:  
+   - Efeito decorativo de bolinhas subindo no fundo.  
+   - Realizado via arrays e `Animated.timing` em loop.  
+4. **Bibliotecas**  
+   - **AnimatedFastImage** para exibir GIF (Clinica.gif).  
+   - **LinearGradient**: Efeitos de gradiente em botões e cartões.
+   - **Animated & Easing**: Animações de entrada suave em cada card do grid.  
+5. **Fluxo Interno**  
+   - Tela monta → inicia animações de background e revelação (`revealAnim`).  
+   - Quando o usuário seleciona uma opção, navega para a tela correspondente (ex.: `ProfileScreen`).  
+
+### 👤 **ProfileScreen (Main/ProfileScreen.tsx)**
+
+**Objetivo da Tela**  
+- Exibir (e eventualmente editar) dados do usuário logado, como nome completo, email, CPF.  
+- Focar na visualização de informações pessoais vindas do `StorageService` ou da API.
+
+**Elementos e Fluxo Interno**  
+1. **Carregamento de Dados**  
+   - `StorageService.getUserData()` para exibir nome completo, email, CPF e qualquer dado extra.  
+   - Caso deseje atualizar, chamaria `AuthService` ou `api.ts` endpoints específicos (não mostrado no snippet, mas conceito válido).
+2. **Interface**  
+   - Dados do usuário mostrados em campos somente leitura, ou modo de edição.  
+   - Botão “Voltar” ou “Editar” (dependendo do design).  
+3. **Bibliotecas**  
+   - `Animated` para efeitos (opcional).  
+   - `axios` e `AuthService` caso haja atualização.  
+4. **Validações**  
+   - Se houver edição, repete lógicas de verificação (nome completo, CPF, email).  
+5. **Armazenamento Local**  
+   - Pode atualizar o `StorageService` com dados corrigidos, garantindo consistência local.
+
+---
+
+## 🛠️ Tecnologias e Bibliotecas Utilizadas
+
+- ⚛️ **React Native**: Framework base para desenvolvimento cross-platform de alta performance.
+- 🚀 **React Navigation**: Gerenciamento intuitivo das rotas e pilhas de navegação entre telas (Stack Navigator).
+- 🎨 **LinearGradient & RadialGradient**: Adicionam gradientes modernos a botões e fundos, realçando a experiência visual.
+- 🔍 **Axios**: Biblioteca para consumo de APIs REST, simplificando requisições e interceptores.
+- 📦 **react-native-encrypted-storage**: Garante segurança ao armazenar dados sensíveis (token, CPF do usuário).
+- ⚡ **Animated & Easing**: Permitem animações detalhadas (fade, scale, slide) e efeitos de clique (press-in/out) com alta fluidez.
+- 🏞️ **FastImage** (AnimatedFastImage): Otimiza carregamento de imagens e manipulação de GIFs, crucial para telas animadas como Welcome e Main.
+- 🔧 **AuthService** e **StorageService**: Arquitetura de serviços para separar lógica de autenticação e armazenamento local, garantindo coesão e manutenibilidade do código.
+- 📝 **TypeScript**: Fornece tipagens seguras (interfaces como `UserData`, `LoginCredentials`), reduzindo erros em tempo de compilação.
+
+---
+
+## 📌 Diagrama de Arquitetura
+
+> **[ESPAÇO RESERVADO PARA DIAGRAMA]**
+
+Aqui será inserido o diagrama detalhando a arquitetura lógica do aplicativo, incluindo a comunicação entre componentes, navegação e integrações com APIs externas.
 
 ---
 
