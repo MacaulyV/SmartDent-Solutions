@@ -301,17 +301,95 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 
 ---
 
-## 🎥 **Demonstração e Apresentação**
+# 📌 Detalhes importantes do Cadastro + Login e Solução de Problemas
 
-### 🏷 Deploys Disponíveis
+## 📝 Visão Geral do Cadastro
+
+Nosso formulário de cadastro contém apenas quatro campos preenchidos pelo usuário, enquanto o endpoint POST da API exige oito registros. Criar um formulário extenso tornaria a experiência do usuário cansativa. Para resolver esse problema, implementamos uma lógica que gera automaticamente os dados restantes no formato esperado pela API antes de enviá-los junto com metades dos dados reais fornecidos pelo usuario.
+
+---
+
+## ⚠️ Possíveis Erros ao Cadastrar e Como Resolver
+
+### 1. Erro de Conexão ou Requisição Falhada
+
+Esse erro ocorre porque nossa API está hospedada na plataforma Render (plano gratuito), que suspende a API após alguns minutos de inatividade.
+
+**Solução:**
+
+Antes de cadastrar, abra a API no Swagger e aguarde cerca de um minuto para que ela seja reativada.
+
+Após a API carregar completamente no navegador, o endpoint estará pronto para receber a requisição POST e salvar os dados no banco Oracle.
+
+---
+
+### 2. Erro ao Clicar em "Cadastrar", Mesmo com a API Ativa
+
+Às vezes, o front-end exibe um erro, mas o cadastro pode ter sido enviado corretamente para o back-end.
+
+**Solução:**
+
+Tente clicar no botão "Cadastrar" mais uma ou duas vezes antes de desistir.
+
+Se o erro persistir, verifique se o cadastro foi salvo acessando os endpoints da API.
+
+---
+
+### 3. Erro Contínuo ao Tentar Cadastrar
+
+Se o erro continuar aparecendo repetidamente, o problema pode estar relacionado a um CPF duplicado.
+
+**Solução:**
+
+O sistema impede o cadastro de um CPF já registrado.
+
+Para testar um novo cadastro, altere um dígito do CPF (por exemplo, o último número) e tente novamente.
+
+---
+
+## 🔍 Como Verificar se o Cadastro Foi Salvo
+
+Para conferir se o cadastro foi registrado corretamente no banco de dados da API, acesse um dos seguintes endpoints da API pelo Swagger:
+
+### 🏷 **Deploys Disponíveis**
 
 - **API Principal (C# .NET)**  
   (https://smartdent-api.onrender.com/swagger)
 
-A API estã hospedadas no Render e, devido às limitações da versão gratuita, podem entrar em modo de suspensão quando inativas. Ao receber a primeira requisição, elas podem levar entre 1 a 2 minutos para serem reativadas antes de processar novas chamadas.
+---
 
-⚠ **Importante:** Caso vá testar os Endpoints de IA via API .NET, primeiro acesse a URL da FastAPI diretamente (https://smartdent-ai.onrender.com/docs) e aguarde cerca de 1 minuto para garantir que ela esteja ativa. Isso evitará erros de requisição ao chamá-la via API .NET.
+Se o campo "Empresa" não foi preenchido no cadastro:
 
+Acesse: `/api/A_Pacientes/GetPacientesByPlanoIndividual`
+
+Se foi cadastrada uma empresa:
+
+Acesse: `/api/A_Pacientes/GetPacientesByEmpresa/{empresa}`
+
+Substitua `{empresa}` pelo nome exato da empresa cadastrada.
+
+---
+
+## 📱 Persistência dos Dados no Aplicativo
+
+Usamos AsyncStorage para armazenar Nome Completo e CPF localmente.
+
+O que isso significa?
+
+Mesmo que o app ou o emulador seja fechado e reaberto, esses dados continuarão salvos, permitindo login automático.
+
+Quando um novo cadastro for realizado, os dados antigos serão substituídos pelos novos.
+
+---
+
+## ♻️ Como Limpar os Dados Salvos no Dispositivo
+
+Se precisar resetar completamente os dados armazenados no aplicativo local, execute o seguinte comando no terminal do repositório do projeto:
+
+```bash
+adb shell pm clear com.smartdentapp
+
+```
 ---
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
