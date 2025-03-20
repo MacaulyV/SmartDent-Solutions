@@ -189,6 +189,38 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
    - `react-native-radial-gradient` para efeitos de gradiente circular nos botões.  
    - `Animated` + `Easing` para coordenar a entrada sequencial de texto e botões.  
 
+### 📝 **RegisterScreen (Auth/Register.tsx)**
+
+**Objetivo da Tela**  
+- Criar novo usuário no sistema, enviando dados obrigatórios à API e armazenando localmente no dispositivo em caso de sucesso.
+
+**Elementos Principais**  
+1. **Formulário de Cadastro**:  
+   - Campos: nome completo, CPF, email, e opção de empresa.  
+   - Gera campos fictícios (ex.: dataNascimento, telefone) se não fornecidos.  
+2. **Botão “Cadastrar”**:  
+   - Aciona `AuthService.register(...)`, que faz POST em `/api/A_Pacientes`.  
+   - Exibe alerta de sucesso e salva local com `StorageService.saveUserData(...)`, ou alerta de erro com a mensagem correspondente.  
+3. **Validações de Formulário**:  
+   - Nome deve ter >= 3 palavras.  
+   - CPF com 11 dígitos formatado.  
+   - E-mail no padrão “exemplo@gmail.com”.  
+   - Checkbox “Aceitar termos”.  
+4. **Alertas**  
+   - Modal customizada (usando `Modal` do React Native) para avisar erro (ex.: “Preencha todos os campos!”) ou sucesso (“Cadastro realizado com sucesso!”).
+5. **Armazenamento Local**  
+   - Em caso de registro bem-sucedido, o app chama `StorageService.saveUserData(...)` para reter dados do usuário, inclusive gerando `deviceId` e `encryptionKey`.  
+6. **Bibliotecas**  
+   - **Axios**: Posta dados do paciente no endpoint configurado (`createUser`).
+   - **Animated**: Efeitos de fade e scale nos campos ao carregar a tela.  
+
+**Fluxo Interno Completo**  
+1. Usuário preenche nome completo, CPF, e-mail e (opcional) empresa.  
+2. Ao clicar “Cadastrar”, chama `AuthService.register(...)`.  
+3. AuthService → `createUser(...)`: POST no endpoint `/api/A_Pacientes`.  
+4. Se status 201/200, `StorageService.saveUserData(...)`.  
+5. Exibe modal “Cadastro realizado com sucesso!” e, ao fechar, redireciona para `MainScreen`.
+
 ### 🔐 **LoginScreen (Auth/LoginScreen.tsx)**
 
 **Objetivo da Tela**  
@@ -225,38 +257,6 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 5. Se sucessful, `AuthService` chama `StorageService.saveUserData(...)`.  
 6. Exibe modal de sucesso e navega para `MainScreen`.  
 7. Se erro, exibe modal com mensagem do erro.
-
-### 📝 **RegisterScreen (Auth/Register.tsx)**
-
-**Objetivo da Tela**  
-- Criar novo usuário no sistema, enviando dados obrigatórios à API e armazenando localmente no dispositivo em caso de sucesso.
-
-**Elementos Principais**  
-1. **Formulário de Cadastro**:  
-   - Campos: nome completo, CPF, email, e opção de empresa.  
-   - Gera campos fictícios (ex.: dataNascimento, telefone) se não fornecidos.  
-2. **Botão “Cadastrar”**:  
-   - Aciona `AuthService.register(...)`, que faz POST em `/api/A_Pacientes`.  
-   - Exibe alerta de sucesso e salva local com `StorageService.saveUserData(...)`, ou alerta de erro com a mensagem correspondente.  
-3. **Validações de Formulário**:  
-   - Nome deve ter >= 3 palavras.  
-   - CPF com 11 dígitos formatado.  
-   - E-mail no padrão “exemplo@gmail.com”.  
-   - Checkbox “Aceitar termos”.  
-4. **Alertas**  
-   - Modal customizada (usando `Modal` do React Native) para avisar erro (ex.: “Preencha todos os campos!”) ou sucesso (“Cadastro realizado com sucesso!”).
-5. **Armazenamento Local**  
-   - Em caso de registro bem-sucedido, o app chama `StorageService.saveUserData(...)` para reter dados do usuário, inclusive gerando `deviceId` e `encryptionKey`.  
-6. **Bibliotecas**  
-   - **Axios**: Posta dados do paciente no endpoint configurado (`createUser`).
-   - **Animated**: Efeitos de fade e scale nos campos ao carregar a tela.  
-
-**Fluxo Interno Completo**  
-1. Usuário preenche nome completo, CPF, e-mail e (opcional) empresa.  
-2. Ao clicar “Cadastrar”, chama `AuthService.register(...)`.  
-3. AuthService → `createUser(...)`: POST no endpoint `/api/A_Pacientes`.  
-4. Se status 201/200, `StorageService.saveUserData(...)`.  
-5. Exibe modal “Cadastro realizado com sucesso!” e, ao fechar, redireciona para `MainScreen`.
 
 ### 🏠 **MainScreen (Main/Main.tsx)**
 
