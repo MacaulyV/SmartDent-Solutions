@@ -121,7 +121,7 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
     - 🗺️ AppNavigator.tsx
   - 📁 **screens/** → Telas principais agrupadas logicamente.
     - 🔑 **Auth/** (LoginScreen.tsx, RegisterScreen.tsx)
-    - 🌟 **Main/** (MainScreen.tsx, ProfileScreen.tsx)
+    - 🌟 **Main/** (MainScreen.tsx, ProfileScreen.tsx & etc)
     - 🎉 **Onboarding/** (ChoiceScreen.tsx, WelcomeScreen.tsx)
 
 - 📁 **services/** → Camada para comunicação com APIs e autenticação.
@@ -278,27 +278,6 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 5. **Fluxo Interno**  
    - Tela monta → inicia animações de background e revelação (`revealAnim`).  
    - Quando o usuário seleciona uma opção, navega para a tela correspondente (ex.: `ProfileScreen`).  
-
-### 👤 **ProfileScreen (Main/ProfileScreen.tsx)**
-
-**Objetivo da Tela**  
-- Exibir (e eventualmente editar) dados do usuário logado, como nome completo, email, CPF.  
-- Focar na visualização de informações pessoais vindas do `StorageService` ou da API.
-
-**Elementos e Fluxo Interno**  
-1. **Carregamento de Dados**  
-   - `StorageService.getUserData()` para exibir nome completo, email, CPF e qualquer dado extra.  
-   - Caso deseje atualizar, chamaria `AuthService` ou `api.ts` endpoints específicos (não mostrado no snippet, mas conceito válido).
-2. **Interface**  
-   - Dados do usuário mostrados em campos somente leitura, ou modo de edição.  
-   - Botão “Voltar” ou “Editar” (dependendo do design).  
-3. **Bibliotecas**  
-   - `Animated` para efeitos (opcional).  
-   - `axios` e `AuthService` caso haja atualização.  
-4. **Validações**  
-   - Se houver edição, repete lógicas de verificação (nome completo, CPF, email).  
-5. **Armazenamento Local**  
-   - Pode atualizar o `StorageService` com dados corrigidos, garantindo consistência local.
 
 ---
 
