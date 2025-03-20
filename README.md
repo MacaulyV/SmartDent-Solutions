@@ -301,15 +301,15 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 
 ---
 
-# 📌 Detalhes importantes do Cadastro + Login e Solução de Problemas
+## 📌 Detalhes importantes do Cadastro + Login e Solução de Problemas
 
-## 📝 Visão Geral do Cadastro
+### 📝 Visão Geral do Cadastro
 
 Nosso formulário de cadastro contém apenas quatro campos preenchidos pelo usuário, enquanto o endpoint POST da API exige oito registros. Criar um formulário extenso tornaria a experiência do usuário cansativa. Para resolver esse problema, implementamos uma lógica que gera automaticamente os dados restantes no formato esperado pela API antes de enviá-los junto com metades dos dados reais fornecidos pelo usuario.
 
 ---
 
-## ⚠️ Possíveis Erros ao Cadastrar e Como Resolver
+### ⚠️ Possíveis Erros ao Cadastrar e Como Resolver
 
 ### 1. Erro de Conexão ou Requisição Falhada
 
@@ -391,6 +391,61 @@ Se precisar resetar completamente os dados armazenados no aplicativo local, exec
 adb shell pm clear com.smartdentapp
 
 ```
+---
+
+# 🚀 Próximos Passos – Sprint 4
+
+Nesta próxima etapa (Sprint 4), vamos avançar significativamente no projeto, priorizando a adição de novas telas, melhorias técnicas e integração aprimorada com nossa API em C#.
+
+## 📱 Implementação de Novas Telas
+
+### 👤 Tela de Perfil
+- Visualização detalhada dos dados pessoais do usuário
+- Possibilidade de editar informações pessoais (nome, email, telefone, empresa)
+
+### 📅 Tela de Marcar Consulta
+- Interface para seleção de data e horário para consultas odontológicas
+- Integração direta com endpoints específicos da API em C# para salvar agendamentos no banco
+
+### 📜 Tela de Histórico de Consultas
+- Visualização organizada das consultas passadas
+- Exibição detalhada dos tratamentos realizados e próximos compromissos agendados
+
+### 💬 Tela do Chat Suporte
+- Comunicação direta e rápida do usuário com suporte inteligente
+- Implementação básica de chatbot ou troca de mensagens para dúvidas frequentes via API
+
+---
+
+## 📐 Melhorias Técnicas Gerais
+
+### 📱 Responsividade Aprimorada
+- Revisão completa de todas as telas existentes
+- Garantir que o layout e os elementos visuais estejam otimizados e adaptáveis para diferentes tamanhos e resoluções de tela (celulares pequenos, tablets, etc.)
+
+### 🔄 Melhorias de Validação e Comunicação API
+- Implementação e aprimoramento de novos endpoints REST (GET, POST, PUT, DELETE) na API em C# para fornecer CRUDs completos
+- Testes detalhados da integração Front-end ↔️ Back-end para detectar e corrigir problemas
+
+### 🐛 Correção de Bugs e Problemas
+- Identificação e solução de inconsistências ou falhas nas validações e respostas da API
+- Garantir mensagens claras ao usuário em casos de erros ou problemas de conexão com a API
+
+---
+
+## ⚙️ Expansão da Integração com API em C#
+
+### 🌐 CRUDs Completos
+Implementar operações completas (Create, Read, Update, Delete) para entidades essenciais, tais como:
+- Pacientes
+- Consultas
+- Histórico de tratamentos
+
+Validar cada endpoint no Swagger e integrá-los completamente ao Front-end (React Native).
+
+### 📡 Endpoints Adicionais
+- Consumo de endpoints adicionais para funcionalidades avançadas como relatórios, notificações e validações específicas.
+
 ---
 
 ## 🧑‍💻 **Equipe de Desenvolvimento**
