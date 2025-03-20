@@ -393,7 +393,7 @@ adb shell pm clear com.smartdentapp
 ```
 ---
 
-##  **🚀 Próximos Passos – Sprint 4**
+#  🚀 Próximos Passos – Sprint 4
 
 Nesta próxima etapa (Sprint 4), vamos avançar significativamente no projeto, priorizando a adição de novas telas, melhorias técnicas e integração aprimorada com nossa API em C#.
 
