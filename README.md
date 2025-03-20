@@ -299,7 +299,7 @@ O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, de
 
 > **[ESPAÇO RESERVADO PARA DIAGRAMA]**
 
-Aqui será inserido o diagrama detalhando a arquitetura lógica do aplicativo, incluindo a comunicação entre componentes, navegação e integrações com APIs externas.
+![Diagrama de Pastas](https://github.com/user-attachments/assets/c18fc194-4b46-4673-ace1-73fefb873183)
 
 ---
 
