@@ -1,0 +1,35 @@
+# ====== Node modules regeneráveis ======
+node_modules/
+
+# ====== Logs e caches temporários ======
+*.log
+*.log.*
+.log/
+logs/
+.temp/
+.cache/
+*.swp
+
+# ====== Android ======
+android/app/build/
+.gradle/
+**/build/
+*.apk
+local.properties
+
+# ====== iOS ======
+ios/Pods/
+ios/build/
+*.xcuserdata
+DerivedData/
+
+# ====== IDE e SO ======
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ====== Arquivos de configuração e backups ======
+*.pid
+*.orig
+*.rej

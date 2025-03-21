@@ -1,0 +1,7 @@
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\@react-native-community\blur\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\@react-native-picker\picker\android\src\main\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\lottie-react-native\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\react-native-reanimated\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\react-native-safe-area-context\android\src\main\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\react-native-screens\android\src\main\jni\CMakeLists.txt
+C:\Users\Desktop\Downloads\SmartDentAPP\SmartDentApp\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt
