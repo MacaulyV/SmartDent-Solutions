@@ -99,6 +99,67 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 
 ---
 
+# 📚 Como Clonar e Executar o Projeto (Branch Mobile)
+Este documento explica em detalhes todos os passos necessários para clonar, instalar e executar corretamente o projeto SmartDent Solutions (branch Mobile).
+
+## ⚠️ Atenção:
+Por conta da grande quantidade de dependências, a instalação inicial pode ser demorada (aproximadamente 6 minutos na primeira build em uma máquina local padrão). Recomenda-se que você inicie o processo de instalação imediatamente após o clone e aproveite esse tempo para ler este README completo.
+
+## 📌 Passo 1: Clonar o Repositório (branch Mobile)
+Abra seu terminal (Windows PowerShell ou Terminal do VSCode) e execute o seguinte comando:
+
+```shell
+git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
+```
+
+⚠️ Observação: Certifique-se de que está clonando especificamente a branch Mobile.
+
+## 📌 Passo 2: Acessar a Pasta do Projeto
+Entre na pasta clonada usando o terminal:
+
+```shell
+cd SmartDent-Solutions
+```
+
+## 📌 Passo 3: Instalar Dependências (Obrigatório usar --legacy-peer-deps)
+Por questões de compatibilidade de versões entre as bibliotecas do projeto, é essencial utilizar o comando com a flag --legacy-peer-deps ao instalar as dependências.
+
+Utilize exatamente o comando abaixo:
+
+```shell
+npm install --legacy-peer-deps
+```
+
+❗ Importante: Caso tente utilizar apenas o comando padrão (npm install), provavelmente haverá um erro de conflitos entre versões de dependências. Utilize sempre o comando acima para garantir o correto funcionamento.
+
+## 📌 Passo 4: Executar o Projeto no Android
+Após finalizar a instalação das dependências, execute o seguinte comando para abrir o projeto no emulador Android (ou dispositivo físico conectado via USB):
+
+```shell
+npx react-native run-android
+```
+
+⏳ A primeira execução pode demorar alguns minutos devido à compilação inicial dos módulos nativos.
+
+## ⚙️ Tempo Estimado e Recomendações:
+- ⏲️ Tempo de instalação inicial estimado: aproximadamente 6 minutos.
+- 📖 Sugestão: Recomenda-se iniciar o processo de instalação com antecedência e aproveitar o tempo de espera para revisar este README e entender melhor a estrutura do projeto.
+
+## ✅ Resumo Rápido (copie e cole no seu terminal):
+
+```shell
+git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
+cd SmartDent-Solutions
+npm install --legacy-peer-deps
+npx react-native run-android
+```
+
+🎯 Pronto!
+Agora você já pode executar o projeto sem problemas. Em caso de dúvidas ou dificuldades técnicas adicionais, fique à vontade para me procurar!
+
+Boa análise e bons testes! 🚀
+
+
 ## 📝 Descrição Geral do Aplicativo
 
 O **SmartDent App** é o aplicativo móvel da plataforma SmartDent Solutions, desenvolvido para facilitar a interação dos usuários com os serviços odontológicos. Ele permite o gerenciamento de consultas, acesso ao histórico odontológico e suporte inteligente, garantindo maior transparência e praticidade na utilização do seu convênio odontológico.
