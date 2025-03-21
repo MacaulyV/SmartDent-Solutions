@@ -103,54 +103,23 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 
 ![Descrição banner](https://github.com/user-attachments/assets/a9bd0116-91d0-4f0c-abe2-e4ed01d0d0a5)
 
-### Descrição Lógica do Fluxo da Arquitetura
+### 🧠 Lógica Resumida da Arquitetura em Nuvem
 
-1. **Interação do Usuário:**  
-   Usuários acessam o sistema através do frontend web ou do aplicativo móvel.
+- Usuários acessam o sistema via **Web (Java MVC)** ou **Mobile (React Native)**.  
+- Essas interfaces consomem dados de uma **API REST centralizada (.NET monolítica)**, acessada via **API Gateway** (centraliza requisições e segurança futura).  
+- A **API .NET** acessa diretamente um **banco Oracle** usando **Entity Framework Core**.  
+- Para **análises inteligentes**, o .NET se comunica via **JSON/REST** com a **IA em Flask/FastAPI**.  
+- **Logs e Monitoramento** são registrados para análise e suporte.  
+- **Relatórios (CSV/PDF)** vão para um **Cloud Storage (S3/Blob Storage)**.  
+- **DTOs padronizados**, **erros estruturados** e **datas ISO-8601** simplificam integrações futuras com Front-end e Mobile.  
+- **Segurança JWT** é opcional e planejada apenas para a **Sprint 4**.  
+- A arquitetura, mesmo **monolítica**, é **modularizada** para facilitar manutenção e possíveis migrações futuras.  
 
-2. **Comunicação com a API Central:**  
-   Tanto o frontend quanto o mobile enviam requisições HTTP para a API central implementada em .NET, que processa as informações e aplica as regras de negócio.
+> Esse resumo oferece uma visão direta e simples da lógica do diagrama.
 
-3. **Chamada à API de IA:**  
-   Quando necessário, a API central realiza chamadas à API de IA (desenvolvida com FastAPI e Scikit-learn) para obter análises de risco e justificativas.
-
-4. **Persistência dos Dados:**  
-   Os dados processados, incluindo logs e análises, são armazenados no banco de dados Oracle para garantir rastreabilidade e integridade.
-
-5. **Infraestrutura e Deploy:**  
-   Toda a solução é implantada em uma infraestrutura robusta como (Azure Cloud, Docker, CI/CD), garantindo escalabilidade, facilidade de manutenção e atualizações contínuas.
 
 > **Nota Importante:**  
-> Esta visão da arquitetura representa o planejamento final previsto para a Sprint 4 e não reflete completamente a implementação atual.
-
----
-
-## 📌 **Documentação da API Central do Projeto**
-
-## 1️⃣ Arquitetura
-
-### 🏛️ Por que escolhemos a arquitetura monolítica?
-Optamos por uma arquitetura monolítica principalmente pela simplicidade de desenvolvimento e manutenção nesta etapa do projeto. Como temos um único serviço principal que gerencia o fluxo de Pacientes, Consultas, Procedimentos e Alertas, manter tudo em um só lugar facilita o desenvolvimento sem precisar lidar com a complexidade de múltiplos serviços, orquestração e rede interna.
-
-Além disso, como o projeto ainda está em **Fase Beta,** essa abordagem torna o trabalho mais prático, pois:
-- ✅ Permite que todos os componentes (controllers, repositórios, modelos) compartilhem as mesmas dependências.
-- ✅ Evita a necessidade de gerenciar múltiplas aplicações separadas.
-- ✅ Facilita a colaboração e manutenção.
-
-### 🔄 Comparação com microservices
-Se tivesse escolhido microservices, cada funcionalidade (Pacientes, Consultas, etc.) seria um serviço independente, com seu próprio banco e comunicação via HTTP ou mensageria.
-
-#### 🟢 Vantagens de microservices:
-- ✔️ Melhor escalabilidade (cada serviço pode ser escalado individualmente).
-- ✔️ Maior isolamento de falhas (se um serviço cair, o restante continua funcionando).
-- ✔️ Possibilidade de usar diferentes tecnologias para cada serviço.
-
-#### 🔴 Desvantagens para este projeto:
-- ❌ Aumento da complexidade: seria necessário gerenciar múltiplas aplicações, configurar API Gateway, Discovery Service, etc.
-- ❌ Mais esforço para monitoramento, logs e versionamento.
-- ❌ Overhead desnecessário para um projeto como esse.
-
-Conclusão: No momento, a arquitetura monolítica é a melhor escolha, pois mantém o desenvolvimento ágil e organizado, sem sobrecarga desnecessária.
+> Esta visão da arquitetura representa o planejamento final previsto para a Sprint 4 e não reflete completamente a implementação atual ainda.
 
 ---
 
@@ -192,17 +161,6 @@ A estrutura do banco foi desenhada para refletir corretamente as relações do d
 
 ### 💡 **Justificativa:**
 Esse layout garante eficiência nas consultas e mantém a consistência dos dados com regras de exclusão em cascata (Delete Cascade).
-
----
-
-## 3️⃣ Design Patterns Utilizados
-
-- **📌 Repository Pattern** → Utilizado para abstrair o acesso ao banco, facilitando manutenção e testes.
-- **📌 Factory Pattern (uso menor)** → Utilizado em partes do código, como IHttpClientFactory, para melhorar a criação de instâncias reutilizáveis.
-- **📌 Arquitetura em Camadas** → Não é um pattern formal, mas uma boa prática para organização do código.
-
-### 💡 **Justificativa:**
-O uso desses padrões garante que o código fique mais modular, reutilizável e testável, evitando acoplamento excessivo.
 
 ---
 
