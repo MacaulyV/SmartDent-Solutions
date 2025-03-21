@@ -99,7 +99,7 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 
 ---
 
-## 🏗 **Diagrama da Arquitetura**
+## 🏗 **Diagrama da Arquitetura em Nuvem**
 
 ![Descrição banner](https://github.com/user-attachments/assets/2f15db1a-d6bf-44f3-a7d1-da50122ae3fe)
 
