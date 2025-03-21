@@ -388,17 +388,13 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
 
 ### 🏷 Deploy Disponível
 
-
-- **API Principal (C#) com Azure SQL** 
-  [https://smartdent.azurewebsites.net/index.html](#)
-
 - **API de IA (FastAPI)**  
   [https://smartdent-ai.onrender.com/docs](#)
 
 - **API Principal (C#)**  
   [https://smartdent-ai.onrender.com/docs](#)
 
-Ambas as APIs tirando a que estã hospedada com azure, as outras estão no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
+Ambas as APIs estão no **Render** e essa versão delas estão conectadas com o Oracle não na nuvem, e devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
 
 ⚠ **Importante:** Ao realizar o primeiro teste, aguarde entre **1 a 2 minutos** para que a API seja iniciada. Após esse tempo inicial, as requisições subsequentes serão processadas de forma instantânea e sem atrasos.
 
