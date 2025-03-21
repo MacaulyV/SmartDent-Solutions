@@ -211,13 +211,13 @@ O uso desses padrões garante que o código fique mais modular, reutilizável e 
 ### 📌 POST /api/pacientes)
 ```json
 {
-  "nome": "João Silva",
-  "cpf": "123.456.789-00",
-  "dataNascimento": "1985-06-15",
+  "nomeCompleto": "João Silva",
+  "cpf": "12345678900",
+  "dataNascimento": "19850615",
   "email": "joao@email.com",
-  "telefone": "(11) 99999-9999",
+  "telefone": "11999999999",
   "endereco": "Rua A, 123, São Paulo",
-  "plano": "Plano Premium",
+  "planoOdontologico": "Maximum White",
   "empresa": "Empresa X"
 }
 
@@ -226,12 +226,12 @@ O uso desses padrões garante que o código fique mais modular, reutilizável e 
 ### 📌 PUT /api/pacientes/{id})
 ```json
 {
-  "nomeCompleto": "Bruno Costa",
-  "email": "bruno.costa@exemplo.com",
-  "telefone": "11101935544",
-  "endereco": "Rua Exemplo, 52, Bairro 7, Itapeva",
-  "planoOdontologico": "Premium",
-  "empresa": "Individual"
+  "nomeCompleto": "Aline Ferreira",
+  "email": "aline.ferreira@exemplo.com",
+  "telefone": "11699704506",
+  "endereco": "Rua Exemplo, 379, Bairro 5, Ituverava",
+  "planoOdontologico": "Master",
+  "empresa": "Centauro"
 }
 
  ```
@@ -294,39 +294,6 @@ O uso desses padrões garante que o código fique mais modular, reutilizável e 
 }
 
  ```
-
----
-
-### 🔗 **Integração entre Módulos**
-
-**Conexão com a API em C#:**  
-O desenvolvimento da API da IA teve como objetivo final ser integrada com a API em C#. Durante o desenvolvimento, surgiram desafios relativos à padronização do formato de entrada e saída dos dados, bem como à comunicação entre os módulos, que foram resolvidos através da utilização do FastAPI e de esquemas Pydantic para garantir a consistência dos dados.
-
-**Testes Locais e Validação:**  
-Foram realizados extensos testes locais (utilizando o Swagger UI do FastAPI e scripts de teste) para validar a lógica de inferência e garantir que tanto a entrada de um único paciente quanto de múltiplos fossem processadas corretamente.
-
----
-
-## 🧠 **Arquitetura de IA**
-
-Na SmartDent Solutions, optamos por usar FastAPI (Python) como camada de serviço de IA, onde rodamos o modelo de Machine Learning. Esse modelo foi construído em Scikit-learn, e usamos um Random Forest porque ele lida bem com diferentes tipos de dados (como número de consultas, custo total, histórico de procedimentos) e oferece resultados interpretáveis.
-
-A razão para escolher essa arquitetura é que a API de IA fica independente do restante do sistema (ou seja, separada do backend .NET e do front-end Java/Mobile). Assim, quando a gente precisa atualizar o modelo ou adicionar alguma lógica de análise nova, não mexemos no código do backend principal. Isso deixa tudo mais modular e facilita o deploy de forma independente—no caso, a API de IA está sendo hospedada no Render.
-
----
-
-## ⚙️ **Implementação na Prática**
-
-No repositório na **branch: Models-IA**, há uma pasta específica (chamada `api/`) que contém os scripts de treinamento e o código da API em FastAPI. A gente treinou o modelo localmente, salvou o arquivo `.joblib`, e a API carrega esse modelo quando inicia. Sempre que o backend .NET recebe alguma informação de um paciente para ser analisada, ele faz uma requisição POST para o endpoint do FastAPI, que então processa os dados, aplica o modelo e retorna um rótulo de risco (por exemplo, **UsoExcessivo**) mais uma justificativa.
-
----
-
-### 🗂 **Base de Dados Usada Para Treinamento**
-
-Para o treinamento e teste do modelo, nós ultilizamos dados sintéticos que refletem cenários de uso odontológico (quantidade de consultas, custo, status de cada consulta, tipo de procedimento, etc.). A ideia é simular comportamentos de pacientes abusando ou não do convênio, pra conseguirmos treinar a IA a distinguir entre uso normal e uso excessivo. Esses dados foram gerados num script Python que cria registros aleatórios com diferentes padrões de frequência e custo. Assim, a IA aprende com uma variedade de cenários que representam bem o que acontece no dia a dia de um plano odontológico.
-
-#### Por que dados sintéticos?
-Porque no momento não temos acesso a dados reais. Mesmo assim, essa base sintética é suficiente para a prova de conceito e pra demonstrar como a IA seria integrada no fluxo real da Odontoprev.
 
 ---
 
@@ -417,72 +384,13 @@ Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API 
  ```
 ---
 
-## 📊 Detalhes Importantes sobre o Modelo
-
-### ⏳ Janela de Análise (Período de 365 dias)
-O modelo analisa apenas as consultas realizadas dentro de um período de **365 dias** a partir da última consulta agendada ou realizada do paciente. Essa abordagem torna as análises mais eficientes, permitindo que a IA trabalhe com **dados mais recentes e relevantes**, sem se sobrecarregar com informações antigas que podem não ser mais úteis para o contexto atual do paciente.
-
----
-
-### 💰 Cálculo do Gasto Total
-O modelo considera no cálculo do gasto total **apenas as consultas e procedimentos efetivamente realizados**. Consultas canceladas ou ainda agendadas **não entram nessa soma** e, portanto, não influenciam a justificativa final da IA. Isso evita **distorções nos dados financeiros** do paciente.
-
----
-
-### 🚦 Status de Retorno do Modelo
-Além de calcular o grau de risco, a justificativa e o nível de alerta, o modelo também fornece um valor essencial:
-
-#### 📌 Valor de Confiança
-Esse valor indica **o quão "certa" a IA está em relação à predição feita**. Em outras palavras, além de classificar um paciente (por exemplo, como **"Uso Moderado"** ou **"Uso Excessivo"**), o modelo também atribui **uma probabilidade à sua decisão**, baseada nos padrões aprendidos durante o treinamento.
-
-🔹 **Exemplo:** Se o modelo atribui **90% de confiança** a uma predição, isso significa que, com base nos dados históricos, ele acredita fortemente que essa classificação está correta.
-
-Essa medida é essencial porque **ajuda os usuários a entenderem o nível de segurança da decisão**. Quando a confiança é baixa, isso pode indicar a necessidade de uma revisão ou de mais informações para validar a análise.
-
----
-
-## 🏆 Sprint 4: Direcionamento Estratégico e Próximos Passos
-
-A quarta sprint do **SmartDent Solutions** tem como foco o refinamento e a integração de todas as camadas do projeto, garantindo um sistema mais robusto, seguro e alinhado com as necessidades da **OdontoPrev**. Abaixo, destacamos os principais objetivos e ações planejadas para esta fase.
-
----
-
-### 🔎 Refinamento e Integração dos Modelos de IA
-
-- Aprimorar os modelos preditivos para garantir maior precisão na identificação de padrões de uso excessivo, acompanhamento de pacientes e confiabilidade dos resultados.
-- Integrar definitivamente os modelos com a plataforma principal, tornando a IA interativa e funcional na interface. Isso inclui a conexão com os demais endpoints da **API Central em C#**.
-
-### 🔗 Aprimoramento da Arquitetura e Integração dos Módulos
-
-- Revisar a arquitetura em camadas para garantir uma comunicação eficiente entre backend, IA e as interfaces web e mobile.
-- Implementar testes de integração que assegurem um fluxo de dados consistente e confiável entre todos os componentes do sistema.
-
-### 🔒 Segurança e Atualização da Documentação
-
-- Implementar medidas de segurança avançadas, incluindo **JWT para autenticação**, reforçando a proteção dos dados dos usuários.
-- Atualizar a documentação do projeto, incluindo **diagramas de integração e fluxos de dados**, para facilitar a compreensão e manutenção futura da solução.
-
-### ⚡ Otimização de Performance e Coleta de Feedback
-
-- Analisar o desempenho da plataforma para identificar possíveis gargalos e propor melhorias que suportem um volume maior de acessos simultâneos.
-- Realizar testes com usuários para coletar feedback sobre a experiência de uso, promovendo ajustes na interface e usabilidade conforme necessário.
-
-### 🚀 Preparação para o Deploy Final e Continuidade do Projeto
-
-- Consolidar todas as integrações e configurar um **ambiente de staging** para testes finais antes da implantação em produção.
-- Estabelecer um plano de **monitoramento pós-deploy**, incluindo métricas de desempenho e relatórios periódicos para aprimoramento contínuo da solução.
-
----
-
-## 🎯 Conclusão Final
-
-Os objetivos desta sprint estão planejados de forma estratégica para garantir que a **SmartDent Solutions** funcione de forma mais eficiente, segura e escalável. A integração dos modelos de IA será realizada de forma fluida, consolidando uma solução que otimiza custos, melhora a qualidade dos serviços e proporciona uma experiência superior para os beneficiários e operadores da **OdontoPrev**.
-
----
-
 ## 🎥 **Demonstração e Apresentação**
 
-### 🏷 Deploys Disponíveis
+### 🏷 Deploy Disponível
+
+
+- **API Principal (C#) com Azure SQL** 
+  [https://smartdent.azurewebsites.net/index.html](#)
 
 - **API de IA (FastAPI)**  
   [https://smartdent-ai.onrender.com/docs](#)
@@ -490,7 +398,7 @@ Os objetivos desta sprint estão planejados de forma estratégica para garantir 
 - **API Principal (C#)**  
   [https://smartdent-ai.onrender.com/docs](#)
 
-Ambas as APIs estão hospedadas no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
+Ambas as APIs tirando a que estão hospedada com azure estão no **Render** e, devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
 
 ⚠ **Importante:** Ao realizar o primeiro teste, aguarde entre **1 a 2 minutos** para que a API seja iniciada. Após esse tempo inicial, as requisições subsequentes serão processadas de forma instantânea e sem atrasos.
 
