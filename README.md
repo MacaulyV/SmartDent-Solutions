@@ -103,7 +103,7 @@ O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
 Este documento explica em detalhes todos os passos necessários para clonar, instalar e executar corretamente o projeto SmartDent Solutions (branch Mobile).
 
 ## ⚠️ Atenção:
-Por conta da grande quantidade de dependências, a instalação inicial pode ser demorada (aproximadamente 6 minutos na primeira build em uma máquina local padrão). Recomenda-se que você inicie o processo de instalação imediatamente após o clone e aproveite esse tempo para ler este README completo.
+Por conta da grande quantidade de dependências, a instalação inicial pode ser demorada (testamos e foi aproximadamente 6 minutos na primeira build na nossa máquina local). Recomenda-se que você inicie o processo de instalação imediatamente após o clone e aproveite esse tempo para ler este README completo.
 
 ## 📌 Passo 1: Clonar o Repositório (branch Mobile)
 Abra seu terminal (Windows PowerShell ou Terminal do VSCode) e execute o seguinte comando:
@@ -136,6 +136,10 @@ npm install --legacy-peer-deps
 Após finalizar a instalação das dependências, execute o seguinte comando para abrir o projeto no emulador Android (ou dispositivo físico conectado via USB):
 
 ```shell
+npx react-native start
+```
+
+```shell
 npx react-native run-android
 ```
 
@@ -151,6 +155,7 @@ npx react-native run-android
 git clone -b Mobile https://github.com/MacaulyV/SmartDent-Solutions.git
 cd SmartDent-Solutions
 npm install --legacy-peer-deps
+npx react-native start
 npx react-native run-android
 ```
 
