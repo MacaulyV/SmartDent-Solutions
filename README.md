@@ -165,7 +165,9 @@ Além disso, não houve qualquer tipo de erro de lógica, falha de execução ou
 
 ## 📝 Considerações Finais
 
-🎉 A implementação dos testes automatizados foi concluída com sucesso, atingindo um percentual de uso do `[Theory]` de **94%**, conforme requisito, garantindo uma cobertura completa dos endpoints.
+🎉 A implementação dos testes automatizados foi concluída com sucesso, atingindo 94% de cobertura utilizando o [Theory], superando o requisito mínimo de 90%. Com isso, garantimos que todos os endpoints das 5 principais models da API (Pacientes, Consultas, Procedimentos, IA e Alertas) foram devidamente testados.
+
+🎉 A implementação dos testes automatizados foi concluída com sucesso, atingindo um percentual de uso do `[Theory]` de **94%**, acima de 90% conforme requisito, garantindo uma cobertura completa de todos os endepoints da nossas 5 models endpoints.
 
 🔍 A análise com Qodana confirmou que o código segue boas práticas e padrões adequados, sem problemas críticos.
 
