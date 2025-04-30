@@ -92,7 +92,7 @@ public async Task GetPacienteById_ValidaStatus(int id)
 
 ### 📸 Evidência dos Testes Bem-sucedidos:
 
-**[INSERIR IMAGEM AQUI: Print comprovando que cada Controller e seus testes foram executados com sucesso]**
+**[(https://github.com/user-attachments/assets/6617b9d2-7453-46e3-9aef-376825858e61): Print comprovando que cada Controller e seus testes foram executados com sucesso]**
 
 ---
 
