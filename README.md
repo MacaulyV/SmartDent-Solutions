@@ -83,7 +83,6 @@ public async Task GetPacienteById_ValidaStatus(int id)
 }
 
 ```
-
 ---
 
 ## 📈 Resultados da Execução dos Testes
@@ -104,7 +103,7 @@ Utilizamos o Qodana para realizar uma análise estática do código, garantindo 
 
 ### 📊 Resultado do Qodana para o Projeto da API Principal:
 
-**[INSERIR IMAGEM AQUI: Análise Qodana do projeto principal sem testes]**
+![](https://github.com/user-attachments/assets/cd6e8457-d77b-4088-99ef-db6c529c7583)
 
 🛡️ **Defesa Técnica do Relatório Qodana - Projeto Principal da API**
 
@@ -154,7 +153,7 @@ A equipe chegou a considerar realizar uma limpeza parcial nos arquivos, **remove
 
 ### 📊 Resultado do Qodana para o Projeto de Testes:
 
-**[INSERIR IMAGEM AQUI: Análise Qodana do projeto de testes]**
+![](https://github.com/user-attachments/assets/99061296-327d-434e-9a9c-de4d0383e641)
 
 🛡️ **Defesa técnica:**
 
