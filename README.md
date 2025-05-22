@@ -1,127 +1,62 @@
 ![Descrição banner](https://github.com/user-attachments/assets/acf148aa-b44a-4ebd-9085-9ce4f31ecaf0)
 
-# 🦷 **SmartDent Solutions**
+# 🚀 SmartDent Solutions – API de Monitoramento Odontológico
 
-### 🤖 **IA Aplicada à Odontologia**
+## 1️⃣ Descrição da Solução
 
-## 📖 **Sobre o Projeto**
+O projeto **SmartDent Solutions** é uma API RESTful desenvolvida em .NET 8 com foco em monitoramento de sinistros odontológicos para operadoras de saúde.
 
-O **SmartDent Solutions** é uma plataforma baseada em Inteligência Artificial desenvolvida para a **OdontoPrev**, com o objetivo de **identificar e prevenir sinistros odontológicos**. O projeto visa reduzir custos e melhorar a experiência dos beneficiários, utilizando IA para analisar padrões de uso e comportamento dos pacientes.
+A solução realiza o cadastro e gerenciamento de pacientes, consultas e procedimentos odontológicos, com persistência em banco SQL na nuvem (Azure SQL Database).
 
-### 🎯 **Objetivo da Solução**
-- Detectar **uso excessivo** dos serviços odontológicos.  
-- Monitorar o **acompanhamento dos pacientes** e identificar ausências.  
-- **Reduzir custos operacionais** da operadora de planos odontológicos.  
-- Melhorar a **qualidade do serviço** prestado aos clientes.
+A aplicação está **integrada em uma esteira CI/CD no Azure DevOps**, automatizando build, teste, publicação e deploy direto para o Azure App Service.
 
 ---
 
-## 🏗 **Visão Geral da Arquitetura da Solução**
+## 2️⃣ Desenho da Pipeline (CI/CD) – Visão Geral e Etapas
 
-A arquitetura do SmartDent Solutions foi projetada para garantir integração eficiente entre seus diversos módulos, proporcionando escalabilidade e um fluxo de dados otimizado. O sistema é composto por:
+> Resumo Visual:
+> 
 
-- **Frontend & Mobile (Java Spring MVC, React, React Native)**
-- **Backend (.NET - C#)**
-- **API de IA (FastAPI + Scikit-learn)**
-- **Banco de Dados (Oracle)**
-- **Infraestrutura e Deploy (Render, Azure Cloud, Docker, CI/CD)**
+![Captura de tela 2025-05-22 201150.png](Captura_de_tela_2025-05-22_201150.png)
 
-Cada componente desempenha um papel essencial na operação do sistema, conforme detalhado abaixo.
+## 🛠️ Pipeline CI/CD – Como Funciona
 
----
+- **Commit no GitHub:** Toda vez que alguém faz push no repositório, o Azure DevOps começa a pipeline automática.
+- **Pipeline CI:**
+    - Restaura as dependências do projeto (.NET Restore)
+    - Faz o build do projeto (compila)
+    - Roda os testes automáticos
+    - Se falhar, para tudo e avisa o erro
+    - Se passar, gera o artefato para deploy
+- **Pipeline CD:**
+    - Pega o artefato gerado e faz deploy no Azure Web App
+    - API fica disponível na nuvem
+    - (Opcional) Pode exigir aprovação manual antes de ir para produção
+    - Se aprovado, finaliza o deploy em produção
 
-### 🔹 **1. Frontend & Mobile**
+**Resumindo:**
 
-#### Frontend (Java Spring MVC + React & JavaScript)
-
-Responsável por oferecer uma interface interativa e intuitiva para operadores e funcionários da OdontoPrev. Suas principais funcionalidades incluem:
-
-- Exibição estruturada dos dados dos pacientes, incluindo gráficos, tabelas e dashboards interativos.  
-- Monitoramento detalhado do estado dos pacientes, auxiliando na detecção de padrões.  
-- Integração com a IA, permitindo análises preditivas e geração de relatórios inteligentes.  
-
-#### Aplicativo Mobile (React Native)
-
-Projetado para que os beneficiários acompanhem, em tempo real, informações como:
-
-- Histórico de consultas e procedimentos.  
-- Gastos acumulados no plano odontológico.  
-- Recomendações da IA para otimizar o uso do convênio e evitar alertas de uso excessivo.
+O fluxo garante que só código testado e aprovado chega na produção. Qualquer erro para a pipeline, e o deploy não acontece até ser corrigido
 
 ---
 
-### 🔹 **2. Backend (.NET - C#)**
+## 3️⃣ Configuração das Pipelines no Azure DevOps
 
-Atua como ponte central do sistema, sendo responsável por:
-
-- Expor endpoints REST para comunicação com o Frontend e o Mobile.  
-- Capturar, processar e armazenar informações dos usuários e pacientes.  
-- Realizar chamadas para a API de IA, enviando os dados necessários para análise.  
-- Aplicar as regras de negócio específicas da OdontoPrev e gerenciar o fluxo de dados.
-
+- **CI Pipeline:**
+    
+    Configurada em `azure-pipelines.yml` para build e publicação.
+    
+- **CD Pipeline:**
+    
+    Integrada para deploy contínuo no Azure App Service.
+    
+- **Configuração automática do Banco de Dados:**
+    
+    Scripts e migrations aplicados na publicação.
+    
 ---
 
-### 🔹 **3. API de IA (FastAPI + Scikit-learn)**
-
-A API de IA tem um papel fundamental na análise dos dados dos pacientes. Suas funções incluem:
-
-- Pré-processamento e inferência das informações (histórico de consultas, custos, etc.).  
-- Carregamento do modelo de Machine Learning (Random Forest) para avaliação de risco.  
-- Classificação dos pacientes com base no uso do convênio (ex.: Uso Moderado, Uso Excessivo).  
-- Geração de justificativas textuais explicando o motivo da classificação.
-
-Inicialmente, a API de IA está hospedada no Render, permitindo acesso pelo Backend .NET via HTTP.
-
----
-
-### 🔹 **4. Banco de Dados (Oracle)**
-
-Responsável pelo armazenamento centralizado de todas as informações do sistema, incluindo:
-
-- Dados dos pacientes e seus históricos de consultas e procedimentos.  
-- Parâmetros de negócio relevantes para a OdontoPrev.  
-- Logs de análises e alertas gerados pela IA, garantindo rastreabilidade e auditoria.
-
----
-
-### 🔹 **5. Infraestrutura e Deploy**
-
-#### Deploy Inicial
-
-Atualmente, a API de IA está sendo hospedada no Render, permitindo testes e ajustes iniciais.
-
-#### Fase Final de Deploy
-
-O plano é migrar toda a infraestrutura para a Azure Cloud, utilizando:
-
-- Docker para containerização dos serviços.  
-- Repositórios e pipelines CI/CD para automação de deploys e atualizações.
-
----
-
-## 🏗 **Diagrama da Arquitetura em Nuvem**
-
-![Descrição banner](https://github.com/user-attachments/assets/a9bd0116-91d0-4f0c-abe2-e4ed01d0d0a5)
-
-### 🧠 Lógica Resumida da Arquitetura em Nuvem
-
-- Usuários acessam o sistema via **Web (Java MVC)** ou **Mobile (React Native)**.  
-- Essas interfaces consomem dados de uma **API REST centralizada (.NET monolítica)**, acessada via **API Gateway** (centraliza requisições e segurança futura).  
-- A **API .NET** acessa diretamente um **banco Oracle** usando **Entity Framework Core**.  
-- Para **análises inteligentes**, o .NET se comunica via **JSON/REST** com a **IA em Flask/FastAPI**.  
-- **Logs e Monitoramento** são registrados para análise e suporte.  
-- **Relatórios (CSV/PDF)** vão para um **Cloud Storage (S3/Blob Storage)**.  
-- **DTOs padronizados**, **erros estruturados** e **datas ISO-8601** simplificam integrações futuras com Front-end e Mobile.  
-- **Segurança JWT** é opcional e planejada apenas para a **Sprint 4**.  
-- A arquitetura, mesmo **monolítica**, é **modularizada** para facilitar manutenção e possíveis migrações futuras.  
-
-> Esse resumo oferece uma visão direta e simples da lógica do diagrama.
-
-
-> **Nota Importante:**  
-> Esta visão da arquitetura representa o planejamento final previsto para a Sprint 4 e não reflete completamente a implementação atual ainda.
-
----
+##
 
 ## 2️⃣ Estrutura do Projeto
 
@@ -252,115 +187,6 @@ Esse layout garante eficiência nas consultas e mantém a consistência dos dado
 }
 
  ```
-
----
-
-### 📋 Exemplo de Teste em JSON para IA
-
-Abaixo, um exemplo de payload **(não real)** que pode ser enviado para a **API da IA**, demonstrando um formato esperado para análise:
-
- ```json
-{
-  "idPaciente": 248247482,
-  "nomeCompleto": "Eduardo Rocha",
-  "cpf": "343.919.106-22",
-  "dataNascimento": "04/11/1981",
-  "email": "eduardo.rocha@exemplo.com",
-  "telefone": "(11) 17255-2789",
-  "endereco": "Rua Exemplo, 378, Bairro 1, Guaratinguetá",
-  "planoOdontologico": "Bem Estar Orto",
-  "empresa": "Individual",
-  "numConsultas": 4,
-  "gastoTotal": "R$ 870,00",
-  "consultas": [
-    {
-      "idConsulta": 974258209,
-      "dataConsulta": "01/05/2024 10:30",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 857706282,
-        "tipoProcedimento": "Instrução de higiene bucal",
-        "descricao": null,
-        "custo": "R$ 70,00"
-      }
-    },
-    {
-      "idConsulta": 581313226,
-      "dataConsulta": "27/05/2024 16:59",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 934230516,
-        "tipoProcedimento": "Cirurgia periodontal",
-        "descricao": null,
-        "custo": "R$ 600,00"
-      }
-    },
-    {
-      "idConsulta": 44468131,
-      "dataConsulta": "18/07/2024 11:52",
-      "status": "Realizada",
-      "procedimento": {
-        "idProcedimento": 523901337,
-        "tipoProcedimento": "Tratamento restaurador em dentes de leite",
-        "descricao": null,
-        "custo": "R$ 200,00"
-      }
-    },
-    {
-      "idConsulta": 982321214,
-      "dataConsulta": "19/07/2024 12:00",
-      "status": "Agendada",
-      "procedimento": {
-        "idProcedimento": 441760667,
-        "tipoProcedimento": "Instrução de higiene bucal",
-        "descricao": null,
-        "custo": "R$ 70,00"
-      }
-    }
-  ]
-}
-
- ```
----
-
-### 💡 Modelos de Respostas Geradas pela IA
-
- ```json
-{
-  "idPaciente": 248247482,
-  "nomePaciente": "Eduardo Rocha",
-  "tipoAlerta": "Uso Moderado",
-  "grauRisco": "44%",
-  "justificativa": "Ao analisar os atendimentos entre 01/05/2024 e 18/07/2024, verifiquei que o paciente teve 3 consultas com um gasto acumulado de R$ 870.00 e intervalos de 38.5 dias. Embora haja repetições, como (nenhuma repetição de procedimentos), elas não ultrapassam os limites normais, indicando um uso moderado.",
-  "totalConsultas": 3,
-  "gastoTotal": "R$ 870,00",
-  "dataAnalise": "14/03/2025 03:53",
-  "modelo_utilizado": true,
-  "confiança": 0.5
-}
-
- ```
----
-
-## 🎥 **Demonstração e Apresentação**
-
-### 🏷 Deploy Disponível
-
-- **API de IA (FastAPI)**  
-  [https://smartdent-ai.onrender.com/docs](#)
-
-- **API Principal (C#)**  
-  [https://smartdent-ai.onrender.com/docs](#)
-
-Ambas as APIs estão no **Render** e essa versão delas estão conectadas com o Oracle não na nuvem, e devido às limitações da versão gratuita, podem levar alguns segundos ou até cerca de um minuto para iniciar após a primeira chamada. Esse tempo de espera ocorre porque, quando inativas, as APIs entram em modo de suspensão e precisam ser reativadas antes de processar qualquer requisição.
-
-⚠ **Importante:** Ao realizar o primeiro teste, aguarde entre **1 a 2 minutos** para que a API seja iniciada. Após esse tempo inicial, as requisições subsequentes serão processadas de forma instantânea e sem atrasos.
-
-### 🔎 Recomendações de Teste
-
-Para **testar a aplicação de forma mais simplificada**, recomenda-se utilizar os **endpoints já disponibilizados no deploy** acima. Você também pode aproveitar que **os dados necessários** (pacientes, consultas, etc.) **já estão gerados** para realizar chamadas JSON de exemplo em cada endpoint — conforme foi demonstrado anteriormente na seção de exemplos de testes. Assim, você pode enviar requisições diretamente às URLs em produção, sem precisar configurar ou rodar o ambiente local. 
-
-Isso facilita bastante a verificação do funcionamento dos endpoints e a experimentação dos cenários de CRUD, análise de IA e geração de alertas, pois o banco já contém registros suficientes para ilustrar cada caso de uso.
 
 ---
 
