@@ -17,7 +17,7 @@ A aplicação está **integrada em uma esteira CI/CD no Azure DevOps**, automati
 > Resumo Visual:
 > 
 
-![Captura de tela 2025-05-22 201150.png](Captura_de_tela_2025-05-22_201150.png)
+![Diagrama](https://github.com/user-attachments/assets/a57805d6-9f45-4cad-bb24-c6e6dc359d30)
 
 ## 🛠️ Pipeline CI/CD – Como Funciona
 
