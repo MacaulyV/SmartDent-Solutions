@@ -1,0 +1,113 @@
+/* Personalização da interface do Swagger para SmartDent API */
+
+/* Cores principais */
+:root {
+    --smartdent-primary: #2c6da3;
+    --smartdent-secondary: #0e4174;
+    --smartdent-accent: #4a90e2;
+    --smartdent-text: #333333;
+    --smartdent-light: #f5f7fa;
+}
+
+/* Header */
+.swagger-ui .topbar {
+    background-color: var(--smartdent-primary);
+    padding: 15px 0;
+}
+
+.swagger-ui .topbar .topbar-wrapper img {
+    content: url('https://via.placeholder.com/150x50/2c6da3/ffffff?text=SmartDent');
+}
+
+.swagger-ui .info .title {
+    color: var(--smartdent-secondary);
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.swagger-ui .info .title small.version-stamp {
+    background-color: var(--smartdent-accent);
+}
+
+/* Estilos para os endpoints */
+.swagger-ui .opblock .opblock-summary-method {
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background-color: #61affe;
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background-color: #49cc90;
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+    background-color: #fca130;
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+    background-color: #f93e3e;
+}
+
+/* Estilização de modelos e exemplos */
+.swagger-ui .model-example {
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.swagger-ui .model-box {
+    padding: 12px;
+    background-color: var(--smartdent-light);
+}
+
+/* Botões */
+.swagger-ui .btn {
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.swagger-ui .btn.execute {
+    background-color: var(--smartdent-accent);
+    color: white;
+    border-color: var(--smartdent-accent);
+}
+
+.swagger-ui .btn.execute:hover {
+    background-color: var(--smartdent-secondary);
+    border-color: var(--smartdent-secondary);
+}
+
+/* Campos de formulário */
+.swagger-ui input[type=text], 
+.swagger-ui textarea {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.swagger-ui input[type=text]:focus, 
+.swagger-ui textarea:focus {
+    border-color: var(--smartdent-accent);
+    box-shadow: 0 0 0 1px var(--smartdent-accent);
+}
+
+/* Footer */
+.swagger-ui .info .base-url {
+    font-size: 16px;
+    color: var(--smartdent-secondary);
+}
+
+/* Ocultar subtítulos duplicados na navegação lateral */
+.swagger-ui .opblock-tag a span:nth-child(2) {
+    display: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .swagger-ui .info .title {
+        font-size: 24px;
+    }
+}
