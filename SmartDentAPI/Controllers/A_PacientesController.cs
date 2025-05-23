@@ -91,6 +91,155 @@ namespace SmartDentAPI.Controllers
         }
 
         /// <summary>
+        /// Realiza o login do paciente através da validação de nome completo e CPF.
+        /// </summary>
+        /// <param name="loginDTO">Dados de login contendo nome completo e CPF.</param>
+        /// <returns>Ficha completa do paciente em caso de sucesso.</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        /// 
+        /// ```json
+        /// {
+        ///     "nomeCompleto": "Maria Silva",
+        ///     "cpf": "12345678901"
+        /// }
+        /// ```
+        /// 
+        /// O CPF deve ser informado sem pontuação (apenas números).
+        /// </remarks>
+        /// <response code="200">Login realizado com sucesso</response>
+        /// <response code="400">Erro na solicitação - dados inválidos</response>
+        /// <response code="401">Credenciais inválidas</response>
+        [HttpPost("login")]
+        [SwaggerResponse(200, "Login realizado com sucesso", typeof(FichaPacienteResponseDTO))]
+        [SwaggerResponse(400, "Requisição inválida", typeof(object))]
+        [SwaggerResponse(401, "Credenciais inválidas", typeof(object))]
+        [SwaggerOperation(
+            Summary = "Login de paciente",
+            Description = "Autentica um paciente usando nome completo e CPF, retornando sua ficha completa",
+            OperationId = "LoginPaciente",
+            Tags = new[] { "Pacientes" }
+        )]
+        public async Task<IActionResult> LoginPaciente([FromBody] PacienteLoginDTO loginDTO)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (string.IsNullOrWhiteSpace(loginDTO.NomeCompleto) || string.IsNullOrWhiteSpace(loginDTO.CPF))
+                return BadRequest(new { error = "Nome completo e CPF são obrigatórios." });
+
+            if (loginDTO.CPF.Length != 11 || !loginDTO.CPF.All(char.IsDigit))
+                return BadRequest(new { error = "CPF deve conter 11 dígitos numéricos." });
+
+            try
+            {
+                // Busca o paciente pelo CPF
+                var pacientes = await _pacienteRepo.GetAllAsync();
+                var paciente = pacientes.FirstOrDefault(p => 
+                    p.CPF == loginDTO.CPF && 
+                    p.NomeCompleto.Equals(loginDTO.NomeCompleto, StringComparison.OrdinalIgnoreCase));
+
+                if (paciente == null)
+                    return Unauthorized(new { error = "Nome ou CPF inválidos." });
+
+                // Busca as consultas e procedimentos do paciente
+                var consultas = await _consultaRepo.GetByPacienteIdAsync(paciente.IdPaciente);
+                decimal gastoTotal = 0;
+
+                var response = new FichaPacienteResponseDTO
+                {
+                    IdPaciente = paciente.IdPaciente,
+                    NomeCompleto = paciente.NomeCompleto,
+                    CPF = FormatCPF(paciente.CPF),
+                    DataNascimento = "",
+                    Email = paciente.Email,
+                    Telefone = FormatTelefone(paciente.Telefone),
+                    Endereco = paciente.Endereco,
+                    PlanoOdontologico = paciente.PlanoOdontologico,
+                    Empresa = paciente.Empresa,
+                    NumConsultas = paciente.NumConsultas,
+                    GastoTotal = FormatCurrency(0),
+                    Consultas = new List<FichaPacienteResponseDTO.ConsultaData>()
+                };
+
+                // Tratamento de erro para a conversão da data de nascimento
+                try
+                {
+                    if (!string.IsNullOrEmpty(paciente.DataNascimento))
+                    {
+                        response.DataNascimento = DateTime.ParseExact(
+                            paciente.DataNascimento, 
+                            "ddMMyyyy", 
+                            CultureInfo.InvariantCulture,
+                            DateTimeStyles.None)
+                            .ToString("dd/MM/yyyy");
+                    }
+                }
+                catch
+                {
+                    // Em caso de erro na conversão, retorna o formato original
+                    response.DataNascimento = "Formato inválido: " + paciente.DataNascimento;
+                }
+
+                foreach (var c in consultas)
+                {
+                    string dataFormatada = "";
+                    if (c.DataConsultaConvertida.HasValue)
+                    {
+                        dataFormatada = c.DataConsultaConvertida.Value.ToString("dd/MM/yyyy HH:mm");
+                    }
+                    else if (DateTime.TryParseExact(c.DataConsulta, "ddMMyyyyHHmm",
+                                 CultureInfo.InvariantCulture,
+                                 DateTimeStyles.None, out DateTime dataConvertida))
+                    {
+                        dataFormatada = dataConvertida.ToString("dd/MM/yyyy HH:mm");
+                    }
+                    else
+                    {
+                        dataFormatada = "Data inválida";
+                    }
+
+                    var procList = await _procedimentoRepo.GetByConsultaIdAsync(c.IdConsulta);
+                    var proc = procList.FirstOrDefault();
+
+                    FichaPacienteResponseDTO.ProcedimentoData procData = null;
+                    if (proc != null)
+                    {
+                        procData = new FichaPacienteResponseDTO.ProcedimentoData
+                        {
+                            IdProcedimento = proc.IdProcedimento,
+                            TipoProcedimento = proc.TipoProcedimento,
+                            Descricao = proc.Descricao,
+                            Custo = FormatCurrency(proc.Custo)
+                        };
+                        // Soma o custo somente se o status da consulta for "Realizada"
+                        if (c.Status.Equals("Realizada", StringComparison.OrdinalIgnoreCase))
+                        {
+                            gastoTotal += proc.Custo;
+                        }
+                    }
+
+                    var consultaData = new FichaPacienteResponseDTO.ConsultaData
+                    {
+                        IdConsulta = c.IdConsulta,
+                        DataConsulta = dataFormatada,
+                        Status = c.Status,
+                        Procedimento = procData
+                    };
+
+                    response.Consultas.Add(consultaData);
+                }
+                response.GastoTotal = FormatCurrency(gastoTotal);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Ocorreu um erro ao processar o login.", details = ex.Message });
+            }
+        }
+
+        /// <summary>
         /// Cria um novo paciente no sistema.
         /// </summary>
         /// <param name="dto">Dados do paciente para criação.</param>
@@ -176,7 +325,7 @@ namespace SmartDentAPI.Controllers
         /// Este endpoint retorna informações detalhadas sobre os pacientes com plano individual,
         /// incluindo consultas realizadas e procedimentos associados.
         /// </remarks>
-        /// <response code="200">Lista de fichas encontrada com sucesso</response>
+        /// <response code="200">Lista de fichas de pacientes individuais</response>
         /// <response code="404">Nenhum paciente individual encontrado</response>
         [HttpGet("GetFichaPacientesByPlanoIndividual")]
         [SwaggerResponse(200, "Lista de fichas de pacientes individuais", typeof(List<FichaPacienteResponseDTO>))]
@@ -261,8 +410,7 @@ namespace SmartDentAPI.Controllers
                         IdPaciente = p.IdPaciente,
                         NomeCompleto = p.NomeCompleto,
                         CPF = FormatCPF(p.CPF),
-                        DataNascimento = DateTime.ParseExact(p.DataNascimento, "ddMMyyyy", CultureInfo.InvariantCulture)
-                                            .ToString("dd/MM/yyyy"),
+                        DataNascimento = "",
                         Email = p.Email,
                         Telefone = FormatTelefone(p.Telefone),
                         Endereco = p.Endereco,
@@ -272,6 +420,25 @@ namespace SmartDentAPI.Controllers
                         GastoTotal = FormatCurrency(gastoTotal),
                         Consultas = consultasDTO
                     });
+
+                    // Tratamento de erro para a conversão da data de nascimento
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(p.DataNascimento))
+                        {
+                            response[response.Count - 1].DataNascimento = DateTime.ParseExact(
+                                p.DataNascimento,
+                                "ddMMyyyy",
+                                CultureInfo.InvariantCulture,
+                                DateTimeStyles.None)
+                                .ToString("dd/MM/yyyy");
+                        }
+                    }
+                    catch
+                    {
+                        // Em caso de erro na conversão, retorna o formato original
+                        response[response.Count - 1].DataNascimento = "Formato inválido: " + p.DataNascimento;
+                    }
                 }
 
                 return Ok(response);
@@ -421,8 +588,7 @@ namespace SmartDentAPI.Controllers
                         IdPaciente = p.IdPaciente,
                         NomeCompleto = p.NomeCompleto,
                         CPF = FormatCPF(p.CPF),
-                        DataNascimento = DateTime.ParseExact(p.DataNascimento, "ddMMyyyy", CultureInfo.InvariantCulture)
-                                            .ToString("dd/MM/yyyy"),
+                        DataNascimento = "",
                         Email = p.Email,
                         Telefone = FormatTelefone(p.Telefone),
                         Endereco = p.Endereco,
@@ -433,6 +599,24 @@ namespace SmartDentAPI.Controllers
                         Consultas = consultasDTO
                     });
 
+                    // Tratamento de erro para a conversão da data de nascimento
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(p.DataNascimento))
+                        {
+                            response[response.Count - 1].DataNascimento = DateTime.ParseExact(
+                                p.DataNascimento,
+                                "ddMMyyyy",
+                                CultureInfo.InvariantCulture,
+                                DateTimeStyles.None)
+                                .ToString("dd/MM/yyyy");
+                        }
+                    }
+                    catch
+                    {
+                        // Em caso de erro na conversão, retorna o formato original
+                        response[response.Count - 1].DataNascimento = "Formato inválido: " + p.DataNascimento;
+                    }
                 }
 
                 return Ok(response);
@@ -463,8 +647,7 @@ namespace SmartDentAPI.Controllers
                 IdPaciente = paciente.IdPaciente,
                 NomeCompleto = paciente.NomeCompleto,
                 CPF = FormatCPF(paciente.CPF),
-                DataNascimento = DateTime.ParseExact(paciente.DataNascimento, "ddMMyyyy", CultureInfo.InvariantCulture)
-                                    .ToString("dd/MM/yyyy"),
+                DataNascimento = "",
                 Email = paciente.Email,
                 Telefone = FormatTelefone(paciente.Telefone),
                 Endereco = paciente.Endereco,
@@ -474,6 +657,25 @@ namespace SmartDentAPI.Controllers
                 GastoTotal = FormatCurrency(0),
                 Consultas = new List<FichaPacienteResponseDTO.ConsultaData>()
             };
+
+            // Tratamento de erro para a conversão da data de nascimento
+            try
+            {
+                if (!string.IsNullOrEmpty(paciente.DataNascimento))
+                {
+                    response.DataNascimento = DateTime.ParseExact(
+                        paciente.DataNascimento, 
+                        "ddMMyyyy", 
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None)
+                        .ToString("dd/MM/yyyy");
+                }
+            }
+            catch
+            {
+                // Em caso de erro na conversão, retorna o formato original
+                response.DataNascimento = "Formato inválido: " + paciente.DataNascimento;
+            }
 
             foreach (var c in consultas)
             {

@@ -372,6 +372,109 @@ namespace SmartDentAPI.Controllers
         }
 
         /// <summary>
+        /// Analisa a necessidade de acompanhamento especializado para todos os pacientes com plano individual.
+        /// </summary>
+        /// <returns>Lista com os resultados da análise de acompanhamento para cada paciente individual.</returns>
+        /// <remarks>
+        /// Este endpoint utiliza um modelo de Machine Learning para avaliar o histórico de cada paciente com plano individual
+        /// e determinar se há necessidade de um acompanhamento mais próximo devido a fatores como faltas, 
+        /// consultas não atualizadas, longo período sem atendimento, entre outros.
+        /// O resultado inclui um nível de alerta (Crítico, Atenção, Padrão), uma justificativa detalhada e sugestões de ação.
+        /// </remarks>
+        /// <response code="200">Análise de acompanhamento para pacientes individuais retornada com sucesso.</response>
+        /// <response code="404">Nenhum paciente individual encontrado para análise.</response>
+        /// <response code="500">Ocorreu um erro interno durante a análise.</response>
+        [HttpGet("individuais")]
+        [SwaggerOperation(
+            Summary = "Analisar necessidade de acompanhamento para pacientes individuais (ML)",
+            Description = "Utiliza ML.NET para analisar todos os pacientes de plano individual e identificar necessidade de acompanhamento especializado.",
+            OperationId = "AnalisarAcompanhamentoPacientesIndividuais",
+            Tags = new[] { "AnaliseAcompanhamento" }
+        )]
+        [SwaggerResponse(200, "Análise de acompanhamento para pacientes individuais", typeof(List<ResultadoAnaliseAcompanhamento>))]
+        [SwaggerResponse(404, "Nenhum paciente individual encontrado", typeof(object))]
+        [SwaggerResponse(500, "Erro interno ao processar a análise", typeof(object))]
+        public async Task<IActionResult> AnalisarAcompanhamentoPacientesIndividuais()
+        {
+            try
+            {
+                var pacientesIndividuais = await _pacienteRepo.GetPacientesByEmpresaAsync("Individual");
+
+                if (pacientesIndividuais == null || !pacientesIndividuais.Any())
+                {
+                    return NotFound(new { message = "Nenhum paciente com plano Individual encontrado para análise." });
+                }
+
+                var resultadosAnalise = new List<ResultadoAnaliseAcompanhamento>();
+
+                // Tentar carregar o modelo uma vez. Se não existir, será treinado na primeira análise.
+                if (!_servicoAnalise.CarregarModelo())
+                {
+                    // Se o modelo não pôde ser carregado, tentaremos treiná-lo.
+                    // Idealmente, o treinamento deve ser um processo separado e monitorado.
+                    Console.WriteLine("Modelo de análise não encontrado. Tentando treinar um novo modelo...");
+                    var todosPacientes = await _pacienteRepo.GetAllAsync();
+                    var todasConsultas = await _consultaRepo.GetAllAsync(); // Idealmente, paginar ou limitar
+                    
+                    // Converter datas
+                    foreach (var paciente in todosPacientes)
+                    {
+                        ConverterDataNascimentoPaciente(paciente);
+                    }
+                    
+                    foreach (var consulta in todasConsultas)
+                    {
+                        ConverterDatasConsulta(consulta);
+                    }
+                    
+                    if (todosPacientes.Any() && todasConsultas.Any())
+                    {
+                         _servicoAnalise.TreinarModelo(todosPacientes.ToList(), todasConsultas.ToList());
+                    }
+                    else
+                    {
+                        // Não há dados suficientes para treinar, o serviço usará fallback ou exemplos sintéticos
+                        Console.WriteLine("Dados insuficientes para treinar um novo modelo. A análise pode usar lógica de fallback.");
+                    }
+                }
+
+                // Converter datas dos pacientes individuais
+                foreach (var paciente in pacientesIndividuais)
+                {
+                    ConverterDataNascimentoPaciente(paciente);
+                    var consultasPaciente = await _consultaRepo.GetByPacienteIdAsync(paciente.IdPaciente);
+                    
+                    // Converter datas das consultas
+                    foreach (var consulta in consultasPaciente)
+                    {
+                        ConverterDatasConsulta(consulta);
+                    }
+                    
+                    var analise = _servicoAnalise.AnalisarNecessidadeAcompanhamento(paciente, consultasPaciente.ToList());
+                    
+                    // Adicionar nome do paciente no resultado
+                    analise.NomePaciente = paciente.NomeCompleto;
+                    
+                    resultadosAnalise.Add(analise);
+                }
+
+                // Organizar resultados por nível de alerta (Crítico primeiro, depois Atenção, depois outros)
+                var resultadosOrganizados = resultadosAnalise
+                    .OrderBy(r => r.NivelAlerta == "Crítico" ? 0 : (r.NivelAlerta == "Atenção" ? 1 : 2))
+                    .ThenByDescending(r => r.Score)
+                    .ToList();
+
+                return Ok(resultadosOrganizados);
+            }
+            catch (Exception ex)
+            {
+                // Loggar a exceção (ex.ToString()) para observabilidade
+                Console.WriteLine($"Erro ao analisar acompanhamento de pacientes individuais: {ex.Message}");
+                return StatusCode(500, new { error = "Ocorreu um erro interno ao processar a análise de acompanhamento.", details = ex.Message });
+            }
+        }
+
+        /// <summary>
         /// Endpoint para análise de pacientes a partir de dados enviados diretamente.
         /// </summary>
         /// <param name="dadosJson">Dados do paciente e suas consultas para análise em formato JSON</param>

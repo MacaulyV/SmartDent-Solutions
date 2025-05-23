@@ -1,0 +1,45 @@
+# flyctl launch added from .gitignore
+**\﻿﻿# Pastas de build e publicação
+**\bin
+**\obj
+**\out
+**\publish
+
+# Arquivos e pastas gerados pelo Visual Studio
+**\.vs
+**\*.suo
+**\*.user
+**\*.userosscache
+
+# Arquivos de log e cache
+**\*.log
+**\*.cache
+
+# Pacotes NuGet
+**\*.nupkg
+# Pasta do pacote NuGet
+**\.nuget
+
+# Ambiente virtual do .NET (se houver)
+**\.venv
+**\env
+
+# Outros arquivos temporários
+**\_ReSharper*
+**\*.DotSettings.user
+
+# flyctl launch added from .idea\.idea.SmartDentAPI.dir\.idea\.gitignore
+.idea\.idea.SmartDentAPI.dir\.idea\**\﻿# Default ignored files
+.idea\.idea.SmartDentAPI.dir\.idea\shelf
+.idea\.idea.SmartDentAPI.dir\.idea\workspace.xml
+# Rider ignored files
+.idea\.idea.SmartDentAPI.dir\.idea\modules.xml
+.idea\.idea.SmartDentAPI.dir\.idea\contentModel.xml
+.idea\.idea.SmartDentAPI.dir\.idea\projectSettingsUpdater.xml
+.idea\.idea.SmartDentAPI.dir\.idea\.idea.SmartDentAPI.iml
+# Editor-based HTTP Client requests
+.idea\.idea.SmartDentAPI.dir\.idea\httpRequests
+# Datasource local storage ignored files
+.idea\.idea.SmartDentAPI.dir\.idea\dataSources
+.idea\.idea.SmartDentAPI.dir\.idea\dataSources.local.xml
+fly.toml

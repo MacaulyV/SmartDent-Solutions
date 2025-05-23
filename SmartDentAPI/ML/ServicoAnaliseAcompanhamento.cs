@@ -8,8 +8,20 @@ using SmartDentAPI.Models;
 namespace SmartDentAPI.ML
 {
     /// <summary>
-    /// Serviço para análise de necessidade de acompanhamento especializado usando ML.NET
+    /// Serviço para análise de necessidade de acompanhamento especializado usando ML.NET.
     /// </summary>
+    /// <remarks>
+    /// Esta classe implementa um serviço de Machine Learning que utiliza a biblioteca ML.NET para 
+    /// analisar o histórico de consultas dos pacientes e determinar quais deles necessitam de um 
+    /// acompanhamento mais próximo devido a fatores como faltas recorrentes, consultas não atualizadas 
+    /// ou longos períodos sem atendimento.
+    /// 
+    /// O serviço é capaz de:
+    /// - Treinar um modelo com dados históricos
+    /// - Salvar e carregar modelos treinados
+    /// - Realizar análises individuais de pacientes
+    /// - Gerar justificativas e recomendações detalhadas
+    /// </remarks>
     public class ServicoAnaliseAcompanhamento
     {
         private readonly MLContext _mlContext;
@@ -18,8 +30,12 @@ namespace SmartDentAPI.ML
         private readonly Random _random = new Random();
         
         /// <summary>
-        /// Construtor do serviço de análise de acompanhamento
+        /// Construtor do serviço de análise de acompanhamento.
         /// </summary>
+        /// <remarks>
+        /// Inicializa o contexto ML.NET com uma semente fixa para garantir reprodutibilidade
+        /// e configura o caminho para salvar/carregar o modelo treinado.
+        /// </remarks>
         public ServicoAnaliseAcompanhamento()
         {
             _mlContext = new MLContext(seed: 42);
@@ -27,11 +43,17 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Treina o modelo com base em dados históricos
+        /// Treina o modelo com base em dados históricos de pacientes e suas consultas.
         /// </summary>
-        /// <param name="pacientes">Lista de pacientes para treinar o modelo</param>
-        /// <param name="consultas">Lista de consultas do histórico</param>
-        /// <returns>Acurácia do modelo treinado</returns>
+        /// <param name="pacientes">Lista de pacientes para treinar o modelo.</param>
+        /// <param name="consultas">Lista de consultas do histórico.</param>
+        /// <returns>Acurácia do modelo treinado, como um valor entre 0 e 1.</returns>
+        /// <remarks>
+        /// Este método processa os dados históricos, gera as features necessárias e treina um
+        /// modelo de classificação binária utilizando regressão logística. O modelo treinado é
+        /// salvo para uso futuro. Se os dados históricos forem insuficientes, o método 
+        /// complementa o treinamento com dados sintéticos.
+        /// </remarks>
         public float TreinarModelo(List<Paciente> pacientes, List<Consulta> consultas)
         {
             // Gerar dados de treinamento com base nos dados reais do sistema
@@ -48,8 +70,10 @@ namespace SmartDentAPI.ML
                 .Append(_mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(
                     labelColumnName: "Label",
                     featureColumnName: "Features",
-                    l2Regularization: 0.01f, // Adicionar regularização para melhorar generalização
-                    optimizationTolerance: 1e-4f)); // Aumentar precisão do treinamento
+                    l1Regularization: 0.1f, // Adicionar regularização L1 para seleção de features
+                    l2Regularization: 0.2f, // Aumentar regularização L2
+                    optimizationTolerance: 1e-5f, // Aumentar precisão do treinamento
+                    historySize: 20)); // Aumentar histórico para LBFGS
             
             // Treinar modelo
             _modelo = pipeline.Fit(dataView);
@@ -74,9 +98,14 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Carrega um modelo previamente treinado
+        /// Carrega um modelo previamente treinado a partir do arquivo salvo.
         /// </summary>
-        /// <returns>Verdadeiro se o modelo foi carregado com sucesso</returns>
+        /// <returns>Verdadeiro se o modelo foi carregado com sucesso, falso caso contrário.</returns>
+        /// <remarks>
+        /// Verifica se existe um arquivo de modelo no caminho configurado e, se existir,
+        /// carrega-o para uso nas predições. Isso evita a necessidade de treinar o modelo
+        /// a cada inicialização do serviço.
+        /// </remarks>
         public bool CarregarModelo()
         {
             if (File.Exists(_caminhoModelo))
@@ -88,11 +117,17 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Analisa se um paciente necessita de acompanhamento especializado
+        /// Analisa se um paciente necessita de acompanhamento especializado.
         /// </summary>
-        /// <param name="paciente">Dados do paciente</param>
-        /// <param name="consultas">Consultas do paciente</param>
-        /// <returns>Resultado da análise com justificativa</returns>
+        /// <param name="paciente">Dados do paciente a ser analisado.</param>
+        /// <param name="consultas">Lista de consultas do paciente.</param>
+        /// <returns>Resultado detalhado da análise com justificativa e sugestões.</returns>
+        /// <remarks>
+        /// Este método realiza a predição utilizando o modelo de ML.NET treinado.
+        /// Se o modelo não estiver disponível, tenta carregá-lo ou treiná-lo com os dados fornecidos.
+        /// Além da predição, enriquece o resultado com justificativas, níveis de alerta e
+        /// sugestões de ação personalizadas com base nos dados do paciente.
+        /// </remarks>
         public ResultadoAnaliseAcompanhamento AnalisarNecessidadeAcompanhamento(Paciente paciente, List<Consulta> consultas)
         {
             if (_modelo == null)
@@ -135,11 +170,8 @@ namespace SmartDentAPI.ML
                     resultado.DataUltimaConsulta = ultimaConsulta.DataConsulta;
                 }
                 
-                // Gerar justificativa com base nos dados analisados
-                resultado.Justificativa = GerarJustificativa(dadosEntrada, resultado);
-                
-                // Adicionar detalhes sobre consultas analisadas
-                AdicionarDetalhesConsultas(dadosEntrada, resultado);
+                // Gerar justificativa, nível de alerta e sugestão de ação
+                DefinirAnaliseCompleta(dadosEntrada, resultado);
                 
                 return resultado;
             }
@@ -151,7 +183,8 @@ namespace SmartDentAPI.ML
                 {
                     IdPaciente = paciente.IdPaciente,
                     NecessitaAcompanhamento = dadosEntrada.NumConsultasNaoRealizadas >= 2 || dadosEntrada.NumConsultasAgendadasExpiradas >= 1,
-                    Score = dadosEntrada.NumConsultasNaoRealizadas >= 2 || dadosEntrada.NumConsultasAgendadasExpiradas >= 1 ? 0.85f : 0.15f,
+                    Score = dadosEntrada.NumConsultasNaoRealizadas >= 2 || dadosEntrada.NumConsultasAgendadasExpiradas >= 1 ? 0.85f : 0.15f, // Simula score alto para necessidade
+                    Probabilidade = dadosEntrada.NumConsultasNaoRealizadas >= 2 || dadosEntrada.NumConsultasAgendadasExpiradas >= 1 ? 0.85f : 0.15f, // Simula probabilidade
                     NumConsultasNaoRealizadas = (int)dadosEntrada.NumConsultasNaoRealizadas,
                     NumConsultasAgendadasExpiradas = (int)dadosEntrada.NumConsultasAgendadasExpiradas
                 };
@@ -167,19 +200,23 @@ namespace SmartDentAPI.ML
                     resultado.DataUltimaConsulta = ultimaConsulta.DataConsulta;
                 }
                 
-                // Gerar justificativa com base nos dados analisados
-                resultado.Justificativa = GerarJustificativa(dadosEntrada, resultado);
-                
-                // Adicionar detalhes sobre consultas analisadas
-                AdicionarDetalhesConsultas(dadosEntrada, resultado);
+                // Gerar justificativa, nível de alerta e sugestão de ação para o fallback
+                DefinirAnaliseCompleta(dadosEntrada, resultado);
                 
                 return resultado;
             }
         }
         
         /// <summary>
-        /// Prepara os dados de entrada para o modelo a partir do paciente e suas consultas
+        /// Prepara os dados de entrada para o modelo a partir do paciente e suas consultas.
         /// </summary>
+        /// <param name="paciente">Paciente a ser analisado.</param>
+        /// <param name="consultas">Lista de consultas, potencialmente incluindo consultas de outros pacientes.</param>
+        /// <returns>Objeto com os dados de entrada formatados para o modelo.</returns>
+        /// <remarks>
+        /// Este método extrai as features necessárias para o modelo a partir dos dados brutos do paciente e suas consultas.
+        /// Realiza cálculos como idade, percentual de faltas, dias desde a última consulta, etc.
+        /// </remarks>
         private DadosEntradaAcompanhamento PrepararDadosEntrada(Paciente paciente, List<Consulta> consultas)
         {
             // Filtrar apenas consultas deste paciente
@@ -267,57 +304,99 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Gera uma justificativa personalizada com base nos dados analisados
+        /// Define a justificativa, nível de alerta e sugestão de ação para o resultado da análise.
         /// </summary>
-        private string GerarJustificativa(DadosEntradaAcompanhamento dados, ResultadoAnaliseAcompanhamento resultado)
+        /// <param name="dados">Dados de entrada utilizados na análise.</param>
+        /// <param name="resultado">Resultado da análise a ser enriquecido com informações adicionais.</param>
+        /// <remarks>
+        /// Este método analisa os dados do paciente e o resultado da predição para adicionar:
+        /// - Um nível de alerta (Crítico, Atenção, Moderado ou Padrão) com base na severidade
+        /// - Uma justificativa detalhada explicando os motivos da análise
+        /// - Sugestões de ações que podem ser tomadas com base no resultado
+        /// - Detalhes específicos sobre as consultas consideradas na análise
+        /// 
+        /// Estas informações auxiliam os profissionais de saúde a entender o resultado
+        /// e definir próximos passos para o acompanhamento do paciente.
+        /// </remarks>
+        private void DefinirAnaliseCompleta(DadosEntradaAcompanhamento dados, ResultadoAnaliseAcompanhamento resultado)
         {
-            if (!resultado.NecessitaAcompanhamento)
-            {
-                return "O paciente não apresenta indicadores suficientes de necessidade de acompanhamento especializado. " +
-                       "O histórico de consultas está regular e não há um padrão de faltas ou consultas não atualizadas que " +
-                       "justifique uma intervenção especial no momento.";
-            }
-            
             List<string> motivos = new List<string>();
-            
-            // Analisar faltas
-            if (dados.NumConsultasNaoRealizadas >= 2)
+            string sugestao = "";
+
+            if (resultado.NecessitaAcompanhamento)
             {
-                motivos.Add($"O paciente faltou a {dados.NumConsultasNaoRealizadas} consultas sem justificativa prévia");
+                // Nível de Alerta e Sugestões
+                if (resultado.Score > 0.8 || dados.NumConsultasNaoRealizadas >= 3 || dados.NumConsultasAgendadasExpiradas >= 2)
+                {
+                    resultado.NivelAlerta = "Crítico";
+                    sugestao = "Recomenda-se contato imediato com o paciente para entender os motivos das faltas/consultas expiradas e reengajá-lo no tratamento. Avaliar a possibilidade de oferecer horários alternativos ou discutir a importância da continuidade do tratamento.";
+                }
+                else if (resultado.Score > 0.6 || dados.NumConsultasNaoRealizadas >= 2 || dados.NumConsultasAgendadasExpiradas >= 1)
+                {
+                    resultado.NivelAlerta = "Atenção";
+                    sugestao = "Sugere-se um contato proativo com o paciente para verificar a situação das consultas e reforçar a importância do acompanhamento. Oferecer suporte para reagendamento pode ser útil.";
+                }
+                else
+                {
+                    resultado.NivelAlerta = "Moderado"; // Caso o modelo preveja acompanhamento com score menor
+                    sugestao = "Monitorar o paciente e, caso o padrão persista, realizar um contato para entender melhor suas necessidades e dificuldades em seguir o plano de tratamento.";
+                }
+
+                // Justificativa
+                if (dados.NumConsultasNaoRealizadas > 0)
+                {
+                    motivos.Add($"identificou-se um histórico de {dados.NumConsultasNaoRealizadas} consulta(s) registrada(s) como 'Não realizada(s)'. Este é um indicador importante de desengajamento ou possíveis barreiras que o paciente pode estar enfrentando.");
+                }
+                if (dados.NumConsultasAgendadasExpiradas > 0)
+                {
+                    motivos.Add($"foram encontradas {dados.NumConsultasAgendadasExpiradas} consulta(s) com status 'Agendada' cuja data já passou, indicando uma possível falha no acompanhamento ou atualização do status da consulta.");
+                }
+                if (dados.PercentualFaltas >= 25)
+                {
+                    motivos.Add($"o paciente apresenta um percentual de faltas de {dados.PercentualFaltas:F1}%. Índices acima de 20-25% geralmente sinalizam uma necessidade de intervenção para melhorar a adesão ao tratamento.");
+                }
+                if (dados.DiasDesdeuUltimaConsulta > 180)
+                {
+                    motivos.Add($"o sistema registrou que a última consulta efetivamente realizada ocorreu há mais de {dados.DiasDesdeuUltimaConsulta:F0} dias ({Math.Round(dados.DiasDesdeuUltimaConsulta / 30.0, 1)} meses). Um período extenso sem acompanhamento pode comprometer os resultados do tratamento.");
+                }
+                
+                if (motivos.Count == 0 && resultado.NecessitaAcompanhamento) // Se o modelo previu, mas as regras manuais não pegaram
+                {
+                     motivos.Add("a análise preditiva, com base no comportamento histórico e características do paciente, identificou um padrão que sugere um risco elevado de descontinuidade ou complicações no tratamento, justificando um acompanhamento mais próximo.");
+                }
+
+                if (motivos.Any())
+                {
+                    resultado.Justificativa = $"A análise indica necessidade de acompanhamento especializado. Nível de alerta: {resultado.NivelAlerta}. Detalhamento: " + string.Join(" Adicionalmente, ", motivos);
+                }
+                else
+                {
+                    resultado.Justificativa = $"A análise indica necessidade de acompanhamento especializado (Nível de alerta: {resultado.NivelAlerta}), porém os motivos específicos não foram claramente identificados pelas regras atuais. Revisar dados do paciente.";
+                }
+                resultado.SugestaoAcao = sugestao;
+
             }
-            
-            // Analisar consultas agendadas não atualizadas
-            if (dados.NumConsultasAgendadasExpiradas >= 1)
+            else
             {
-                motivos.Add($"Existem {dados.NumConsultasAgendadasExpiradas} consultas agendadas para datas passadas que não foram atualizadas");
+                resultado.NivelAlerta = "Padrão";
+                resultado.Justificativa = "O paciente demonstra um bom engajamento com o plano de tratamento. Não foram identificados indicadores de risco que demandem acompanhamento especializado no momento. Manter o monitoramento regular.";
+                resultado.SugestaoAcao = "Continuar com o acompanhamento padrão e monitorar o histórico de consultas. Incentivar a manutenção da regularidade.";
             }
-            
-            // Analisar percentual de faltas
-            if (dados.PercentualFaltas >= 25)
-            {
-                motivos.Add($"O percentual de faltas é de {dados.PercentualFaltas:F1}%, considerado alto");
-            }
-            
-            // Analisar tempo desde a última consulta
-            if (dados.DiasDesdeuUltimaConsulta > 180) // Mais de 6 meses
-            {
-                motivos.Add($"Passaram-se {dados.DiasDesdeuUltimaConsulta:F0} dias desde a última consulta realizada");
-            }
-            
-            if (motivos.Count == 0)
-            {
-                motivos.Add("A combinação de fatores no histórico do paciente sugere necessidade de acompanhamento");
-            }
-            
-            string justificativa = "O paciente necessita de acompanhamento especializado pelos seguintes motivos: " +
-                                   string.Join("; ", motivos) + ".";
-            
-            return justificativa;
+
+            // Adicionar detalhes sobre consultas analisadas
+            AdicionarDetalhesConsultas(dados, resultado);
         }
-        
+
         /// <summary>
-        /// Adiciona detalhes sobre as consultas analisadas ao resultado
+        /// Adiciona detalhes sobre as consultas analisadas ao resultado.
         /// </summary>
+        /// <param name="dados">Dados de entrada com as informações das consultas.</param>
+        /// <param name="resultado">Resultado da análise onde serão adicionados os detalhes.</param>
+        /// <remarks>
+        /// Enriquece o resultado da análise com informações textuais específicas sobre consultas 
+        /// que foram relevantes para a avaliação, como faltas, consultas não atualizadas e a 
+        /// última consulta realizada.
+        /// </remarks>
         private void AdicionarDetalhesConsultas(DadosEntradaAcompanhamento dados, ResultadoAnaliseAcompanhamento resultado)
         {
             // Adicionar detalhes das consultas não realizadas
@@ -349,8 +428,22 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Gera dados de treinamento com base nos dados históricos
+        /// Gera dados de treinamento com base nos dados históricos.
         /// </summary>
+        /// <param name="pacientes">Lista de pacientes do sistema.</param>
+        /// <param name="consultas">Lista de consultas do sistema.</param>
+        /// <returns>Lista de dados formatados para treinamento do modelo.</returns>
+        /// <remarks>
+        /// Este método processa os dados históricos dos pacientes e suas consultas, 
+        /// transformando-os em exemplos adequados para o treinamento do modelo.
+        /// 
+        /// Para garantir um conjunto de dados balanceado e robusto, o método:
+        /// 1. Extrai padrões dos dados reais do sistema
+        /// 2. Complementa com exemplos sintéticos para melhorar a generalização
+        /// 3. Calcula as features necessárias (idade, faltas, etc.) a partir dos dados brutos
+        /// 
+        /// Se não houver dados suficientes no sistema, o método gera apenas exemplos sintéticos.
+        /// </remarks>
         private List<DadosEntradaAcompanhamento> GerarDadosTreinamento(List<Paciente> pacientes, List<Consulta> consultas)
         {
             var dadosTreinamento = new List<DadosEntradaAcompanhamento>();
@@ -432,37 +525,57 @@ namespace SmartDentAPI.ML
         }
         
         /// <summary>
-        /// Gera exemplos sintéticos para treinamento
+        /// Gera exemplos sintéticos para complementar o treinamento do modelo.
         /// </summary>
+        /// <param name="quantidade">Número de exemplos sintéticos a serem gerados.</param>
+        /// <returns>Lista de dados sintéticos para treinamento.</returns>
+        /// <remarks>
+        /// Este método cria exemplos artificiais que ajudam a:
+        /// 1. Balancear o conjunto de treinamento (exemplos positivos e negativos)
+        /// 2. Melhorar a capacidade de generalização do modelo
+        /// 3. Cobrir casos de borda que podem não estar presentes nos dados reais
+        /// 
+        /// Os exemplos são gerados com distribuições que refletem padrões reais,
+        /// como pacientes que faltam muito e têm longo período sem consulta (casos positivos)
+        /// versus pacientes com baixas taxas de falta e consultas recentes (casos negativos).
+        /// </remarks>
         private List<DadosEntradaAcompanhamento> GerarDadosSinteticos(int quantidade)
         {
             var dadosSinteticos = new List<DadosEntradaAcompanhamento>();
             
-            for (int i = 0; i < quantidade / 2; i++)
+            for (int i = 0; i < quantidade; i++)
             {
-                // Criar exemplo positivo (necessita acompanhamento)
-                dadosSinteticos.Add(new DadosEntradaAcompanhamento
-                {
-                    Idade = _random.Next(18, 80),
-                    NumConsultasTotal = _random.Next(3, 15),
-                    NumConsultasNaoRealizadas = _random.Next(2, 5),
-                    NumConsultasAgendadasExpiradas = _random.Next(0, 3),
-                    PercentualFaltas = _random.Next(25, 70),
-                    DiasDesdeuUltimaConsulta = _random.Next(180, 500),
-                    NecessitaAcompanhamento = true
-                });
+                bool necessitaAcompanhamento = _random.Next(0, 2) == 0; // 50% chance
                 
-                // Criar exemplo negativo (não necessita acompanhamento)
-                dadosSinteticos.Add(new DadosEntradaAcompanhamento
+                if (necessitaAcompanhamento)
                 {
-                    Idade = _random.Next(18, 80),
-                    NumConsultasTotal = _random.Next(1, 20),
-                    NumConsultasNaoRealizadas = _random.Next(0, 1),
-                    NumConsultasAgendadasExpiradas = 0,
-                    PercentualFaltas = _random.Next(0, 15),
-                    DiasDesdeuUltimaConsulta = _random.Next(0, 120),
-                    NecessitaAcompanhamento = false
-                });
+                    // Criar exemplo positivo (necessita acompanhamento)
+                    dadosSinteticos.Add(new DadosEntradaAcompanhamento
+                    {
+                        Idade = _random.Next(18, 85),
+                        NumConsultasTotal = _random.Next(2, 25),
+                        // Gera mais faltas e consultas expiradas para casos positivos
+                        NumConsultasNaoRealizadas = _random.Next(1, _random.Next(2,6)), // Pelo menos 1, max 5
+                        NumConsultasAgendadasExpiradas = _random.Next(0, _random.Next(1,4)), // Pode ter 0, max 3
+                        PercentualFaltas = _random.Next(15, 80), // Percentual de faltas mais alto
+                        DiasDesdeuUltimaConsulta = _random.Next(90, 730), // Tempo maior desde a última consulta
+                        NecessitaAcompanhamento = true
+                    });
+                }
+                else
+                {
+                    // Criar exemplo negativo (não necessita acompanhamento)
+                    dadosSinteticos.Add(new DadosEntradaAcompanhamento
+                    {
+                        Idade = _random.Next(18, 85),
+                        NumConsultasTotal = _random.Next(1, 30),
+                        NumConsultasNaoRealizadas = _random.Next(0, 2), // Poucas ou nenhuma falta
+                        NumConsultasAgendadasExpiradas = _random.Next(0,1), // Nenhuma ou no max 1 expirada (acaso)
+                        PercentualFaltas = _random.Next(0, 20), // Percentual de faltas baixo
+                        DiasDesdeuUltimaConsulta = _random.Next(0, 150), // Consulta recente
+                        NecessitaAcompanhamento = false
+                    });
+                }
             }
             
             return dadosSinteticos;

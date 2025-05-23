@@ -36,6 +36,8 @@ builder.Services.AddEndpointsApiExplorer();
 // Configurar Swagger com documentação personalizada
 builder.Services.AddSwaggerDocumentation();
 
+builder.WebHost.UseUrls("http://*:8080");
+
 /// <summary>
 /// Constrói a aplicação a partir das configurações realizadas.
 /// </summary>
