@@ -1,0 +1,13 @@
+fastapi==0.95.2
+uvicorn==0.21.1
+pydantic==1.10.7
+pandas==1.5.3
+scikit-learn==1.2.2
+joblib==1.2.0
+numpy==1.24.3
+
+# Dependências extras)
+# python-dotenv==1.0.0
+
+# Para melhoria do modelo
+imbalanced-learn==0.10.1  # Para balanceamento de dados

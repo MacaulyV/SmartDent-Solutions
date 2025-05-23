@@ -1,0 +1,41 @@
+periodoTotalDias
+intervaloMedioDias
+qtd_realizadas
+qtd_agendadas
+qtd_canceladas
+gastoTotal
+numProcedsRepetidos
+count_ConsultaseDiagnóstico
+count_Limpeza
+count_Endodontia
+count_RadiologiaeExames
+count_PrótesesDentárias
+count_Ortodontia
+count_Cirurgia
+count_Restauração
+plano_Bem Estar
+plano_Bem Estar Orto
+plano_Bem Estar Orto White
+plano_Bem Estar Pró
+plano_Bem Estar White
+plano_Classical
+plano_Classical Doc
+plano_Convencional
+plano_Dental Júnior
+plano_Integral
+plano_Integral Doc
+plano_Integral Doc Plus
+plano_Integral Plus
+plano_Master
+plano_Maximum White
+plano_Premium
+plano_Superior
+plano_Ômega
+tipoPlano_Empresarial
+tipoPlano_Individual
+taxa_realizacao
+custo_medio_consulta
+taxa_cancelamento
+proceds_repetidos_por_dia
+count_reabilitacao
+flag_muito_ortodontia
