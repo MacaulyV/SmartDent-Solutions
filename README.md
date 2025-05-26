@@ -17,6 +17,20 @@ O **SmartDent Solutions** é uma plataforma baseada em Inteligência Artificial 
 
 ---
 
+## 🎬 Demonstração em Vídeo
+
+[![Assista à demonstração do projeto](https://img.youtube.com/vi/py1fePdV5dE/0.jpg)](https://youtu.be/py1fePdV5dE)
+
+> **Atenção, professor:**
+>
+> O vídeo acima mostra um panorama geral do funcionamento do projeto, com explicações diretas e sem aprofundar em detalhes técnicos.
+> 
+> **Dica:** Recomendo assistir o vídeo em velocidade 1.5x para tornar a apresentação mais dinâmica principalmente por que o video tem 15 minutos.
+>
+> **Recomendo fortemente que leia o conteúdo deste documento** para entender as implementações técnicas, decisões de arquitetura e integrações do sistema. O vídeo serve como apoio visual, mas a parte técnica está toda explicada aqui!
+
+---
+
 ## 📈 **Evolução do Projeto**
 
 Nesta seção, destacamos a evolução do projeto em relação à Sprint anterior e à entrega final da disciplina **Disruptive Architectures: IoT, IOB & Generative IA**, resumindo as principais decisões, desafios e avanços de cada etapa.
