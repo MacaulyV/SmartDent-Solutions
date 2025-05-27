@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDentAPI", "SmartDentAPI\SmartDentAPI.csproj", "{7B6160F1-852E-4D73-B4A9-146E5723B0B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartDent.API.Tests", "..\SmartDent.API.Tests\SmartDent.API.Tests.csproj", "{FB54F395-D94B-4297-A9F0-92E5B4BB4A99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{7B6160F1-852E-4D73-B4A9-146E5723B0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B6160F1-852E-4D73-B4A9-146E5723B0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B6160F1-852E-4D73-B4A9-146E5723B0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB54F395-D94B-4297-A9F0-92E5B4BB4A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB54F395-D94B-4297-A9F0-92E5B4BB4A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB54F395-D94B-4297-A9F0-92E5B4BB4A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB54F395-D94B-4297-A9F0-92E5B4BB4A99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
