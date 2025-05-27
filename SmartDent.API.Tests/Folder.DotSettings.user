@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5a6ea629_002D416e_002D4520_002D9acf_002Da89435355153/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Controllers" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;ProjectFolder&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers&lt;/ProjectFolder&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f2e19472_002D84f9_002D4f36_002Db5f7_002D116e3106178f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from A_PacientesControllerTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;ProjectFile&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers/f:A_PacientesControllerTests.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers/f:B_ConsultasControllerTests.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers/f:C_ProcedimentosControllerTests.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers/f:D_AIControllerTests.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;DA54483D-E681-E235-B511-A2064BC0AD59/d:Controllers/f:E_AlertasControllerTests.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
